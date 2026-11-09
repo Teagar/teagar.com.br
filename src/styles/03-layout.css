@@ -11,6 +11,10 @@
 .tools{position:relative;z-index:3;display:flex;align-items:center;gap:8px}
 .tools .btn{min-height:44px;padding:8px 22px}
 .theme-btn{padding:0}
+.lang-flag{padding:0 6px}
+.flag{display:block;width:32px;height:22px;image-rendering:pixelated;transition:transform .1s steps(1)}
+.lang:hover .flag,.lang:focus-visible .flag{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.flag,.lang:hover .flag,.lang:focus-visible .flag{transform:none;transition:none}}
 .theme-btn .sun{display:none}
 html[data-theme="dark"] .theme-btn .sun{display:block}
 html[data-theme="dark"] .theme-btn .moon{display:none}
