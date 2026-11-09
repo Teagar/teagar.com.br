@@ -159,7 +159,28 @@ test('pixel icons: one per work item, status sprites, palette, determinism, size
     for (const c of cols) assert.ok(ok.has(c), `${n} uses disallowed ${c}`);
     assert.equal(s, await read(`assets/img/icons/${n}`), `${n} matches dist`);
   }
-  for (const st of ['inProgress', 'live', 'openSource']) assert.ok(files[`status-${st}.svg`], `status ${st}`);
+  for (const st of ['inProgress', 'live', 'openSource', 'merged']) assert.ok(files[`status-${st}.svg`], `status ${st}`);
   const again = ICON_FILES();
   for (const n of Object.keys(files)) assert.equal(files[n], again[n], `${n} deterministic`);
+});
+
+test('open-source contributions: merged PR links and icons are built in both languages', async () => {
+  for (const [lang, file] of [['pt-BR', 'index.html'], ['en', 'en/index.html']]) {
+    const c = JSON.parse(await readFile(join(root, `src/content/${lang}.json`), 'utf8')).work.contrib;
+    const html = await read(file);
+    assert.ok(html.includes(`href="${c.projectUrl}"`), `${lang} project link`);
+    let count = 0;
+    for (const it of c.items) {
+      for (const p of it.prs) {
+        count++;
+        assert.ok(html.includes(`href="https://github.com/noctalia-dev/community-plugins/pull/${p.n}"`), `${lang} PR #${p.n}`);
+      }
+    }
+    assert.equal(count, 5, `${lang} lists five merged PRs`);
+    assert.ok(html.includes(`aria-label="${c.merged}"`), `${lang} merged label`);
+    assert.ok(html.includes('/assets/img/icons/oss-plugin.svg') && html.includes('/assets/img/icons/status-merged.svg'));
+  }
+  const plug = await read('assets/img/icons/oss-plugin.svg');
+  assert.match(plug, /viewBox="0 0 24 24"/);
+  assert.match(await read('assets/img/icons/status-merged.svg'), /viewBox="0 0 8 8"/);
 });

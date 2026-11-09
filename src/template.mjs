@@ -10,6 +10,7 @@ const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 
 const GH = 'https://github.com/Teagar';
+const CONTRIB_REPO = 'https://github.com/noctalia-dev/community-plugins';
 const GH_ORG = 'https://github.com/teagarcompany';
 const LI = 'https://www.linkedin.com/in/teagar/';
 
@@ -57,6 +58,26 @@ ${projectIcon(it.icon, size === 'small' ? 48 : 72)}
 ${links}
 </li>`;
 };
+
+const contribBlock = (ui, ct) => `<div class="contrib reveal">
+<h3 class="contrib-h">${esc(ct.title)}</h3>
+<p class="contrib-intro">${esc(ct.intro)}</p>
+<div class="card glow-card contrib-card">
+<div class="contrib-head">
+<img class="pico" src="/assets/img/icons/oss-plugin.svg" width="48" height="48" alt="" decoding="async">
+<div class="contrib-id"><p class="contrib-proj">${ext(ui, ct.project, ct.projectUrl)}</p><p class="meta">${esc(ct.repo)}</p></div>
+</div>
+<p class="sum">${esc(ct.projectNote)}</p>
+<ul class="contrib-items">
+${ct.items.map((it) => `<li class="contrib-item">
+<h4 class="name">${esc(it.name)}</h4>
+<p class="sum">${esc(it.summary)}</p>
+<ul class="chips" aria-label="Stack">${it.stack.map((s) => `<li class="chip">${esc(s)}</li>`).join('')}</ul>
+<ul class="prs" aria-label="${esc(ct.merged)}">${it.prs.map((p) => `<li><a href="${CONTRIB_REPO}/pull/${p.n}" target="_blank" rel="noopener"><img src="/assets/img/icons/status-merged.svg" width="16" height="16" alt="" decoding="async"><span class="pr-t"><span class="meta">#${p.n}</span> · ${esc(p.title)}</span>${ICON_EXT}<span class="vh"> (${esc(ui.external)})</span></a></li>`).join('')}</ul>
+</li>`).join('\n')}
+</ul>
+</div>
+</div>`;
 
 const themeScript = `(function(){var d=document.documentElement;d.className='js';try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.setAttribute('data-theme',t);if(d.lang==='pt-BR'&&location.pathname==='/'){var l=localStorage.getItem('lang');var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';if(!l&&n&&n.toLowerCase().indexOf('pt')!==0){location.replace('/en/'+location.hash)}}}catch(e){d.setAttribute('data-theme','light')}})();`;
 
@@ -215,6 +236,7 @@ ${featured.map((i, n) => workItem(ui, i, n === 0 ? 'big' : 'mid')).join('\n')}
 <ul class="work-rest">
 ${rest.map((i) => workItem(ui, i, 'small')).join('\n')}
 </ul>
+${work.contrib ? contribBlock(ui, work.contrib) : ''}
 <p class="view-all reveal">${ext(ui, work.viewAll, GH)}</p>
 </div>
 </section>

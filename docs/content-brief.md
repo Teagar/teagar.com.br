@@ -30,7 +30,11 @@ Copy line, not a visual rule: the visual identity is defined separately in `docs
 - GitHub GraphQL: 2,227 contributions in the last 12 months; 105 public repositories (2026-11-09).
 - LinkedIn could not be read (blocked for automated access); no job history was invented.
 
+- github.com/noctalia-dev/community-plugins merged pull requests (#484, #859, #842, #845, #873; Aug-Sep 2026) and plugin directories (languages verified: Luau, with a Node.js .mjs collector for OmniRoute Quota).
+
 ## Curation decisions
+
+- **Open-source contributions block:** only merged PRs in the third-party Noctalia community-plugins repository. Excluded: a trivial README PR, a private org repository, and an open unmerged PR.
 
 - **Excluded:** Coalito (handles third-party financial/contract data), MeliGPT client (unofficial integration with a third-party service), private research repos, Tenkaichi3Decomp (decompilation of a commercial game — legal/reputational risk on a client-facing page), class-session repos.
 - **Private products** (Gartrol, Teagarden) are described by capability only, with no repository links or internal URLs.

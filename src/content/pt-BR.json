@@ -99,6 +99,59 @@
     "legend": "Status dos projetos",
     "featuredLabel": "Destaque",
     "viewAll": "Ver todos no GitHub",
+    "contrib": {
+      "title": "Contribuições open source",
+      "intro": "Código meu revisado e aceito por mantenedores de projetos de terceiros.",
+      "project": "Noctalia",
+      "projectUrl": "https://github.com/noctalia-dev/noctalia",
+      "projectNote": "Shell de desktop para Wayland, com cerca de 12 mil estrelas no GitHub. Dois plugins meus fazem parte do repositório oficial de plugins da comunidade.",
+      "repo": "noctalia-dev/community-plugins",
+      "merged": "PRs aceitos",
+      "items": [
+        {
+          "name": "OmniRoute Quota",
+          "summary": "Widget de barra e painel que mostram a cota restante de cada conta configurada no OmniRoute, com contagem regressiva de reset e uso local de sete dias. O coletor lê o banco em modo somente leitura e nunca expõe tokens à interface.",
+          "stack": [
+            "Luau",
+            "JavaScript",
+            "Node.js",
+            "SQLite"
+          ],
+          "prs": [
+            {
+              "n": 484,
+              "title": "Plugin OmniRoute Quota"
+            },
+            {
+              "n": 859,
+              "title": "Leitura de contas OpenAI do OpenCode"
+            }
+          ]
+        },
+        {
+          "name": "Niri Workspace Preview",
+          "summary": "Widget interativo que desenha mapas proporcionais de cada workspace do Niri só com metadados de IPC, preservando a geometria de colunas e pilhas, com escopo por monitor.",
+          "stack": [
+            "Luau",
+            "Niri IPC"
+          ],
+          "prs": [
+            {
+              "n": 842,
+              "title": "Mapas proporcionais de workspaces"
+            },
+            {
+              "n": 845,
+              "title": "Documentação da leitura de tema"
+            },
+            {
+              "n": 873,
+              "title": "Escopo por monitor"
+            }
+          ]
+        }
+      ]
+    },
     "items": [
       {
         "slug": "gartrol",
