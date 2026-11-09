@@ -4,17 +4,17 @@
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgb(46 158 98 / .5)}60%{box-shadow:0 0 0 7px rgb(46 158 98 / 0)}}
 .js .ln>span{animation:rise .9s var(--ease) both;animation-delay:calc(var(--i)*80ms + 120ms)}
 @keyframes moon-rise{from{transform:translateY(calc(var(--px-size)*110px))}to{transform:none}}
-@keyframes ring-in{from{opacity:0}to{opacity:1}}
+@keyframes ring-in{0%,99%{opacity:0}100%{opacity:1}}
 @keyframes bob{0%,100%{transform:none}50%{transform:translateY(calc(var(--px-size)*-1px))}}
-@keyframes pulse1{0%{opacity:.6}33.4%,100%{opacity:.35}}
-@keyframes pulse2{0%,33.3%{opacity:.18}33.4%{opacity:.4}66.7%,100%{opacity:.18}}
-@keyframes pulse3{0%,66.6%{opacity:.08}66.7%{opacity:.3}100%{opacity:.08}}
+@keyframes pulse1{0%{opacity:.4}33.4%,100%{opacity:.24}}
+@keyframes pulse2{0%,33.3%{opacity:.12}33.4%{opacity:.26}66.7%,100%{opacity:.12}}
+@keyframes pulse3{0%,66.6%{opacity:.06}66.7%{opacity:.18}100%{opacity:.06}}
 @keyframes star-in{from{opacity:0}to{opacity:1}}
 @keyframes tw{0%{opacity:1}50%{opacity:.35}100%{opacity:1}}
 @keyframes spark{0%,90%{transform:none}93%,96%{transform:scale(1.8)}100%{transform:none}}
 .stars .sp{transform-box:fill-box;transform-origin:center}
 .js .rise{animation:moon-rise 1.4s steps(22) both}
-.js .ring{animation:ring-in 1ms steps(1) both}
+.js .ring{animation:ring-in .12s linear both}
 .js .r1{animation-delay:1.45s}.js .r2{animation-delay:1.6s}.js .r3{animation-delay:1.75s}
 .js .bob{animation:bob 3s steps(1) infinite 2s}
 .js .r1 img{animation:pulse1 3.6s steps(1) infinite 2s}

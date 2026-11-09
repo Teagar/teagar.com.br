@@ -4,7 +4,8 @@ The portfolio has its **own** identity. It is a personal site for Thiago and a
 storefront for Teagar Company, not another product built on the Teagar Company
 design system.
 
-Shared with the company brand: **only** the logo mark and ember orange `#FF6700`.
+Shared with the company brand: **only** the logo mark, ember orange `#FF6700`
+and the typefaces (by the owner's request on 2026-11-09).
 
 ## Concept: "Golden hour"
 
@@ -66,9 +67,8 @@ No gradients except one: a soft radial ember glow (`radial-gradient` of
     buttons and nav 600, sentence case, body 17–18 px, line-height 1.6.
   - **Small labels** (`--mono`): *IBM Plex Mono* 400/500/600 for card
     category and year, status chips, stack chips, fact labels, form labels,
-    service numbers 01–06, footer meta and marquee group labels. Weight 500,
+    footer meta and marquee group labels. Weight 500,
     12–13 px, tracking .02em, sentence case, `--muted`.
-- Self-host woff2 (latin + latin-ext) under `public/fonts/` with the OFL text.
 - Self-host woff2 (latin + latin-ext) under `public/fonts/` with the OFL text.
 
 Scale (clamp): hero name 64→129 px; h2 51→101 px; h3 24→32 px; stat numbers and section numerals scaled about 15% up from the earlier scale.

@@ -120,7 +120,7 @@ function ringGrid(radii) {
   }
   return g;
 }
-const RINGS = [[31, 2, 0.35], [34, 3, 0.18], [38, 3, 0.08]];
+const RINGS = [[31, 2, 0.3], [34, 1, 0.16], [37, 1, 0.08]];
 
 export function haloSvg() {
   const body = RINGS.map(([r, t, o]) => `<g fill-opacity="${o}">${runs(ringGrid([[r, t]]))}</g>`).join('');
