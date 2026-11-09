@@ -11,47 +11,43 @@ export function sunSvg() {
   const N = 64, R = 20, C = N / 2;
   const g = blank(N);
   const inside = (x, y) => (x + 0.5 - C) ** 2 + (y + 0.5 - C) ** 2 <= R * R;
-  // banded shading around a hot spot in the upper right; dither between baseLight and base
-  const hx = C + 5, hy = C - 5;
+  // a glowing disc: bright core slightly up-right, stepped warm bands, Bayer dither at each band edge
+  const hx = C + 2, hy = C - 2;
+  const bands = [[0.2, PAL.hi], [0.48, PAL.light], [0.76, PAL.baseLight], [Infinity, PAL.base]];
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
     if (!inside(x, y)) continue;
-    const t = Math.hypot(x + 0.5 - hx, y + 0.5 - hy) / (R * 2.0);
-    let c;
-    if (t < 0.1) c = CREAM;
-    else if (t < 0.22) c = PAL.hi;
-    else if (t < 0.36) c = PAL.light;
-    else if (t < 0.46) c = PAL.baseLight;
-    else if (t < 0.58) c = (BAYER[y & 3][x & 3] + 0.5) / 16 < (t - 0.46) / 0.12 ? PAL.base : PAL.baseLight;
-    else c = PAL.base;
-    g[y][x] = c;
+    const t = Math.hypot(x + 0.5 - hx, y + 0.5 - hy) / R;
+    let i = bands.findIndex(([lim]) => t < lim);
+    const prev = i > 0 ? bands[i - 1][0] : 0;
+    // dither the inner 0.06 of each band with the brighter band
+    if (i > 0 && t - prev < 0.06 && (BAYER[y & 3][x & 3] + 0.5) / 16 < 1 - (t - prev) / 0.06) i -= 1;
+    g[y][x] = bands[i][1];
   }
-  // specular glint (3 px)
-  const gx = C + 5, gy = C - 9;
-  g[gy][gx] = WHITE; g[gy][gx + 1] = WHITE; g[gy + 1][gx] = WHITE;
-  // 1 px outline
+  // warm 1 px rim (lighter than the moon's outline: the sun glows) with a darker lower-left arc
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
     if (!inside(x, y)) continue;
-    if (!inside(x - 1, y) || !inside(x + 1, y) || !inside(x, y - 1) || !inside(x, y + 1)) g[y][x] = PAL.outline;
+    if (!inside(x - 1, y) || !inside(x + 1, y) || !inside(x, y - 1) || !inside(x, y + 1)) {
+      g[y][x] = (x + 0.5 - C) - (y + 0.5 - C) < -R * 0.55 ? PAL.shadow : PAL.mid;
+    }
   }
   return svgWrap(N, N, runs(g));
 }
 
-/** 12 chunky rays on the 96 grid (disc is the 64 grid offset by 16); frame 1 and 2 differ by half a step */
+/** 8 chunky rays on the 96 grid (disc is the 64 grid offset by 16); frame 2 is rotated half a step */
 export function raysSvg(frame) {
-  const N = 96, C = 48, n = 12, step = (Math.PI * 2) / n;
+  const N = 96, C = 48, n = 8, step = (Math.PI * 2) / n;
   const off = frame === 2 ? step / 2 : 0;
   const g = blank(N);
   for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
     const dx = x + 0.5 - C, dy = y + 0.5 - C, r = Math.hypot(dx, dy);
-    if (r < 24 || r > 40) continue;
+    if (r < 23 || r > 34) continue;
     const a = Math.atan2(dy, dx) + Math.PI / 2 - off; // 0 = straight up
     const k = Math.round(a / step), da = a - k * step;
     const long = ((k % n) + n) % n % 2 === 0;
-    const len = long ? 39.5 : 32;
+    const len = long ? 33.5 : 29.5;
     if (r > len) continue;
-    const along = r * Math.cos(da), perp = Math.abs(r * Math.sin(da));
-    const hw = 1.7 - 0.8 * ((along - 24) / (len - 24));
-    if (perp <= hw) g[y][x] = long ? PAL.light : PAL.base;
+    const perp = Math.abs(r * Math.sin(da));
+    if (perp <= 1.05) g[y][x] = r > len - 2 ? PAL.baseLight : PAL.base;
   }
   return svgWrap(N, N, runs(g));
 }
@@ -76,44 +72,41 @@ export function daySkySvg() {
   return svgWrap(W, H, runs(g));
 }
 
-function cloud(rnd, w) {
-  const bumps = [];
-  const nb = 3 + Math.floor(rnd() * 2);
-  for (let i = 0; i < nb; i++) bumps.push({ cx: (i + 0.5) / nb * w + (rnd() - 0.5) * 2, r: 3 + rnd() * 3.2 });
-  const cols = [];
-  for (let x = 0; x < w; x++) {
-    let h = 3;
-    for (const b of bumps) { const d = x + 0.5 - b.cx; if (Math.abs(d) < b.r) h = Math.max(h, 2 + Math.sqrt(b.r * b.r - d * d)); }
-    // soften the ends
-    if (x < 2 || x >= w - 2) h = Math.min(h, 3);
-    cols.push(Math.floor(h));
-  }
-  const H = Math.max(...cols);
-  const g = Array.from({ length: H }, () => Array(w).fill(null));
-  for (let x = 0; x < w; x++) for (let k = 0; k < cols[x]; k++) {
-    const y = H - 1 - k;
-    g[y][x] = k === 0 ? '#E0B48A' : k === 1 ? '#F3D3B0' : k === cols[x] - 1 ? WHITE : CREAM;
-  }
-  return { g, h: H };
+// hand-drawn cloud maps: W white, C cream, S warm shade, D bottom edge
+const CLOUD_MAPS = {
+  big: [
+    '.......WWWW...........',
+    '.....WWCCCCWW..WWW....',
+    '...WWCCCCCCCCWWCCCWW..',
+    '..WCCCCCCCCCCCCCCCCCW.',
+    '.WCCCCCCCCCCCCCCCCCCCW',
+    'WCCCCCCCCCCCCCCCCCCCCW',
+    'SSCCCCCCCCCCCCCCCCCCSS',
+    '.SSSSSSSSSSSSSSSSSSSS.',
+    '..DDDDDDDDDDDDDDDDDD..',
+  ],
+  small: [
+    '....WWW.......',
+    '..WWCCCWWWW...',
+    '.WCCCCCCCCCW..',
+    'WCCCCCCCCCCCWW',
+    'SCCCCCCCCCCCCS',
+    '.SSSSSSSSSSSS.',
+    '..DDDDDDDDDD..',
+  ],
+};
+const CLOUD_LEGEND = { W: WHITE, C: CREAM, S: '#F3D3B0', D: '#E0B48A' };
+function cloud(kind, flip) {
+  const rows = CLOUD_MAPS[kind].map((r) => (flip ? [...r].reverse().join('') : r));
+  return rows.map((r) => [...r].map((ch) => CLOUD_LEGEND[ch] || null));
 }
 
 function cloudsBody() {
-  const rnd = mulberry32(0xc10d5);
-  const specs = [['c1', 24], ['c1', 18], ['c2', 28], ['c2', 16]];
-  const placed = [], groups = { c1: [], c2: [] };
-  for (const [name, w] of specs) {
-    const { g, h } = cloud(rnd, w);
-    let pos = null;
-    for (let n = 0; n < 800 && !pos; n++) {
-      const x = 4 + Math.floor(rnd() * (112 - w - 8)), y = 6 + Math.floor(rnd() * 84);
-      const ccx = x + w / 2, ccy = y + h / 2;
-      if (Math.hypot(ccx - 60, ccy - 38) < 50 + w / 4) continue; // keep the sun area clear
-      if (placed.some((p) => Math.abs(p[0] - ccx) < (p[2] + w) / 2 + 6 && Math.abs(p[1] - ccy) < 14)) continue;
-      pos = [x, y];
-      placed.push([ccx, ccy, w]);
-    }
-    if (!pos) continue;
-    groups[name].push(`<g transform="translate(${pos[0]} ${pos[1]})">${runs(g)}</g>`);
+  // hand-placed so they sit in open sky: top right, and the strips beside the portrait
+  const specs = [['c1', 'big', false, 78, 6], ['c2', 'small', true, 100, 26], ['c2', 'small', false, 2, 76], ['c1', 'small', true, 104, 66]];
+  const groups = { c1: [], c2: [] };
+  for (const [name, kind, flip, x, y] of specs) {
+    groups[name].push(`<g transform="translate(${x} ${y})">${runs(cloud(kind, flip))}</g>`);
   }
   return ['c1', 'c2'].map((n) => `<g class="${n}">${groups[n].join('')}</g>`).join('');
 }
