@@ -13,6 +13,8 @@ Portfólio pessoal e empresarial de Thiago Cerqueira (Teagar) e da Teagar Compan
 - Commit scope: `site`.
 - Model routing (policy "Claude Code — portfolio tiers"): Haiku for mechanical/low-risk work, Sonnet for implementation, Opus for content strategy, orchestration and review.
 - `teagar.com.br/` is an unrelated leftover Vite cache directory; it is git-ignored.
+- GitHub repo: Teagar/teagar.com.br (public). Teagar/portfolio is the unrelated 2023 portfolio; never push to it.
+- The initial publication pushed main directly to bootstrap the repo; later changes go through short-lived branches and PRs.
 
 ## Conventions
 

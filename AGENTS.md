@@ -15,7 +15,7 @@ Portfólio pessoal e empresarial de Thiago Cerqueira (Teagar) e da Teagar Compan
 - Identidade: design system Teagar (/home/teagar/Documents/design-system/teagar-design-system.skill.md) — signal #FF6700 pontual, charcoal, paper, blueprint; Big Shoulders Display / Public Sans / IBM Plex Mono; raios 2–4 px; sem gradientes roxos, glassmorphism, emojis ou botões pílula.
 - Assets: logo tc_logo_c1, foto me_orange.jpg e recorte transparente me_orange_Without_BG.png para camadas/motion.
 - Site estático sem framework, acessível (WCAG 2.2 AA), reduced motion, responsivo 320–1440 px, metadados sociais.
-- Sem segredos no repositório. Repositório GitHub Teagar/portfolio.
+- Sem segredos no repositório. Repositório GitHub Teagar/teagar.com.br (Teagar/portfolio é o portfólio antigo de 2023, não alterar).
 
 ## Deploy
 Servidor 2.57.91.91 com Caddy em Docker (rede teagar_proxy). O site é publicado como arquivos estáticos (dist/).
