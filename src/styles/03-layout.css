@@ -63,7 +63,7 @@ html[data-theme="dark"] .theme-btn .moon{opacity:1;transform:none}
 .fig-logo .spin{position:absolute;width:92%;aspect-ratio:1;left:-18%;top:-6%;transform:rotate(var(--rot))}
 .fig-logo svg{width:100%;height:100%;color:var(--signal);animation:logo-in .9s cubic-bezier(.2,.7,.2,1) both}
 .fig-person{transform:translate3d(calc(var(--px)*5px),calc(var(--py)*5px),0)}
-.fig-person picture{position:absolute;left:-4%;right:-4%;bottom:-1px}
+.fig-person picture{position:absolute;left:2%;right:-10%;bottom:-1px}
 .fig-person img{width:100%;height:auto;animation:person-in .75s .2s cubic-bezier(.2,.7,.2,1) both}
 .fig-person .cut-edge{position:absolute}
 @keyframes logo-in{from{transform:rotate(-12deg) scale(.92);opacity:0}to{transform:none;opacity:1}}
@@ -208,3 +208,5 @@ html[data-theme="dark"] .form-msg{color:#EB6F63}
   .panel:hover{transform:none}
 }
 .form-msg:empty{height:0;margin-top:calc(var(--s-3)*-1)}
+
+@media print{.js .reveal{opacity:1;transform:none}.topbar,.scroll-bar,.fig-grid{display:none}}

@@ -106,7 +106,7 @@
         "year": "2026",
         "status": "inProgress",
         "featured": true,
-        "summary": "A local-first control plane for human and multi-agent work. Cards act as contracts — what, why and how to confirm — with claims, leases, evidence, auditable costs and model routing by complexity. This site was planned and delivered inside it.",
+        "summary": "A local-first control plane for human and multi-agent work. Cards act as contracts (what, why and how to confirm), with claims, leases, evidence, auditable costs and model routing by complexity. This site was planned and delivered inside it.",
         "stack": ["TypeScript", "MCP", "API", "CLI"],
         "links": []
       },
@@ -204,7 +204,7 @@
         "year": "2026",
         "status": "openSource",
         "featured": false,
-        "summary": "Open teaching material with 21 modules — logic, PHP, MySQL, HTML/CSS, JavaScript, REST APIs, MVC and Laravel — each with 20 progressive exercises, a capstone challenge and an answer key on a separate branch.",
+        "summary": "Open teaching material with 21 modules: logic, PHP, MySQL, HTML/CSS, JavaScript, REST APIs, MVC and Laravel. Each module has 20 progressive exercises, a capstone challenge and an answer key on a separate branch.",
         "stack": ["PHP", "MySQL", "JavaScript", "Laravel"],
         "links": [{ "label": "GitHub", "url": "https://github.com/Teagar/000-programacao-exercicios" }]
       }
