@@ -1,0 +1,29 @@
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes sun-in{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes fade-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgb(46 158 98 / .5)}60%{box-shadow:0 0 0 7px rgb(46 158 98 / 0)}}
+.js .ln>span{animation:rise .9s var(--ease) both;animation-delay:calc(var(--i)*80ms + 120ms)}
+.js .disc{animation:sun-in 1s var(--ease) both .1s}
+.js .halo{animation:fade-in 1.4s var(--ease) both .2s}
+.js .cut{animation:fade-up .9s var(--ease) both .35s}
+.js .hero-kicker,.js .lead,.js .hero-cta,.js .status{animation:fade-up .8s var(--ease) both;animation-delay:.45s}
+.js .lead{animation-delay:.55s}.js .hero-cta{animation-delay:.65s}.js .status{animation-delay:.75s}
+.live-dot{animation:pulse 2.4s ease-out infinite}
+@media (hover:none){.glow-card::before{display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+  .sun-pos,.cut-pos{transform:none}
+  .btn-primary:hover,.btn:hover .arrow{transform:none}
+  .svc>.arrow{transform:none}
+  .marquee{overflow:visible;margin:0;padding:0}
+  .mq-track{width:auto;display:block}
+  .mq-set{display:grid;gap:20px;padding:0 var(--gutter);max-width:calc(var(--wrap) + var(--gutter)*2);margin-inline:auto}
+  .mq-copy{display:none}
+  .mq-group{flex-wrap:wrap;align-items:baseline}
+  .mq-group h3{flex:0 0 100%}
+  .mq-group ul{flex-wrap:wrap}
+  .mq-group .chip{font-family:var(--sans);font-size:.9375rem;padding:4px 14px}
+}

@@ -56,7 +56,7 @@ Os nomes `<servidor>` e `<diretorio-do-compose>` são placeholders. Não há cre
 
 ### Fontes
 
-As fontes em `public/fonts/` são distribuídas sob a licença SIL Open Font License 1.1. Veja `public/fonts/LICENSE-OFL.txt`.
+Instrument Serif e Instrument Sans (self-hosted). As fontes em `public/fonts/` são distribuídas sob a licença SIL Open Font License 1.1. Veja `public/fonts/LICENSE-OFL.txt`.
 
 ---
 
@@ -116,4 +116,4 @@ The server runs Caddy in Docker on the external network `teagar_proxy`, and Cadd
 
 ### Fonts
 
-The fonts in `public/fonts/` are distributed under the SIL Open Font License 1.1. See `public/fonts/LICENSE-OFL.txt`.
+Instrument Serif and Instrument Sans (self-hosted). The fonts in `public/fonts/` are distributed under the SIL Open Font License 1.1. See `public/fonts/LICENSE-OFL.txt`.
