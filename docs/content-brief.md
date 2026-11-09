@@ -9,7 +9,7 @@
 
 > Custom software, integrations and automation built to survive production.
 
-Derived from the Teagar design-system manifesto ("products, not pretty prototypes"). Every delivery has scope, acceptance criteria and evidence — the same contract model used by Gartrol.
+Copy line, not a visual rule: the visual identity is defined separately in `docs/visual-identity.md`. Every delivery has scope, acceptance criteria and evidence — the same contract model used by Gartrol.
 
 ## Page order and intent
 
