@@ -275,3 +275,4 @@ html[data-theme="dark"] .section.alt .contrib-item .chip{background:var(--surfac
 .prs .ext{flex:none;margin-left:0}
 .contrib-proj a{display:inline-flex;align-items:center}
 .contrib-proj .ext{width:.6em;height:.6em;margin-left:.35em}
+@media (max-width:560px){.contrib-card{padding-inline:16px}.contrib-item{padding:16px}.prs a{border-radius:14px;padding:8px 12px;align-items:flex-start;line-height:1.35}.prs img{margin-top:2px}.contrib-head .pico{width:48px;height:48px}}
