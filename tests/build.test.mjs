@@ -1,7 +1,7 @@
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFile, access } from 'node:fs/promises';
+import { readFile, readdir, access } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
@@ -48,4 +48,46 @@ test('css keeps focus visible and respects reduced motion', async () => {
   assert.ok(css.includes('prefers-reduced-motion'));
   assert.ok(css.includes(':focus-visible'));
   assert.ok(!/outline\s*:\s*(none|0)\b/.test(css), 'no outline removal');
+});
+
+const FORBIDDEN = [/Big Shoulders/i, /Plex Mono/i, /Public Sans/i, /1F4B8C/i, /2B2A28/i];
+
+test('old design-system fonts and colors are gone from src, public and dist', async () => {
+  const files = [];
+  const walk = async (dir) => {
+    for (const e of await readdir(dir, { withFileTypes: true })) {
+      const p = join(dir, e.name);
+      if (e.isDirectory()) await walk(p);
+      else if (/\.(css|mjs|js|html|json|svg|txt|xml)$/.test(e.name) && e.name !== 'LICENSE-OFL.txt') files.push(p);
+    }
+  };
+  for (const d of ['src', 'dist', 'public']) await walk(join(root, d));
+  assert.ok(files.length > 5);
+  for (const f of files) {
+    const txt = await readFile(f, 'utf8');
+    for (const re of FORBIDDEN) assert.ok(!re.test(txt), `${f} matches ${re}`);
+  }
+});
+
+const lum = (hex) => {
+  const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+};
+const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+
+test('text tokens reach 4.5:1 on every surface in both themes', async () => {
+  const css = await readFile(join(root, 'src/styles/01-tokens.css'), 'utf8');
+  const block = (sel) => css.slice(css.indexOf(sel));
+  const light = css.slice(css.indexOf(':root{'), css.indexOf('html[data-theme="dark"]'));
+  const dark = block('html[data-theme="dark"]{');
+  const tok = (b, n) => b.match(new RegExp(`--${n}:\\s*(#[0-9A-Fa-f]{6})`))?.[1];
+  for (const [name, own] of [['light', light], ['dark', dark]]) {
+    const get = (n) => tok(own, n) || tok(light, n);
+    for (const fg of ['text', 'muted', 'ember-text']) {
+      for (const bg of ['bg', 'surface', 'surface-2']) {
+        const r = ratio(get(fg), get(bg));
+        assert.ok(r >= 4.5, `${name}: --${fg} on --${bg} is ${r.toFixed(2)}`);
+      }
+    }
+  }
 });
