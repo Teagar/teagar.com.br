@@ -55,6 +55,10 @@ ${links}
 
 const themeScript = `(function(){var d=document.documentElement;d.className='js';try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.setAttribute('data-theme',t);if(d.lang==='pt-BR'&&location.pathname==='/'){var l=localStorage.getItem('lang');var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';if(!l&&n&&n.toLowerCase().indexOf('pt')!==0){location.replace('/en/'+location.hash)}}}catch(e){d.setAttribute('data-theme','light')}})();`;
 
+const teaImg = (n, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="/assets/img/${n}.svg" alt="" width="48" height="${n.startsWith('tea-steam') ? 24 : 40}" decoding="async">`;
+/** decorative pixel teacup; steam frames and glint are stacked images animated with steps() in CSS */
+const teaStack = (steam) => `${steam ? `<span class="tea-steam">${[1, 2, 3].map((i) => teaImg(`tea-steam-${i}`, `st st${i}`)).join('')}</span>` : ''}<span class="tea-cup">${teaImg('tea-cup')}${teaImg('tea-glint', 'glint')}</span>`;
+
 export function renderPage({ c, locale, other, assets, logoPaths }) {
   const L = LOCALES[locale];
   const O = LOCALES[other.locale];
@@ -254,6 +258,7 @@ ${secHead(stack, 'stack-h')}
 <section class="section contact" id="contact" aria-labelledby="contact-h">
 <div class="wrap contact-grid">
 <div class="contact-copy">
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${esc(contact.teaLine)}</p></div>
 <h2 id="contact-h" class="reveal">${esc(contact.title)}</h2>
 <p class="body reveal">${esc(contact.body)}</p>
 <p class="mail-line reveal">${esc(contact.emailLabel)}<br><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
@@ -284,7 +289,7 @@ ${secHead(stack, 'stack-h')}
 <div><p class="tag">${esc(footer.tagline)}</p><p class="copy">© ${year} ${esc(footer.rights)} ${esc(footer.builtWith)}</p></div>
 <nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="#${id}">${esc(label)}</a>`).join('')}<a href="#top">${esc(ui.backToTop)}</a></nav>
 </div>
-<p class="wordmark" aria-hidden="true">Teagar</p>
+<div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
