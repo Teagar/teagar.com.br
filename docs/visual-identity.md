@@ -145,8 +145,11 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    grid (first card full width with a large title), the other six in a
    3-column grid of smaller cards. Card content: category · year (muted),
    status chip (pill: in development = ember outline, live = green, open
-   source = neutral), display name, summary, stack chips, link pills with arrow.
-   Cursor glow on hover.
+   source = neutral) with its pixel status icon, display name, summary, stack
+   chips, link pills with arrow. Above the grid, a small legend lists the three
+   statuses with their icons. Each card opens with its own pixel-art project
+   icon at top-left (72 px on featured cards, 48 px on small ones). Cursor glow
+   and a one-pixel icon hop on hover/focus (no hop under reduced motion).
 5. **Process:** four large display numerals in a row with titles and text,
    connected by a thin line on which a small ember dot travels as the section
    scrolls (static under reduced motion).
@@ -171,3 +174,17 @@ WCAG 2.2 AA contrast in both themes, visible focus (3 px `--ember` ring with
 2 px offset, `--ember-text` ring on light surfaces if needed for 3:1), 44 px
 targets, semantic landmarks, one h1, progressive enhancement, no horizontal
 scroll from 320 px.
+
+
+## Pixel icons
+
+The work section reuses the moon's pixel-art language: 24x24 project icons
+(one per `work.items[].icon`) and 8x8 status icons, generated at build by
+`scripts/pixel-icons.mjs` from hand-placed ASCII maps (char to colour legend)
+into `dist/assets/img/icons/`. Palette: the moon's `PAL` ramp with a 1 px
+`#3D1702` outline and light from the upper right, plus only cream `#FFF1E0`,
+dark brown `#2A1D14`, grey-stone `#A89C8E` (neutral accents) and green
+`#2E9E62` (reserved for the "live" status). Status icons are decorative
+(`aria-hidden`), drawn at 2 CSS px per pixel and animated with `steps()`
+sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
+`</>` (open source). All designs are original; no third-party marks.

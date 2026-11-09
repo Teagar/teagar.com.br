@@ -134,3 +134,32 @@ test('pixel tea assets are emitted, palette-limited, small and deterministic', a
   assert.match(html, /class="tea-row"/);
   assert.match(html, /tea tea-mini" aria-hidden="true"/);
 });
+
+test('pixel icons: one per work item, status sprites, palette, determinism, size', async () => {
+  const { ICON_FILES } = await import('../scripts/pixel-icons.mjs');
+  const items = JSON.parse(await readFile(join(root, 'src/content/pt-BR.json'), 'utf8')).work.items;
+  const ids = items.map((i) => i.icon);
+  assert.equal(new Set(ids).size, ids.length, 'unique icon ids');
+  for (const id of ids) {
+    assert.ok(id, 'every work item has an icon');
+    const svg = await read(`assets/img/icons/${id}.svg`);
+    assert.match(svg, /viewBox="0 0 24 24"/);
+  }
+  const html = await read('index.html');
+  for (const id of ids) assert.ok(html.includes(`/assets/img/icons/${id}.svg`), `${id} used in html`);
+  const base = new Set(['#FFD2A1', '#FFA05A', '#FF7A1F', '#FF6700', '#D9520A', '#A63D05', '#6E2803', '#3D1702', '#FFF1E0', '#2A1D14']);
+  const files = ICON_FILES();
+  for (const [n, s] of Object.entries(files)) {
+    assert.ok(Buffer.byteLength(s) < 6 * 1024, `${n} < 6 KB`);
+    assert.match(s, /shape-rendering="crispEdges"/);
+    const cols = new Set((s.match(/#[0-9A-Fa-f]{6}\b/g) || []).map((c) => c.toUpperCase()));
+    const ok = new Set(base);
+    if (n === 'status-live.svg') { ok.add('#2E9E62'); assert.ok(cols.has('#2E9E62')); }
+    if (n === 'status-openSource.svg' || n === 'craftonica.svg' || n === 'linux.svg') ok.add('#A89C8E');
+    for (const c of cols) assert.ok(ok.has(c), `${n} uses disallowed ${c}`);
+    assert.equal(s, await read(`assets/img/icons/${n}`), `${n} matches dist`);
+  }
+  for (const st of ['inProgress', 'live', 'openSource']) assert.ok(files[`status-${st}.svg`], `status ${st}`);
+  const again = ICON_FILES();
+  for (const n of Object.keys(files)) assert.equal(files[n], again[n], `${n} deterministic`);
+});
