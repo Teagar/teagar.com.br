@@ -1,0 +1,273 @@
+{
+  "meta": {
+    "lang": "pt-BR",
+    "ogLocale": "pt_BR",
+    "path": "/",
+    "title": "Thiago Cerqueira (Teagar) · Teagar Company — Software sob medida, integrações e automação",
+    "description": "Thiago Cerqueira, fundador da Teagar Company: software sob medida, APIs, integrações e automações com IA para empresas. Feira de Santana, BA — atendimento 100% online.",
+    "ogTitle": "Thiago Cerqueira · Teagar Company",
+    "ogDescription": "Software sob medida, integrações e automações que aguentam produção.",
+    "portraitAlt": "Retrato de Thiago Cerqueira, de cabelo cacheado e camiseta branca, sob luz laranja"
+  },
+  "ui": {
+    "skip": "Pular para o conteúdo",
+    "menu": "Menu",
+    "close": "Fechar",
+    "langLabel": "Idioma",
+    "langSwitch": "English",
+    "langSwitchShort": "EN",
+    "themeLabel": "Alternar tema claro/escuro",
+    "themeLight": "Tema claro",
+    "themeDark": "Tema escuro",
+    "backToTop": "Voltar ao topo",
+    "external": "abre em nova aba",
+    "private": "Código privado",
+    "inProgress": "Em desenvolvimento",
+    "live": "No ar",
+    "openSource": "Código aberto"
+  },
+  "nav": {
+    "services": "Serviços",
+    "work": "Projetos",
+    "process": "Processo",
+    "about": "Sobre",
+    "contact": "Contato",
+    "cta": "Iniciar projeto"
+  },
+  "hero": {
+    "eyebrow": "Thiago Cerqueira · Teagar Company",
+    "titleA": "Software sob medida",
+    "titleB": "que aguenta produção.",
+    "lead": "Sou Thiago Cerqueira, o Teagar. Na Teagar Company eu projeto e construo sistemas web, integrações e automações com IA para empresas que querem trocar planilha, retrabalho e processo manual por software confiável.",
+    "ctaPrimary": "Conversar sobre um projeto",
+    "ctaSecondary": "Ver projetos",
+    "status": "Agenda aberta para novos projetos",
+    "location": "Feira de Santana, BA · atendimento 100% online",
+    "stats": [
+      { "value": "100+", "label": "repositórios públicos no GitHub" },
+      { "value": "2.200+", "label": "contribuições nos últimos 12 meses" },
+      { "value": "3", "label": "produtos próprios em desenvolvimento" }
+    ]
+  },
+  "services": {
+    "kicker": "01 — Serviços",
+    "title": "O que a Teagar Company entrega",
+    "intro": "Do diagnóstico ao deploy. Cada entrega tem escopo, critério de aceite e evidência — não só uma tela bonita.",
+    "items": [
+      {
+        "code": "SW",
+        "title": "Software sob medida",
+        "body": "Sistemas web, portais internos e painéis feitos para o seu fluxo real, com permissões, auditoria e dados organizados.",
+        "points": ["Sistemas web e portais", "Painéis e relatórios", "Multiempresa e RBAC"]
+      },
+      {
+        "code": "AU",
+        "title": "Automação de processos",
+        "body": "Eliminação de tarefas repetitivas: cadastros, conferências, notificações e relatórios que hoje dependem de alguém copiar e colar.",
+        "points": ["Workflows com n8n e Make", "Webhooks e filas", "Rotinas agendadas"]
+      },
+      {
+        "code": "API",
+        "title": "Integrações e APIs",
+        "body": "Conexão entre ERPs, CRMs, meios de pagamento, mensageria e planilhas — com tratamento de erro, idempotência e logs.",
+        "points": ["APIs REST", "ERP, CRM e pagamentos", "Sincronização de dados"]
+      },
+      {
+        "code": "IA",
+        "title": "IA aplicada e agentes",
+        "body": "Assistentes, servidores MCP e fluxos multiagente integrados aos seus sistemas, com limites claros de custo, acesso e privacidade.",
+        "points": ["Servidores MCP", "Agentes e orquestração", "Integração com LLMs"]
+      },
+      {
+        "code": "WEB",
+        "title": "Sites e presença digital",
+        "body": "Sites institucionais, landing pages e vitrines rápidas, acessíveis e bilíngues, prontas para busca e para conversão.",
+        "points": ["Landing pages", "SEO técnico", "Acessibilidade WCAG AA"]
+      },
+      {
+        "code": "CT",
+        "title": "Consultoria técnica",
+        "body": "Mapeamento de gargalos, revisão de arquitetura e plano de evolução para times e empresas que já têm software rodando.",
+        "points": ["Diagnóstico técnico", "Arquitetura e infra", "Plano de evolução"]
+      }
+    ]
+  },
+  "work": {
+    "kicker": "02 — Projetos",
+    "title": "Trabalho selecionado",
+    "intro": "Produtos próprios da Teagar Company, sistemas em desenvolvimento e projetos abertos. Alguns códigos são privados; o raciocínio está aqui.",
+    "featuredLabel": "Destaque",
+    "viewAll": "Ver todos no GitHub",
+    "items": [
+      {
+        "slug": "gartrol",
+        "name": "Gartrol",
+        "category": "Produto Teagar",
+        "year": "2026",
+        "status": "inProgress",
+        "featured": true,
+        "summary": "Plano de controle local-first para trabalho humano e multiagente. Cards funcionam como contratos — o quê, por quê e como confirmar —, com claims, leases, evidências, custos auditáveis e roteamento de modelos por complexidade. Este site foi planejado e entregue dentro dele.",
+        "stack": ["TypeScript", "MCP", "API", "CLI"],
+        "links": []
+      },
+      {
+        "slug": "teagarden",
+        "name": "Teagarden",
+        "category": "Produto Teagar",
+        "year": "2026",
+        "status": "inProgress",
+        "featured": true,
+        "summary": "Ambiente desktop para desenvolvimento multiagente: workspaces, terminais em painéis, missões e orquestração de agentes de código, com persistência e restauração de sessão.",
+        "stack": ["Rust", "Desktop", "Terminais", "Agentes"],
+        "links": []
+      },
+      {
+        "slug": "egogero",
+        "name": "Egogero Condominium",
+        "category": "SaaS",
+        "year": "2026",
+        "status": "inProgress",
+        "featured": true,
+        "summary": "Controle de acesso de pedestres e veículos para condomínios por convites temporários de uso único. Multicondomínio, RBAC por papel (provedor, síndico, morador, portaria), OIDC com PKCE, MFA, outbox e auditoria imutável.",
+        "stack": ["TypeScript", "Fastify", "React", "PostgreSQL"],
+        "links": [{ "label": "GitHub", "url": "https://github.com/Teagar/egogero" }]
+      },
+      {
+        "slug": "vitrines",
+        "name": "Vitrines Teagar",
+        "category": "Web",
+        "year": "2026",
+        "status": "live",
+        "featured": false,
+        "summary": "Duas vitrines construídas sobre o design system da Teagar Company: uma loja editorial de moda e um cardápio online responsivo. Estáticas, acessíveis e publicadas no GitHub Pages.",
+        "stack": ["HTML", "CSS", "JavaScript", "Design system"],
+        "links": [
+          { "label": "Atelier", "url": "https://teagar.github.io/teagar-company-atelier/" },
+          { "label": "Cardápio", "url": "https://teagar.github.io/teagar-company-food-menu/" }
+        ]
+      },
+      {
+        "slug": "crawl-online",
+        "name": "Crawl Online",
+        "category": "Games",
+        "year": "2026",
+        "status": "openSource",
+        "featured": false,
+        "summary": "Mod multiplataforma que adiciona multiplayer online nativo ao Crawl, com host autoritativo: cada jogador executa e renderiza sua própria cópia do jogo, sincronizada pela rede.",
+        "stack": ["C#", "Networking", "Modding"],
+        "links": [{ "label": "GitHub", "url": "https://github.com/Teagar/crawl-online" }]
+      },
+      {
+        "slug": "craftonica",
+        "name": "Craftônica: Robotics Lab",
+        "category": "Educação",
+        "year": "2026",
+        "status": "openSource",
+        "featured": false,
+        "summary": "Mod educacional de eletrônica para Minecraft: fios, fontes, resistores, LEDs e multímetro como blocos, com solver de circuito DC independente do motor do jogo.",
+        "stack": ["Java", "Forge", "Simulação"],
+        "links": [{ "label": "GitHub", "url": "https://github.com/Teagar/craftonica" }]
+      },
+      {
+        "slug": "multiagent-tutorials",
+        "name": "Tutoriais multiagente",
+        "category": "IA",
+        "year": "2026",
+        "status": "openSource",
+        "featured": false,
+        "summary": "Dois MVPs documentados passo a passo — um dashboard de tickets e um monitor de serviços — construídos por agentes de código em paralelo, com cards, testes, screenshots e handoffs.",
+        "stack": ["TypeScript", "React", "MCP", "Agentes"],
+        "links": [
+          { "label": "RelayOps", "url": "https://github.com/Teagar/relayops-mvp-tutorial" },
+          { "label": "SignalDesk", "url": "https://github.com/Teagar/signaldesk-mvp" }
+        ]
+      },
+      {
+        "slug": "linux-tools",
+        "name": "Ferramentas para Linux",
+        "category": "Open source",
+        "year": "2026",
+        "status": "openSource",
+        "featured": false,
+        "summary": "Utilitários do dia a dia publicados como código aberto: conversor de vídeo para o DaVinci Resolve (no AUR), seletor visual de GPU para notebooks Intel/NVIDIA e um limpador de espaço seguro para Arch Linux.",
+        "stack": ["Shell", "Python", "Arch Linux"],
+        "links": [
+          { "label": "davinci-convert", "url": "https://github.com/Teagar/davinci-convert" },
+          { "label": "nitro-gpu-switcher", "url": "https://github.com/Teagar/nitro-gpu-switcher" },
+          { "label": "arch-cleaner", "url": "https://github.com/Teagar/arch-cleaner" }
+        ]
+      },
+      {
+        "slug": "teaching",
+        "name": "Trilha de Programação de Sistemas",
+        "category": "Educação",
+        "year": "2026",
+        "status": "openSource",
+        "featured": false,
+        "summary": "Material didático aberto com 21 módulos — lógica, PHP, MySQL, HTML/CSS, JavaScript, APIs REST, MVC e Laravel —, cada um com 20 exercícios graduais, um desafio e gabarito em branch separada.",
+        "stack": ["PHP", "MySQL", "JavaScript", "Laravel"],
+        "links": [{ "label": "GitHub", "url": "https://github.com/Teagar/000-programacao-exercicios" }]
+      }
+    ]
+  },
+  "process": {
+    "kicker": "03 — Processo",
+    "title": "Como um projeto anda",
+    "intro": "Sem caixa-preta. Você sabe o que está sendo feito, por quê e como confirmar que ficou pronto.",
+    "steps": [
+      { "n": "01", "title": "Diagnóstico", "body": "Uma conversa para entender o processo, o gargalo e o que significa sucesso para o seu negócio." },
+      { "n": "02", "title": "Proposta", "body": "Escopo fechado, prazo, investimento e critérios de aceite escritos — antes de qualquer linha de código." },
+      { "n": "03", "title": "Construção", "body": "Entregas curtas e verificáveis, com demonstração, testes e histórico de cada decisão." },
+      { "n": "04", "title": "Operação", "body": "Deploy, monitoramento, documentação e suporte para o sistema continuar de pé depois da entrega." }
+    ]
+  },
+  "about": {
+    "kicker": "04 — Sobre",
+    "title": "Engenheiro de software, fundador e professor",
+    "paragraphs": [
+      "Sou Thiago Cerqueira — Teagar na internet. Publico código aberto desde 2021 e transformei esse trabalho na Teagar Company, uma empresa de tecnologia focada em software sob medida, integrações e automação para empresas de Feira de Santana, da Bahia e de qualquer lugar via remoto.",
+      "Meu foco é back-end, sistemas em tempo real e IA aplicada. Hoje construo ferramentas para coordenar agentes de código com o mesmo rigor de um time humano: contratos claros, evidência de entrega e custo sob controle.",
+      "Também ensino. Mantenho uma trilha aberta de Programação de Sistemas e acredito que explicar bem é parte de construir bem."
+    ],
+    "facts": [
+      { "label": "Base", "value": "Feira de Santana, BA" },
+      { "label": "Atendimento", "value": "100% online, Brasil e exterior" },
+      { "label": "Idiomas", "value": "Português e inglês" },
+      { "label": "Foco", "value": "Back-end, tempo real, IA aplicada" }
+    ]
+  },
+  "stack": {
+    "kicker": "05 — Stack",
+    "title": "Ferramentas de trabalho",
+    "groups": [
+      { "name": "Linguagens", "items": ["TypeScript", "JavaScript", "Python", "PHP", "C#", "Rust", "Java", "Lua", "SQL", "Bash"] },
+      { "name": "Back-end e dados", "items": ["Node.js", "Fastify", "Laravel", "ASP.NET Core", "FastAPI", "PostgreSQL", "MySQL", "SQLite"] },
+      { "name": "Front-end", "items": ["React", "Next.js", "Vite", "HTML semântico", "CSS moderno"] },
+      { "name": "Infra e automação", "items": ["Docker", "Caddy", "Linux", "GitHub Actions", "n8n", "Make", "Webhooks"] },
+      { "name": "IA", "items": ["MCP", "Agentes de código", "APIs compatíveis com OpenAI", "Claude"] }
+    ]
+  },
+  "contact": {
+    "kicker": "06 — Contato",
+    "title": "Tem um processo travado? Vamos destravar.",
+    "body": "Conte em poucas linhas o que precisa. O formulário abre seu e-mail com a mensagem pronta — nada é armazenado neste site.",
+    "email": "contato@teagar.com.br",
+    "emailLabel": "Ou escreva direto para",
+    "form": {
+      "name": "Seu nome",
+      "company": "Empresa (opcional)",
+      "need": "O que você precisa?",
+      "needOptions": ["Software sob medida", "Automação de processos", "Integração / API", "IA e agentes", "Site ou landing page", "Consultoria técnica", "Outro"],
+      "message": "Conte um pouco sobre o projeto",
+      "submit": "Abrir e-mail com a mensagem",
+      "subject": "Novo projeto via teagar.com.br",
+      "required": "Preencha seu nome e a mensagem."
+    },
+    "socialTitle": "Em outros lugares"
+  },
+  "footer": {
+    "tagline": "Software que aguenta produção.",
+    "rights": "Teagar Company. Todos os direitos reservados.",
+    "builtWith": "Site estático, bilíngue e sem rastreadores. Planejado no Gartrol."
+  }
+}
