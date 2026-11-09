@@ -75,14 +75,19 @@
   var stage = document.getElementById('stage');
   var hero = document.getElementById('hero');
   var steps = document.getElementById('steps');
-  var ticking = false;
+  var ticking = false, lastSink = -1;
   function onScroll() {
     var y = window.pageYOffset || root.scrollTop;
     if (bar) bar.classList.toggle('scrolled', y > 8);
     if (!reduce.matches) {
       if (stage && hero) {
         var p = Math.min(1, Math.max(0, y / Math.max(1, hero.offsetHeight)));
-        stage.style.setProperty('--sink', p.toFixed(3));
+        var sink = Math.round(p * 8);
+        if (sink !== lastSink) {
+          lastSink = sink;
+          stage.style.setProperty('--sink', sink);
+          stage.style.setProperty('--hf', (1 - Math.round(p * 4) / 4).toFixed(2));
+        }
       }
       if (steps) {
         var r = steps.getBoundingClientRect();
@@ -118,13 +123,18 @@
       tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
       ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
       if (!raf) raf = requestAnimationFrame(function () {
+        /* snap to whole logical pixels: moon up to 3, stars 1 opposite */
+        stage.style.setProperty('--mx', Math.round(tx * 3));
+        stage.style.setProperty('--my', Math.round(ty * 3));
+        stage.style.setProperty('--sx', -Math.round(tx));
+        stage.style.setProperty('--sy', -Math.round(ty));
         stage.style.setProperty('--px', tx.toFixed(3));
         stage.style.setProperty('--py', ty.toFixed(3));
         raf = 0;
       });
     });
     hero.addEventListener('pointerleave', function () {
-      stage.style.setProperty('--px', '0'); stage.style.setProperty('--py', '0');
+      ['--mx', '--my', '--sx', '--sy', '--px', '--py'].forEach(function (k) { stage.style.setProperty(k, '0'); });
     });
   }
 
