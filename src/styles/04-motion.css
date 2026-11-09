@@ -46,3 +46,17 @@
   .mq-group ul{flex-wrap:wrap}
   .mq-group .chip{font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;padding:4px 14px}
 }
+
+/* pixel tea: steps only, like the moon */
+@keyframes tea-f1{0%,33.2%{opacity:1}33.3%,100%{opacity:0}}
+@keyframes tea-f2{0%,33.2%{opacity:0}33.3%,66.5%{opacity:1}66.6%,100%{opacity:0}}
+@keyframes tea-f3{0%,66.5%{opacity:0}66.6%,100%{opacity:1}}
+@keyframes tea-blink{0%,92%,100%{opacity:1}93%,97%{opacity:0}}
+@keyframes tea-pop{0%,24%{transform:scale(.4)}25%,49%{transform:scale(.7)}50%,74%{transform:scale(1.12)}75%,100%{transform:scale(1)}}
+.tea-steam .st1{animation:tea-f1 1.05s steps(1) infinite}
+.tea-steam .st2{animation:tea-f2 1.05s steps(1) infinite}
+.tea-steam .st3{animation:tea-f3 1.05s steps(1) infinite}
+.tea-cup .glint{animation:tea-blink 4s steps(1) infinite}
+.js .tea-row .tea{opacity:0;transform-origin:50% 100%}
+.js .tea-row .tea.in{opacity:1;animation:tea-pop .45s steps(1) both}
+@media (prefers-reduced-motion:reduce){.js .tea-row .tea{opacity:1}}
