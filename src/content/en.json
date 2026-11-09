@@ -99,6 +99,59 @@
     "legend": "Project status",
     "featuredLabel": "Featured",
     "viewAll": "See everything on GitHub",
+    "contrib": {
+      "title": "Open-source contributions",
+      "intro": "My code, reviewed and merged by maintainers of other people's projects.",
+      "project": "Noctalia",
+      "projectUrl": "https://github.com/noctalia-dev/noctalia",
+      "projectNote": "A Wayland desktop shell with about 12k GitHub stars. Two of my plugins are part of its official community plugin repository.",
+      "repo": "noctalia-dev/community-plugins",
+      "merged": "Merged PRs",
+      "items": [
+        {
+          "name": "OmniRoute Quota",
+          "summary": "A bar widget and panel showing the remaining quota of every account configured in OmniRoute, with reset countdowns and seven-day local usage. The collector reads storage read-only and never exposes tokens to the UI.",
+          "stack": [
+            "Luau",
+            "JavaScript",
+            "Node.js",
+            "SQLite"
+          ],
+          "prs": [
+            {
+              "n": 484,
+              "title": "OmniRoute Quota plugin"
+            },
+            {
+              "n": 859,
+              "title": "Read OpenCode OpenAI accounts"
+            }
+          ]
+        },
+        {
+          "name": "Niri Workspace Preview",
+          "summary": "An interactive widget that draws proportional maps of every Niri workspace from IPC metadata alone, preserving column and stack geometry, with per-monitor scoping.",
+          "stack": [
+            "Luau",
+            "Niri IPC"
+          ],
+          "prs": [
+            {
+              "n": 842,
+              "title": "Proportional workspace maps"
+            },
+            {
+              "n": 845,
+              "title": "Theme config read disclosure"
+            },
+            {
+              "n": 873,
+              "title": "Per-monitor output scopes"
+            }
+          ]
+        }
+      ]
+    },
     "items": [
       {
         "slug": "gartrol",

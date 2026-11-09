@@ -150,6 +150,7 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    statuses with their icons. Each card opens with its own pixel-art project
    icon at top-left (72 px on featured cards, 48 px on small ones). Cursor glow
    and a one-pixel icon hop on hover/focus (no hop under reduced motion).
+   After the grids, an open-source contributions block (`work.contrib`) shows one wide card for the third-party project (Noctalia) with its original `oss-plugin` pixel icon, two plugin columns and merged-PR link pills carrying the 8x8 static `status-merged` icon.
 5. **Process:** four large display numerals in a row with titles and text,
    connected by a thin line on which a small ember dot travels as the section
    scrolls (static under reduced motion).

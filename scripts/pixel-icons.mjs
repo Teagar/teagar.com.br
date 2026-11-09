@@ -248,6 +248,34 @@ export const PROJECT_ICONS = {
     '........................',
     '........................',
   ],
+  // puzzle piece joining a small window (a plugin merged into someone else's project)
+  'oss-plugin': [
+    '........................',
+    '........................',
+    '........................',
+    '..oooooooooooooooo......',
+    '..ohBhBhBhhhhhhhho......',
+    '..oooooooooooooooo......',
+    '..okkkkkkkkkkkkkko......',
+    '..oklllllkkkkkkkko......',
+    '..okhhhhhhhkkkkkko......',
+    '..okkkkkkkkkkkoooooo....',
+    '..okkkkkkkkkkkohhhhoooo.',
+    '..okkkkkkkkkkkoBBBBBBBo.',
+    '..oklllllkkkkkoBBBBBBmo.',
+    '..okhhhhkkkkkkommmmmmmo.',
+    '..okkkkkkkkkkkommmmoooo.',
+    '..okkkkkkkkkkkoooooo....',
+    '..okkkkkkkkkkkkkko......',
+    '..oklllllllkkkkkko......',
+    '..okhhhhkkkkkkkkko......',
+    '..okkkkkkkkkkkkkko......',
+    '..oooooooooooooooo......',
+    '........................',
+    '........................',
+    '........................',
+
+  ],
 };
 
 /** 8x8 status icons; each is a list of animation frames (drawn at 2 CSS px per pixel) */
@@ -266,6 +294,10 @@ export const STATUS_ICONS = {
   // </> brackets
   openSource: [
     ['........', '.....r..', '.r...r.r', 'r...r..r', 'r...r..r', '.r..r.r.', '.....r..', '........'],
+  ],
+  // git-merge glyph (static)
+  merged: [
+    ['.BB.....', 'BllB....', '.BBB....', '.B..B...', '.B...BB.', 'BBB.BllB', 'BllB.BB.', '.BB.....'],
   ],
 };
 

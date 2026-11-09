@@ -247,3 +247,31 @@ html[data-theme="dark"] .wordmark{color:var(--surface-2)}
 .st-oss{background-image:url(/assets/img/icons/status-openSource.svg);background-size:16px 16px}
 .status-legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 clamp(20px,2.4vw,32px);padding:0;list-style:none;font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;color:var(--muted)}
 .status-legend li{display:inline-flex;align-items:center;gap:8px}
+/* open-source contributions */
+.contrib{margin-top:clamp(40px,5vw,72px)}
+.contrib-h{font-size:clamp(1.75rem,3vw,2.5rem);line-height:1}
+.contrib-intro{margin:10px 0 clamp(20px,2.4vw,32px);color:var(--muted);max-width:44em}
+.contrib-card{gap:20px}
+.contrib-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.contrib-id{display:grid;gap:2px;min-width:0}
+.contrib-proj{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.05}
+.contrib-proj a{color:var(--ember-text);text-decoration:none;overflow-wrap:anywhere}
+.contrib-proj a:hover{text-decoration:underline}
+.contrib-card>.sum{max-width:48em;margin:0}
+.contrib-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin:0;padding:0;list-style:none}
+.contrib-item{display:flex;flex-direction:column;gap:14px;padding:clamp(18px,2vw,28px);border-radius:var(--r-input);background:var(--bg);min-width:0}
+html[data-theme="dark"] .section.alt .contrib-item{background:var(--surface)}
+.contrib-item .name{font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.05}
+.contrib-item .sum{margin:0}
+.contrib-item .chips{margin-top:0}
+.contrib-item .chip{background:var(--surface-2)}
+html[data-theme="dark"] .section.alt .contrib-item .chip{background:var(--surface-2)}
+.prs{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:auto 0 0;padding:0;list-style:none;max-width:100%}
+.prs a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:var(--r-pill);border:1.5px solid var(--line);text-decoration:none;font-weight:600;font-size:.9375rem;max-width:100%;transition:border-color .3s}
+.prs a:hover{border-color:var(--text)}
+.prs img{flex:none;image-rendering:pixelated}
+.prs .meta{color:var(--ember-text)}
+@media (max-width:700px){.contrib-items{grid-template-columns:1fr}}
+.prs .ext{flex:none;margin-left:0}
+.contrib-proj a{display:inline-flex;align-items:center}
+.contrib-proj .ext{width:.6em;height:.6em;margin-left:.35em}
