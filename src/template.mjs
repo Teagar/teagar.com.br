@@ -180,7 +180,7 @@ ${navItems.map(([id, label]) => `<a class="nl" href="#${id}">${esc(label)}</a>`)
 <a class="btn btn-primary btn-menu" href="#contact">${esc(nav.cta)}</a>
 </nav>
 <div class="tools">
-<a class="pill-ctl lang" id="langSwitch" href="${O.path}" hreflang="${esc(other.locale)}" lang="${esc(other.locale)}" title="${esc(ui.langSwitch)}" aria-label="${esc(ui.langLabel)}: ${esc(ui.langSwitch)}">${esc(ui.langSwitchShort)}</a>
+<a class="pill-ctl lang lang-flag" id="langSwitch" href="${O.path}" hreflang="${esc(other.locale)}" lang="${esc(other.locale)}" title="${esc(ui.langSwitch)}" aria-label="${esc(ui.langLabel)}: ${esc(ui.langSwitch)}"><img class="flag" src="/assets/img/icons/${other.locale === 'en' ? 'flag-us' : 'flag-br'}.svg" width="32" height="22" alt="" decoding="async"><span class="vh">${esc(ui.langSwitchShort)}</span></a>
 <button type="button" class="pill-ctl theme-btn" id="themeToggle" aria-label="${esc(ui.themeLabel)}" aria-pressed="false" data-light="${esc(ui.themeLight)}" data-dark="${esc(ui.themeDark)}" title="${esc(ui.themeLabel)}">${sun}${moon}</button>
 <a class="btn btn-primary btn-cta" href="#contact">${esc(nav.cta)}</a>
 <button type="button" class="pill-ctl menu-btn" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="${esc(ui.menu)}" title="${esc(ui.menu)}"><svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg><svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>

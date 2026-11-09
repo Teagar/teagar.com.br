@@ -122,7 +122,8 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 
 1. **Header:** transparent over the hero, becomes `--bg` with a bottom divider
    after scrolling. Left: logo mark (ember) + "Thiago Cerqueira" in Big Shoulders Display.
-   Center/right: nav in sentence case, language pill ("EN" / "PT"),
+   Center/right: nav in sentence case, language pill showing a pixel flag of the
+   target language (USA on pt-BR, Brazil on en; the language name is in `aria-label` and `title`),
    theme pill (sun/moon icon), primary button "Iniciar projeto" (ember pill).
    Mobile: menu button opens a full-screen sheet with large display links.
 2. **Hero:** asymmetric. Left 7 columns: small line "Thiago Cerqueira ·

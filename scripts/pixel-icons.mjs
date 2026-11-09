@@ -301,14 +301,58 @@ export const STATUS_ICONS = {
   ],
 };
 
-const parse = (rows, w, h) => {
+/** flags are public symbols, so they use their real colours (the only exception to the orange palette) */
+export const FLAG_COLORS = {
+  outline: '#3D1702', green: '#009C3B', yellow: '#FFDF00', blue: '#002776', white: '#FFFFFF',
+  red: '#B22234', canton: '#3C3B6E',
+};
+const FLAG_LEG = {
+  o: FLAG_COLORS.outline, g: FLAG_COLORS.green, y: FLAG_COLORS.yellow, b: FLAG_COLORS.blue, w: FLAG_COLORS.white,
+  r: FLAG_COLORS.red, n: FLAG_COLORS.canton,
+};
+const OUT = 'o'.repeat(16);
+const frameRow = (inner) => `o${inner}o`;
+/** 16x11 flags: 1 px outline, inner field 14x9 (rows are checked by parseWith) */
+export const FLAG_ICONS = {
+  br: [
+    OUT,
+    frameRow('gggggggggggggg'),
+    frameRow('ggggyyyyyygggg'),
+    frameRow('gggyybbbbyyggg'),
+    frameRow('ggyybbbbbbyygg'),
+    frameRow('gyyybwwwwbyyyg'),
+    frameRow('ggyybbbbbbyygg'),
+    frameRow('gggyybbbbyyggg'),
+    frameRow('ggggyyyyyygggg'),
+    frameRow('gggggggggggggg'),
+    OUT,
+  ],
+  us: [
+    OUT,
+    frameRow('nwnwnwrrrrrrrr'),
+    frameRow('nnnnnnwwwwwwww'),
+    frameRow('nnwnwnrrrrrrrr'),
+    frameRow('nnnnnnwwwwwwww'),
+    frameRow('nnnnnnrrrrrrrr'),
+    frameRow('wwwwwwwwwwwwww'),
+    frameRow('rrrrrrrrrrrrrr'),
+    frameRow('wwwwwwwwwwwwww'),
+    frameRow('rrrrrrrrrrrrrr'),
+    OUT,
+  ],
+};
+
+const parseWith = (rows, w, h, leg) => {
   if (rows.length !== h || rows.some((r) => r.length !== w)) throw new Error(`pixel map must be ${w}x${h}`);
   return rows.map((r) => [...r].map((ch) => {
     if (ch === '.') return null;
-    if (!LEG[ch]) throw new Error(`unknown pixel char ${ch}`);
-    return LEG[ch];
+    if (!leg[ch]) throw new Error(`unknown pixel char ${ch}`);
+    return leg[ch];
   }));
 };
+const parse = (rows, w, h) => parseWith(rows, w, h, LEG);
+
+export const flagSvg = (id) => svgWrap(16, 11, runs(parseWith(FLAG_ICONS[id], 16, 11, FLAG_LEG)));
 
 export const projectSvg = (id) => svgWrap(24, 24, runs(parse(PROJECT_ICONS[id], 24, 24)));
 /** frames side by side in one sprite (frames * 8 wide) */
@@ -323,6 +367,7 @@ export const ICON_FILES = () => {
   const f = {};
   for (const id of Object.keys(PROJECT_ICONS)) f[`${id}.svg`] = projectSvg(id);
   for (const id of Object.keys(STATUS_ICONS)) f[`status-${id}.svg`] = statusSvg(id);
+  for (const id of Object.keys(FLAG_ICONS)) f[`flag-${id}.svg`] = flagSvg(id);
   return f;
 };
 

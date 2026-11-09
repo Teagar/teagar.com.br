@@ -156,12 +156,34 @@ test('pixel icons: one per work item, status sprites, palette, determinism, size
     const ok = new Set(base);
     if (n === 'status-live.svg') { ok.add('#2E9E62'); assert.ok(cols.has('#2E9E62')); }
     if (n === 'status-openSource.svg' || n === 'craftonica.svg' || n === 'linux.svg') ok.add('#A89C8E');
+    if (n.startsWith('flag-')) {
+      // flags: their real national colours plus the outline, nothing else
+      const flagOk = new Set(['#3D1702', '#009C3B', '#FFDF00', '#002776', '#FFFFFF', '#B22234', '#3C3B6E']);
+      assert.match(s, /viewBox="0 0 16 11"/);
+      for (const c of cols) assert.ok(flagOk.has(c), `${n} uses disallowed ${c}`);
+      continue;
+    }
     for (const c of cols) assert.ok(ok.has(c), `${n} uses disallowed ${c}`);
     assert.equal(s, await read(`assets/img/icons/${n}`), `${n} matches dist`);
   }
   for (const st of ['inProgress', 'live', 'openSource', 'merged']) assert.ok(files[`status-${st}.svg`], `status ${st}`);
   const again = ICON_FILES();
   for (const n of Object.keys(files)) assert.equal(files[n], again[n], `${n} deterministic`);
+});
+
+test('language switch shows the target-language pixel flag with its accessible name', async () => {
+  for (const f of ['flag-br.svg', 'flag-us.svg']) {
+    assert.match(await read(`assets/img/icons/${f}`), /viewBox="0 0 16 11"/, `${f} in dist`);
+  }
+  const cases = [['index.html', 'flag-us.svg', 'English'], ['en/index.html', 'flag-br.svg', 'Português']];
+  for (const [file, flag, name] of cases) {
+    const html = await read(file);
+    const sw = html.match(/<a class="pill-ctl lang[^"]*" id="langSwitch"[^>]*>[\s\S]*?<\/a>/)?.[0];
+    assert.ok(sw, `${file} has the language switch`);
+    assert.ok(sw.includes(`/assets/img/icons/${flag}`), `${file} switch shows ${flag}`);
+    assert.match(sw, /aria-label="[^"]*"/);
+    assert.ok(sw.includes(name), `${file} switch names ${name}`);
+  }
 });
 
 test('open-source contributions: merged PR links and icons are built in both languages', async () => {
