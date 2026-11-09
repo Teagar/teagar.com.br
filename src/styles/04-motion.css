@@ -9,6 +9,11 @@
 @keyframes pulse1{0%{opacity:.4}33.4%,100%{opacity:.24}}
 @keyframes pulse2{0%,33.3%{opacity:.12}33.4%{opacity:.26}66.7%,100%{opacity:.12}}
 @keyframes pulse3{0%,66.6%{opacity:.06}66.7%{opacity:.18}100%{opacity:.06}}
+@keyframes moon-set{from{transform:none}to{transform:translateY(calc(var(--px-size)*110px))}}
+@keyframes ray-a{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes ray-b{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+@keyframes cloud-a{to{transform:translateX(10px)}}
+@keyframes cloud-b{to{transform:translateX(-7px)}}
 @keyframes star-in{from{opacity:0}to{opacity:1}}
 @keyframes tw{0%{opacity:1}50%{opacity:.35}100%{opacity:1}}
 @keyframes spark{0%,90%{transform:none}93%,96%{transform:scale(1.8)}100%{transform:none}}
@@ -25,6 +30,15 @@
 .js .stars .s3{animation:star-in .6s steps(3) both 1.5s,tw 3.1s steps(2) infinite 2.1s}
 .js .stars .sp{animation:spark 7s steps(1) infinite 3s}
 .js .stars .s2 .sp{animation-delay:5s}.js .stars .s3 .sp{animation-delay:7s}
+.js .rays .f1{animation:ray-a 1.2s steps(1) infinite 2s}
+.js .rays .f2{animation:ray-b 1.2s steps(1) infinite 2s}
+.js .clouds .c1{animation:cloud-a 8s steps(10) infinite alternate}
+.js .clouds .c2{animation:cloud-b 5.6s steps(7) infinite alternate}
+/* theme swap: the old body sinks, the new one rises (steps only) */
+.js .stage.swap-out .rise{animation:moon-set .5s steps(8) both}
+.js .stage.swap-out .halo{opacity:0}
+.js .stage.swap-in .rise{animation:moon-rise .5s steps(8) both}
+.js .stage.swap-in .r1,.js .stage.swap-in .r2,.js .stage.swap-in .r3,.js .stage.swap-in .rays{animation-delay:.5s}
 .js .cut{animation:fade-up .9s var(--ease) both .35s}
 .js .hero-kicker,.js .lead,.js .hero-cta,.js .status{animation:fade-up .8s var(--ease) both;animation-delay:.45s}
 .js .lead{animation-delay:.55s}.js .hero-cta{animation-delay:.65s}.js .status{animation-delay:.75s}
@@ -34,7 +48,8 @@
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .reveal{opacity:1;transform:none}
-  .moon-wrap,.stars,.cut-pos{transform:none}
+  .moon-wrap,.sun-wrap,.stars,.clouds,.cut-pos{transform:none}
+  .rays .f2{opacity:0}
   .btn-primary:hover,.btn:hover .arrow{transform:none}
   .svc>.arrow{transform:none}
   .marquee{overflow:visible;margin:0;padding:0}

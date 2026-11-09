@@ -4,6 +4,7 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* theme toggle */
+  var swapTimer = 0;
   var themeBtn = document.getElementById('themeToggle');
   function syncTheme() {
     if (!themeBtn) return;
@@ -13,7 +14,22 @@
   }
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      var prev = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = prev === 'dark' ? 'light' : 'dark';
+      var st = document.getElementById('stage');
+      var swap = st && !reduce.matches && st.getBoundingClientRect().bottom > 0 && st.getBoundingClientRect().top < window.innerHeight;
+      if (swap) {
+        /* stepped swap: old body sinks (0.5 s), then sky switches and the new body rises (0.5 s) */
+        st.setAttribute('data-hold', prev);
+        st.classList.remove('swap-in');
+        st.classList.add('swap-out');
+        clearTimeout(swapTimer);
+        swapTimer = setTimeout(function () {
+          st.removeAttribute('data-hold');
+          st.classList.remove('swap-out');
+          st.classList.add('swap-in');
+        }, 500);
+      }
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
       syncTheme();
