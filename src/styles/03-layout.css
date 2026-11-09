@@ -204,3 +204,9 @@ html[data-theme="dark"] .wordmark{color:var(--surface-2)}
 .nf h1{font-size:clamp(7rem,28vw,18rem);line-height:.9;color:var(--ember)}
 .nf p{margin-top:12px}
 .nf .hero-kicker{margin-bottom:0}
+
+/* review fixes */
+.step .n{position:relative;z-index:1}
+@media (max-width:400px){
+  .brand span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
