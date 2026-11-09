@@ -1,0 +1,12 @@
+# FRAGMENT ONLY. This is not a complete compose file.
+# Add the single volume line below to the existing `caddy` service in the
+# server's docker-compose.yml. Leave the rest of the service unchanged.
+#
+# The source path is relative to the directory that contains the compose file
+# on the server. It must match the directory that receives `dist/` via rsync
+# (see README, section Deploy).
+#
+# services:
+#   caddy:
+#     volumes:
+#       - ./teagar.com.br/dist:/srv/teagar.com.br:ro
