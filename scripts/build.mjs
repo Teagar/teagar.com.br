@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { writeMoonAssets } from './moon.mjs';
+import { writeSunAssets } from './sun.mjs';
 import { writeTeaAssets } from './tea.mjs';
 import { writeIconAssets } from './pixel-icons.mjs';
 import { renderPage, render404, SITE, LOCALES } from '../src/template.mjs';
@@ -32,6 +33,7 @@ async function main() {
   await cp(join(root, 'public'), dist, { recursive: true });
 
   await writeMoonAssets(join(dist, 'assets/img'));
+  await writeSunAssets(join(dist, 'assets/img'));
   await writeTeaAssets(join(dist, 'assets/img'));
   await writeIconAssets(join(dist, 'assets/img/icons'));
   const css = await bundle('src/styles', '.css', minCss);

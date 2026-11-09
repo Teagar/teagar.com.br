@@ -1,5 +1,6 @@
 // HTML templates. Every interpolated string goes through esc().
 import { starsInline } from '../scripts/moon.mjs';
+import { cloudsInline } from '../scripts/sun.mjs';
 export const SITE = 'https://teagar.com.br';
 export const LOCALES = {
   'pt-BR': { path: '/', url: `${SITE}/`, short: 'pt-BR' },
@@ -201,12 +202,22 @@ ${navItems.map(([id, label]) => `<a class="nl" href="#${id}">${esc(label)}</a>`)
 <p class="status"><span class="live-dot" aria-hidden="true"></span><span><strong>${esc(hero.status)}</strong><span class="loc">${esc(hero.location)}</span></span></p>
 </div>
 <div class="stage" id="stage">
+<div class="scene night">
 <div class="sky" aria-hidden="true"><img src="/assets/img/moon-sky.svg" alt="" width="120" height="150" decoding="async"></div>
 ${starsInline()}
 <div class="moon-wrap" aria-hidden="true"><div class="rise"><div class="bob">
 <div class="halo"><span class="ring r1"><img src="/assets/img/moon-ring-1.svg" alt="" width="96" height="96"></span><span class="ring r2"><img src="/assets/img/moon-ring-2.svg" alt="" width="96" height="96"></span><span class="ring r3"><img src="/assets/img/moon-ring-3.svg" alt="" width="96" height="96"></span></div>
 <img class="pmoon" src="/assets/img/moon.svg" alt="" width="64" height="64" decoding="async">
 </div></div></div>
+</div>
+<div class="scene day">
+<div class="sky" aria-hidden="true"><img src="/assets/img/day-sky.svg" alt="" width="120" height="150" decoding="async"></div>
+${cloudsInline()}
+<div class="sun-wrap" aria-hidden="true"><div class="rise"><div class="bob">
+<div class="halo"><span class="ring rays"><img class="f1" src="/assets/img/sun-rays-1.svg" alt="" width="96" height="96"><img class="f2" src="/assets/img/sun-rays-2.svg" alt="" width="96" height="96"></span></div>
+<img class="pmoon psun" src="/assets/img/sun.svg" alt="" width="64" height="64" decoding="async">
+</div></div></div>
+</div>
 <div class="cut-pos"><div class="cut">${picture({ base: 'cutout', exts: ['avif', 'webp', 'png'], widths: [480, 960, 1440], sizes: portraitSizes, w: 960, h: 960, alt: meta.portraitAlt, attrs: 'fetchpriority="high" decoding="async"' })}</div></div>
 </div>
 </div>
