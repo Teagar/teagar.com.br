@@ -12,7 +12,7 @@ Portfólio pessoal e empresarial de Thiago Cerqueira (Teagar) e da Teagar Compan
 ## Requisitos
 - Bilíngue pt-BR / en, escolhido pela preferência do navegador (navigator.languages) com troca manual persistida; páginas pré-renderizadas por idioma para SEO (hreflang).
 - Tema claro/escuro por prefers-color-scheme com troca manual persistida, sem flash.
-- Identidade visual PRÓPRIA, definida em docs/visual-identity.md. Da marca Teagar Company ficam só a logo e o laranja #FF6700; NÃO usar o design system em /home/teagar/Documents/design-system (decisão do usuário em 2026-11-09).
+- Identidade visual PRÓPRIA, definida em docs/visual-identity.md. Da marca Teagar Company ficam a logo, o laranja #FF6700 e a tipografia (Big Shoulders Display, Public Sans, IBM Plex Mono); o restante do design system não é usado.
 - Assets: logo tc_logo_c1, foto me_orange.jpg e recorte transparente me_orange_Without_BG.png para camadas/motion.
 - Site estático sem framework, acessível (WCAG 2.2 AA), reduced motion, responsivo 320–1440 px, metadados sociais.
 - Sem segredos no repositório. Repositório GitHub Teagar/teagar.com.br (Teagar/portfolio é o portfólio antigo de 2023, não alterar).
