@@ -106,7 +106,7 @@
         "year": "2026",
         "status": "inProgress",
         "featured": true,
-        "summary": "Plano de controle local-first para trabalho humano e multiagente. Cards funcionam como contratos — o quê, por quê e como confirmar —, com claims, leases, evidências, custos auditáveis e roteamento de modelos por complexidade. Este site foi planejado e entregue dentro dele.",
+        "summary": "Plano de controle local-first para trabalho humano e multiagente. Cards funcionam como contratos (o quê, por quê e como confirmar), com claims, leases, evidências, custos auditáveis e roteamento de modelos por complexidade. Este site foi planejado e entregue dentro dele.",
         "stack": ["TypeScript", "MCP", "API", "CLI"],
         "links": []
       },
@@ -204,7 +204,7 @@
         "year": "2026",
         "status": "openSource",
         "featured": false,
-        "summary": "Material didático aberto com 21 módulos — lógica, PHP, MySQL, HTML/CSS, JavaScript, APIs REST, MVC e Laravel —, cada um com 20 exercícios graduais, um desafio e gabarito em branch separada.",
+        "summary": "Material didático aberto com 21 módulos: lógica, PHP, MySQL, HTML/CSS, JavaScript, APIs REST, MVC e Laravel. Cada módulo tem 20 exercícios graduais, um desafio e gabarito em branch separada.",
         "stack": ["PHP", "MySQL", "JavaScript", "Laravel"],
         "links": [{ "label": "GitHub", "url": "https://github.com/Teagar/000-programacao-exercicios" }]
       }
