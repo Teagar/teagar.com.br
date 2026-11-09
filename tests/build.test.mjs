@@ -184,3 +184,26 @@ test('open-source contributions: merged PR links and icons are built in both lan
   assert.match(plug, /viewBox="0 0 24 24"/);
   assert.match(await read('assets/img/icons/status-merged.svg'), /viewBox="0 0 8 8"/);
 });
+
+test('sun generator: sun, rays and day sky are deterministic, on-palette and small; both scenes are built', async () => {
+  const { SUN_FILES, cloudsInline } = await import('../scripts/sun.mjs');
+  const { PAL } = await import('../scripts/moon.mjs');
+  const ok = new Set([...Object.values(PAL), '#FFF1E0', '#FFFFFF', '#FFD9B0', '#FFE3C2', '#FFEBD3', '#F3D3B0', '#EAC39C', '#E0B48A'].map((c) => c.toUpperCase()));
+  const files = SUN_FILES();
+  const again = SUN_FILES();
+  for (const n of ['sun.svg', 'sun-rays-1.svg', 'sun-rays-2.svg', 'day-sky.svg']) {
+    const s = await read(`assets/img/${n}`);
+    assert.equal(s, files[n], `${n} matches generator`);
+    assert.equal(s, again[n], `${n} deterministic`);
+    assert.ok(Buffer.byteLength(s) < 25 * 1024, `${n} under 25 KB`);
+    for (const m of s.matchAll(/fill="(#[0-9A-Fa-f]{6})"/g)) assert.ok(ok.has(m[1].toUpperCase()), `${n} uses disallowed ${m[1]}`);
+  }
+  assert.notEqual(files['sun-rays-1.svg'], files['sun-rays-2.svg'], 'ray frames differ');
+  assert.equal(cloudsInline(), cloudsInline());
+  for (const m of cloudsInline().matchAll(/fill="(#[0-9A-Fa-f]{6})"/g)) assert.ok(ok.has(m[1].toUpperCase()), `clouds use disallowed ${m[1]}`);
+  for (const f of ['index.html', 'en/index.html']) {
+    const html = await read(f);
+    assert.ok(html.includes('class="scene night"') && html.includes('class="scene day"'), `${f} has both scenes`);
+    assert.ok(html.includes('/assets/img/sun.svg') && html.includes('sun-rays-2.svg') && html.includes('class="clouds"'));
+  }
+});
