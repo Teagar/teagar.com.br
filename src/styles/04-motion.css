@@ -71,3 +71,4 @@
 @media (prefers-reduced-motion:reduce){
   .glow-card:hover .pico,.glow-card:focus-within .pico{transform:none!important}
 }
+@media print{.js .tea-row .tea{opacity:1}}
