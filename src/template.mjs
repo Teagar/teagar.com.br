@@ -35,16 +35,21 @@ const picture = ({ base, exts, sizes, widths, w, h, alt, attrs, fallback }) => {
   return `<picture>${src}<img src="/assets/img/${base}-${widths[1]}.${last}" srcset="${set(last)}" sizes="${sizes}" width="${w}" height="${h}" alt="${esc(alt)}" ${attrs}></picture>`;
 };
 
-const statusBadge = (ui, st) => {
-  const map = { inProgress: 'dev', live: 'live', openSource: 'oss' };
-  return `<span class="status-chip ${map[st] || 'oss'}">${esc(ui[st] || st)}</span>`;
-};
+const STATUS_CLS = { inProgress: 'dev', live: 'live', openSource: 'oss' };
+const statusIco = (st) => `<span class="st-ico st-${STATUS_CLS[st] || 'oss'}" aria-hidden="true"></span>`;
+const statusBadge = (ui, st) =>
+  `<span class="status-chip ${STATUS_CLS[st] || 'oss'}">${statusIco(st)}${esc(ui[st] || st)}</span>`;
+const statusLegend = (ui, work) =>
+  `<ul class="status-legend reveal" aria-label="${esc(work.legend)}">${Object.keys(STATUS_CLS).map((st) => `<li>${statusIco(st)}${esc(ui[st])}</li>`).join('')}</ul>`;
+const projectIcon = (id, px) =>
+  id ? `<img class="pico" src="/assets/img/icons/${esc(id)}.svg" width="${px}" height="${px}" alt="" decoding="async">` : '';
 
 const workItem = (ui, it, size) => {
   const links = it.links.length
     ? `<div class="links">${it.links.map((l) => ext(ui, l.label, l.url)).join('')}</div>`
     : `<p class="private">${esc(ui.private)}</p>`;
   return `<li class="card glow-card ${size} reveal" id="work-${esc(it.slug)}">
+${projectIcon(it.icon, size === 'small' ? 48 : 72)}
 <div class="meta-row"><span class="meta">${esc(it.category)} · ${esc(it.year)}</span>${statusBadge(ui, it.status)}</div>
 <h3 class="name">${esc(it.name)}</h3>
 <p class="sum">${esc(it.summary)}</p>
@@ -199,6 +204,7 @@ ${services.items.map((it, i) => `<li class="svc reveal"><span class="svc-n" aria
 <section class="section alt" id="work" aria-labelledby="work-h">
 <div class="wrap">
 ${secHead(work, 'work-h')}
+${statusLegend(ui, work)}
 <ul class="work-feat">
 ${featured.map((i, n) => workItem(ui, i, n === 0 ? 'big' : 'mid')).join('\n')}
 </ul>

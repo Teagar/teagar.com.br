@@ -46,3 +46,15 @@
   .mq-group ul{flex-wrap:wrap}
   .mq-group .chip{font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;padding:4px 14px}
 }
+
+/* pixel icons */
+@keyframes st-sand{to{background-position:-48px 0}}
+@keyframes st-blink{0%{background-position:0 0}50%{background-position:-16px 0}}
+.st-dev{animation:st-sand 2.4s steps(3) infinite}
+.st-live{animation:st-blink 1.6s steps(1) infinite}
+.pico{transition:transform .2s steps(1,start)}
+.glow-card:hover .pico,.glow-card:focus-within .pico{transform:translateY(-2px)}
+.card.big:hover .pico,.card.big:focus-within .pico,.card.mid:hover .pico,.card.mid:focus-within .pico{transform:translateY(-3px)}
+@media (prefers-reduced-motion:reduce){
+  .glow-card:hover .pico,.glow-card:focus-within .pico{transform:none!important}
+}
