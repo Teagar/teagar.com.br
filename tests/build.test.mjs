@@ -91,3 +91,25 @@ test('text tokens reach 4.5:1 on every surface in both themes', async () => {
     }
   }
 });
+
+test('procedural pixel moon assets are emitted, palette-limited, small and deterministic', async () => {
+  const names = ['moon.svg', 'moon-halo.svg', 'moon-stars.svg'];
+  const before = {};
+  for (const n of names) {
+    const txt = await read(`assets/img/${n}`);
+    assert.ok(Buffer.byteLength(txt) < 25 * 1024, `${n} < 25 KB`);
+    assert.match(txt, /shape-rendering="crispEdges"/);
+    before[n] = txt;
+  }
+  const allowed = new Set(['#FFD2A1', '#FFA05A', '#FF7A1F', '#FF6700', '#D9520A', '#A63D05', '#6E2803', '#3D1702']);
+  const used = new Set((before['moon.svg'].match(/#[0-9A-Fa-f]{6}\b/g) || []).map((c) => c.toUpperCase()));
+  assert.ok(used.size > 0);
+  for (const c of used) assert.ok(allowed.has(c), `moon.svg uses disallowed ${c}`);
+  assert.ok(!/gradient|filter/i.test(before['moon.svg']));
+  // generator twice -> byte-identical
+  const { MOON_FILES } = await import('../scripts/moon.mjs');
+  const a = MOON_FILES(), b = MOON_FILES();
+  for (const n of Object.keys(a)) assert.equal(a[n], b[n], `${n} deterministic`);
+  for (const n of names) assert.equal(a[n], before[n], `${n} matches dist`);
+  assert.ok(Object.values(a).every((s) => Buffer.byteLength(s) < 25 * 1024));
+});
