@@ -9,7 +9,7 @@ export const PAL = {
 // shading ladder, bright to dark
 const LADDER = [PAL.hi, PAL.light, PAL.baseLight, PAL.base, PAL.mid, PAL.shadow, PAL.deep];
 
-function mulberry32(a) {
+export function mulberry32(a) {
   return () => {
     a |= 0; a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
@@ -18,10 +18,10 @@ function mulberry32(a) {
   };
 }
 
-const BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+export const BAYER = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
 
 /** Merge horizontal runs of equal color; one <path> per color (rect runs as path rows). */
-function runs(grid) {
+export function runs(grid) {
   const by = new Map();
   for (let y = 0; y < grid.length; y++) {
     let x = 0;
@@ -37,7 +37,7 @@ function runs(grid) {
   }
   return [...by].map(([c, d]) => `<path fill="${c}" d="${d.join('')}"/>`).join('');
 }
-const svgWrap = (w, h, body) =>
+export const svgWrap = (w, h, body) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" shape-rendering="crispEdges">${body}</svg>\n`;
 const blank = (n, m = n) => Array.from({ length: m }, () => Array(n).fill(null));
 
