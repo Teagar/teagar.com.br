@@ -50,7 +50,7 @@ test('css keeps focus visible and respects reduced motion', async () => {
   assert.ok(!/outline\s*:\s*(none|0)\b/.test(css), 'no outline removal');
 });
 
-const FORBIDDEN = [/Big Shoulders/i, /Plex Mono/i, /Public Sans/i, /1F4B8C/i, /2B2A28/i];
+const FORBIDDEN = [/1F4B8C/i, /2B2A28/i];
 
 test('old design-system fonts and colors are gone from src, public and dist', async () => {
   const files = [];
@@ -66,6 +66,7 @@ test('old design-system fonts and colors are gone from src, public and dist', as
   for (const f of files) {
     const txt = await readFile(f, 'utf8');
     for (const re of FORBIDDEN) assert.ok(!re.test(txt), `${f} matches ${re}`);
+    assert.ok(!/Instrument/.test(txt), `${f} still references Instrument fonts`);
   }
 });
 

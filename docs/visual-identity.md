@@ -19,8 +19,7 @@ reappears, small, as the section marker and the cursor-following glow on cards.
 
 ## Do NOT inherit from the Teagar Company design system
 
-- No Big Shoulders Display, Public Sans or IBM Plex Mono.
-- No uppercase condensed headlines, mono metadata labels, letter-spaced eyebrows.
+- No uppercase headlines, no italic emphasis, no letter-spaced eyebrows.
 - No blueprint grid, crop marks, registration ticks, coordinates, "FIG. 01" captions.
 - No blueprint blue `#1F4B8C`, charcoal `#2B2A28`, paper `#F0F1F3`.
 - No 2–4 px "almost square" radii everywhere; no hairline-boxed card grids.
@@ -52,17 +51,23 @@ card hover glow. No glassmorphism, no blur.
 
 ## Typography
 
-- **Display:** *Instrument Serif* (regular + italic). Big, sentence case, tight
-  leading (0.95–1.05), negative tracking (-0.02em). Italic is the emphasis
-  device: one or two words per headline set in italic and colored `--ember`
-  (dark) or `--ember-text` (light, only when ≥ 32 px it may use `--ember`).
-- **Text and UI:** *Instrument Sans* (variable, 400–600). Sentence case
-  everywhere, including buttons and nav. Body 17–18 px, line-height 1.6.
-- Small labels (categories, years, step numbers) use Instrument Sans 500 at
-  13–14 px with `font-variant-numeric: tabular-nums`, sentence case, `--muted`.
+- **Typography (design-system fonts, owner request 2026-11-09):** the owner
+  asked for the Teagar design-system typefaces, used with these roles only:
+  - **Display** (`--display`): *Big Shoulders Display*, variable 100–900.
+    Headings (h1, h2, h3), stat numbers, section numerals, wordmark and the
+    pull quote. Headings use weight 800, sentence case, tracking -0.005em and
+    leading 0.95–1.0. The hero emphasis (`titleB`) is the same face at
+    weight 300 colored `--ember`; there is no italic anywhere.
+  - **Body and UI** (`--body`): *Public Sans*, variable 100–900. Body 400,
+    buttons and nav 600, sentence case, body 17–18 px, line-height 1.6.
+  - **Small labels** (`--mono`): *IBM Plex Mono* 400/500/600 for card
+    category and year, status chips, stack chips, fact labels, form labels,
+    service numbers 01–06, footer meta and marquee group labels. Weight 500,
+    12–13 px, tracking .02em, sentence case, `--muted`.
+- Self-host woff2 (latin + latin-ext) under `public/fonts/` with the OFL text.
 - Self-host woff2 (latin + latin-ext) under `public/fonts/` with the OFL text.
 
-Scale (clamp): hero name 64→168 px; h2 44→88 px; h3 24→32 px.
+Scale (clamp): hero name 64→129 px; h2 51→101 px; h3 24→32 px; stat numbers and section numerals scaled about 15% up from the earlier scale.
 
 ## Shape and space
 
@@ -94,21 +99,21 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 ## Layout by section
 
 1. **Header:** transparent over the hero, becomes `--bg` with a bottom divider
-   after scrolling. Left: logo mark (ember) + "Thiago Cerqueira" in Instrument
-   Serif. Center/right: nav in sentence case, language pill ("EN" / "PT"),
+   after scrolling. Left: logo mark (ember) + "Thiago Cerqueira" in Big Shoulders Display.
+   Center/right: nav in sentence case, language pill ("EN" / "PT"),
    theme pill (sun/moon icon), primary button "Iniciar projeto" (ember pill).
-   Mobile: menu button opens a full-screen sheet with large serif links.
+   Mobile: menu button opens a full-screen sheet with large display links.
 2. **Hero:** asymmetric. Left 7 columns: small line "Thiago Cerqueira ·
    Teagar Company" (muted, with a 10 px ember dot), then the headline
-   `titleA` + italic `titleB` in huge serif, lead paragraph, two pill
+   `titleA` + `titleB` (weight 300, ember) in huge display, lead paragraph, two pill
    buttons (ember fill + outline), status with a pulsing 8 px green dot,
    location line. Right 5 columns: the **portrait stage**: rounded 32 px
    container in `--surface-2`, the sun disc (≈ 80% of stage width) positioned
    upper-center with its soft glow, the transparent cut-out in front anchored to
-   the bottom edge. Below the hero, the three stats as large serif numbers in a
+   the bottom edge. Below the hero, the three stats as large display numbers in a
    row with muted labels.
 3. **Services:** editorial numbered list, not a card grid. Each service is a
-   full-width row: number (01–06, serif, muted), title (serif h3), body and
+   full-width row: number (01–06, display, muted), title (display h3), body and
    points in a second column. Dividers between rows. On hover/focus the row
    number turns ember and an arrow slides in. Section heading uses the sun-dot
    marker + h2 (`services.title`), with the intro in a side column.
@@ -116,21 +121,21 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    grid (first card full width with a large title), the other six in a
    3-column grid of smaller cards. Card content: category · year (muted),
    status chip (pill: in development = ember outline, live = green, open
-   source = neutral), serif name, summary, stack chips, link pills with arrow.
+   source = neutral), display name, summary, stack chips, link pills with arrow.
    Cursor glow on hover.
-5. **Process:** four large serif numerals in a row with titles and text,
+5. **Process:** four large display numerals in a row with titles and text,
    connected by a thin line on which a small sun dot travels as the section
    scrolls (static under reduced motion).
-6. **About:** a large serif pull quote built from the first sentence of the
+6. **About:** a large display pull quote built from the first sentence of the
    second paragraph, next to the normal portrait (rounded 24 px, warm). Then
    the remaining paragraphs and the facts as a simple two-column list.
 7. **Stack:** heading + marquee (all items from all groups, group names as
    muted separators). Under reduced motion: grouped wrapped chips.
 8. **Contact:** big section on `--surface-2` (light) / `--surface` (dark):
-   huge serif `contact.title` with italic emphasis, body, email as a big
-   underlined serif link, social pills; the form in a rounded `--surface` card
+   huge display `contact.title`, body, email as a big
+   underlined display link, social pills; the form in a rounded `--surface` card
    with soft fields (12 px radius inputs, labels above, ember focus ring).
-9. **Footer:** large serif wordmark "Teagar" cropped by the page edge, tagline,
+9. **Footer:** large display wordmark "Teagar" cropped by the page edge, tagline,
    links, © line, back to top.
 
 ## Accessibility floor (unchanged)
