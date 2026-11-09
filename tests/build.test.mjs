@@ -114,3 +114,23 @@ test('procedural pixel moon assets are emitted, palette-limited, small and deter
   for (const n of names) assert.equal(a[n], before[n], `${n} matches dist`);
   assert.ok(Object.values(a).every((s) => Buffer.byteLength(s) < 25 * 1024));
 });
+
+test('pixel tea assets are emitted, palette-limited, small and deterministic', async () => {
+  const names = ['tea-cup.svg', 'tea-glint.svg', 'tea-steam-1.svg', 'tea-steam-2.svg', 'tea-steam-3.svg'];
+  const allowed = new Set(['#FFD2A1', '#FFA05A', '#FF7A1F', '#FF6700', '#D9520A', '#A63D05', '#6E2803', '#3D1702', '#FFF1E0', '#2A1D14']);
+  const { TEA_FILES } = await import('../scripts/tea.mjs');
+  const a = TEA_FILES(), b = TEA_FILES();
+  for (const n of names) {
+    const txt = await read(`assets/img/${n}`);
+    assert.ok(Buffer.byteLength(txt) < 12 * 1024, `${n} < 12 KB`);
+    assert.match(txt, /shape-rendering="crispEdges"/);
+    assert.ok(!/gradient|filter/i.test(txt));
+    for (const c of txt.match(/#[0-9A-Fa-f]{6}\b/g) || []) assert.ok(allowed.has(c.toUpperCase()), `${n} uses disallowed ${c}`);
+    assert.equal(a[n], b[n], `${n} deterministic`);
+    assert.equal(a[n], txt, `${n} matches dist`);
+  }
+  assert.notEqual(a['tea-steam-1.svg'], a['tea-steam-2.svg']);
+  const html = await read('index.html');
+  assert.match(html, /class="tea-row"/);
+  assert.match(html, /tea tea-mini" aria-hidden="true"/);
+});
