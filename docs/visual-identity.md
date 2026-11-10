@@ -244,3 +244,11 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 - 861–1100 px: the quick facts drop to one column.
 - Mobile: title, photo, text, "Agora", then the quick facts (the side column uses `display: contents` so the facts can move to the end).
 - References: split photo/bio layouts, a badge over the portrait corner, and facts as a mini résumé next to the photo.
+
+## Process section (2026-11-10)
+
+- Each step has number, title, one sentence on what happens and a "Você recebe" / "You get" box with the deliverable. Rows align across columns with CSS subgrid and the boxes share one height.
+- Step numbers are smaller (`--step-n`, up to 5.5rem) so the content leads. The track and sun dot stay on desktop (4 columns) and mobile (vertical); at 861–1100 px the steps go 2×2 without the track.
+- The section ends with a "Começar pelo diagnóstico" button to #contact and a short note. No timelines or prices unless the owner provides them.
+- References: process sections pair each stage with an output and the client's part, use 3–5 steps and close with the next action.
+

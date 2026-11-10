@@ -290,13 +290,16 @@
   "process": {
     "kicker": "04 — Processo",
     "title": "Como um projeto anda",
-    "intro": "Sem caixa-preta. Você sabe o que está sendo feito, por quê e como confirmar que ficou pronto.",
+    "intro": "Quatro etapas, e em cada uma você sabe o que vai receber antes de eu começar.",
+    "getLabel": "Você recebe",
     "steps": [
-      { "n": "01", "title": "Diagnóstico", "body": "Uma conversa para entender o processo, o gargalo e o que significa sucesso para o seu negócio." },
-      { "n": "02", "title": "Proposta", "body": "Escopo fechado, prazo, investimento e critérios de aceite escritos — antes de qualquer linha de código." },
-      { "n": "03", "title": "Construção", "body": "Entregas curtas e verificáveis, com demonstração, testes e histórico de cada decisão." },
-      { "n": "04", "title": "Operação", "body": "Deploy, monitoramento, documentação e suporte para o sistema continuar de pé depois da entrega." }
-    ]
+      { "n": "01", "title": "Diagnóstico", "body": "Conversamos sobre como o trabalho é feito hoje e onde ele trava.", "get": "Um resumo do problema e do que vale resolver primeiro." },
+      { "n": "02", "title": "Proposta", "body": "Antes de qualquer código, combinamos por escrito o que será feito.", "get": "Escopo, prazo, preço e como cada entrega vai ser conferida." },
+      { "n": "03", "title": "Construção", "body": "Entrego em partes pequenas, que você testa enquanto o projeto avança.", "get": "Uma demonstração a cada entrega, com testes e o registro das decisões." },
+      { "n": "04", "title": "Operação", "body": "Coloco o sistema no ar e continuo por perto depois da entrega.", "get": "Sistema publicado, monitorado e documentado, com suporte." }
+    ],
+    "cta": "Começar pelo diagnóstico",
+    "ctaNote": "A primeira conversa é online e serve para ver se faz sentido seguir."
   },
   "about": {
     "kicker": "05 — Sobre",
