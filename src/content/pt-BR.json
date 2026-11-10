@@ -5,7 +5,7 @@
     "path": "/",
     "title": "Thiago Cerqueira (Teagar) · Software sob medida e automação",
     "langHint": { "text": "Esta página também está em português.", "cta": "Ver em português", "close": "Fechar aviso de idioma" },
-    "description": "Thiago Cerqueira, fundador da Teagar Company: software sob medida, APIs, integrações e automações com IA para empresas no Brasil, com atendimento 100% online.",
+    "description": "Thiago Cerqueira, da Teagar Company: software sob medida, APIs, integrações e automações com IA para empresas de Feira de Santana, BA, e de todo o Brasil.",
     "ogTitle": "Thiago Cerqueira · Teagar Company",
     "ogDescription": "Software sob medida, integrações e automações que aguentam produção.",
     "portraitAlt": "Retrato de Thiago Cerqueira, de cabelo cacheado e camiseta branca, sob luz laranja"
@@ -43,7 +43,7 @@
     "ctaPrimary": "Conversar sobre um projeto",
     "ctaSecondary": "Ver projetos",
     "status": "Agenda aberta para novos projetos",
-    "location": "Brasil · atendimento 100% online",
+    "location": "Feira de Santana, BA · atendimento em todo o Brasil",
     "stats": [
       { "value": "100+", "label": "repositórios públicos no GitHub" },
       { "value": "2.200+", "label": "contribuições nos últimos 12 meses" },
@@ -300,12 +300,12 @@
     "kicker": "05 — Sobre",
     "title": "Engenheiro de software, fundador e professor",
     "paragraphs": [
-      "Sou Thiago Cerqueira — Teagar na internet. Publico código aberto desde 2021 e transformei esse trabalho na Teagar Company, uma empresa de tecnologia focada em software sob medida, integrações e automação para empresas de todo o Brasil, com atendimento remoto.",
+      "Sou Thiago Cerqueira — Teagar na internet. Publico código aberto desde 2021 e transformei esse trabalho na Teagar Company, uma empresa de tecnologia focada em software sob medida, integrações e automação para empresas de Feira de Santana e de todo o Brasil, com atendimento remoto.",
       "Meu foco é back-end, sistemas em tempo real e IA aplicada. Hoje construo ferramentas para coordenar agentes de código com o mesmo rigor de um time humano: contratos claros, evidência de entrega e custo sob controle.",
       "Também ensino. Mantenho uma trilha aberta de Programação de Sistemas e acredito que explicar bem é parte de construir bem."
     ],
     "facts": [
-      { "label": "Base", "value": "Brasil" },
+      { "label": "Base", "value": "Feira de Santana, BA" },
       { "label": "Atendimento", "value": "100% online, Brasil e exterior" },
       { "label": "Idiomas", "value": "Português, inglês, espanhol, russo e mandarim" },
       { "label": "Foco", "value": "Back-end, tempo real, IA aplicada" }
@@ -344,6 +344,7 @@
   "footer": {
     "tagline": "Software que aguenta produção.",
     "rights": "Teagar Company. Todos os direitos reservados.",
-    "builtWith": "Site estático, bilíngue e sem rastreadores. Planejado no Gartrol."
+    "builtWith": "Site estático, bilíngue e sem rastreadores. Planejado no Gartrol.",
+    "localLink": "Feira de Santana"
   }
 }

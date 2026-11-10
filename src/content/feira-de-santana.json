@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Software e automação em Feira de Santana · Teagar",
+    "description": "Software sob medida, automação de atendimento (SAC) e IA para empresas de Feira de Santana, BA, com Thiago Cerqueira, da Teagar Company, daqui da cidade.",
+    "ogTitle": "Software e automação em Feira de Santana · Teagar Company",
+    "ogDescription": "Sistemas, automações e IA para empresas de Feira de Santana, feitos por quem é daqui."
+  },
+  "hero": {
+    "eyebrow": "Feira de Santana, BA",
+    "title": "Software, automação e IA para empresas de Feira de Santana",
+    "lead": "Sou Thiago Cerqueira, o Teagar, de Feira de Santana. Na Teagar Company eu crio sistemas, automações e integrações para empresas da cidade que querem melhorar as condições de trabalho da equipe e fazer o negócio crescer, aplicando soluções reais.",
+    "ctaPrimary": "Conversar sobre a sua empresa",
+    "ctaSecondary": "Ver o que já fiz aqui"
+  },
+  "cases": {
+    "title": "O que já fiz em Feira de Santana",
+    "intro": "Projetos para empresas e equipes daqui da cidade.",
+    "items": [
+      {
+        "icon": "result-support",
+        "title": "Atendimento ao cliente (SAC) mais ágil",
+        "body": "Automações que agilizaram o trabalho da equipe de SAC de uma empresa de Feira de Santana, aumentando a produtividade e melhorando a qualidade do atendimento e a qualidade de vida de quem atende."
+      },
+      {
+        "icon": "gartrol",
+        "title": "Gartrol: gestão de equipes de desenvolvimento",
+        "body": "Ferramenta criada para melhorar a gestão de desenvolvedores: o trabalho vira missões e cards com o que fazer, por que e como confirmar, com evidência de entrega e custos auditáveis, inclusive quando quem executa é um agente de IA.",
+        "quote": {
+          "context": "Um usuário planejou um projeto inteiro no Gartrol com um agente de código (OpenCode):",
+          "text": "Peguei o projeto todo, um PDF gigantesco, copiei todinho e falei: quero que você faça as missões e os cards nesse projeto aqui. Aí ele fecha tudo, velho. Tudo, tudo, tudo. E já deixou pronto lá no Gartrol só pra eu ir fazendo, passando pro lado e fazendo.",
+          "cite": "Desenvolvedor, usuário do Gartrol (depoimento em áudio, transcrito)"
+        }
+      }
+    ]
+  },
+  "services": {
+    "title": "Como posso ajudar a sua empresa",
+    "intro": "Os mesmos serviços que entrego para empresas de todo o Brasil, com alguém daqui da cidade.",
+    "more": "Ver detalhes dos serviços"
+  },
+  "contact": {
+    "title": "Vamos conversar sobre a sua empresa?",
+    "body": "Conte em poucas linhas o que trava o dia a dia da sua equipe. A conversa é online.",
+    "cta": "Escrever um e-mail",
+    "form": "Usar o formulário de contato"
+  },
+  "breadcrumb": "Início"
+}

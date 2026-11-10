@@ -24,6 +24,10 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 
 /** spoken languages (BCP 47 code, English name) for knowsLanguage */
 const LANGS = [['pt', 'Portuguese'], ['en', 'English'], ['es', 'Spanish'], ['ru', 'Russian'], ['zh', 'Mandarin Chinese']];
+/** local landing page and the areas the company serves (city first: local SEO) */
+export const CITY_PATH = '/feira-de-santana/';
+const CITY = { '@type': 'City', name: 'Feira de Santana', containedInPlace: { '@type': 'State', name: 'Bahia' } };
+const AREA_SERVED = [CITY, { '@type': 'Country', name: 'Brasil' }, 'Worldwide'];
 const GH = 'https://github.com/Teagar';
 const CONTRIB_REPO = 'https://github.com/noctalia-dev/community-plugins';
 const GH_ORG = 'https://github.com/teagarcompany';
@@ -141,14 +145,14 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
         knowsLanguage: LANGS.map(([code]) => code),
         makesOffer: services.items.map((it) => ({
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: it.title, description: it.body, provider: { '@id': `${SITE}/#org` }, areaServed: ['BR', 'Worldwide'] },
+          itemOffered: { '@type': 'Service', name: it.title, description: it.body, provider: { '@id': `${SITE}/#org` }, areaServed: AREA_SERVED },
         })),
         logo: `${SITE}/assets/brand/apple-touch-icon.png`,
         email: contact.email,
         founder: { '@id': `${SITE}/#person` },
         sameAs: [GH_ORG],
-        areaServed: ['BR', 'Worldwide'],
-        address: { '@type': 'PostalAddress', addressCountry: 'BR' },
+        areaServed: AREA_SERVED,
+        address: { '@type': 'PostalAddress', addressLocality: 'Feira de Santana', addressRegion: 'BA', addressCountry: 'BR' },
       },
       {
         '@type': 'WebSite',
@@ -388,7 +392,7 @@ ${secHead(stack, 'stack-h')}
 <footer class="footer">
 <div class="wrap foot-row">
 <div><p class="tag">${esc(footer.tagline)}</p><p class="copy">© ${year} ${esc(footer.rights)} ${esc(footer.builtWith)}</p></div>
-<nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="#${id}">${esc(label)}</a>`).join('')}<a href="#top">${esc(ui.backToTop)}</a></nav>
+<nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="#${id}">${esc(label)}</a>`).join('')}<a href="${CITY_PATH}" hreflang="pt-BR">${esc(footer.localLink)}</a><a href="#top">${esc(ui.backToTop)}</a></nav>
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
@@ -418,6 +422,157 @@ export function render404({ assets }) {
 <p lang="en">${esc('Page not found. The address may have changed or never existed.')}</p>
 <div class="hero-cta"><a class="btn btn-primary" href="/" lang="pt-BR">${esc('Voltar ao início')}</a><a class="btn btn-outline" href="/en/" lang="en">${esc('Back to home')}</a></div>
 </div></main>
+</body>
+</html>
+`;
+}
+
+/** Local landing page for Feira de Santana (pt-BR only): local cases, a user testimonial, services and contact. */
+export function renderCityPage({ c, city, assets, logoPaths }) {
+  const { ui, nav, services, contact, footer } = c;
+  const url = SITE + CITY_PATH;
+  const year = new Date().getFullYear();
+  const ogImg = `${SITE}/og-image.jpg`;
+  const navItems = [['services', nav.services], ['work', nav.work], ['process', nav.process], ['about', nav.about], ['contact', nav.contact]];
+  const jsonld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: city.meta.title,
+        description: city.meta.description,
+        inLanguage: 'pt-BR',
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#org` },
+        primaryImageOfPage: ogImg,
+        breadcrumb: { '@id': `${url}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: city.breadcrumb, item: `${SITE}/` },
+          { '@type': 'ListItem', position: 2, name: 'Feira de Santana', item: url },
+        ],
+      },
+      ...services.items.map((it, i) => ({
+        '@type': 'Service',
+        '@id': `${url}#service-${i + 1}`,
+        name: `${it.title} em Feira de Santana`,
+        description: it.body,
+        serviceType: it.title,
+        areaServed: CITY,
+        provider: { '@id': `${SITE}/#org` },
+      })),
+    ],
+  };
+  const sun = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  const caseItem = (it) => `<li class="res loc-case reveal"><img class="res-ico" src="/assets/img/icons/${esc(it.icon)}.svg" width="72" height="72" alt="" decoding="async"><h3>${esc(it.title)}</h3><p>${esc(it.body)}</p>${it.quote ? `<figure class="quote"><figcaption class="q-ctx">${esc(it.quote.context)}</figcaption><blockquote><p>${esc(it.quote.text)}</p></blockquote><p class="q-cite">${esc(it.quote.cite)}</p></figure>` : ''}</li>`;
+
+  return `<!doctype html>
+<html lang="pt-BR" class="no-js" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>${themeScript}</script>
+<title>${esc(city.meta.title)}</title>
+<meta name="description" content="${esc(city.meta.description)}">
+<link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Teagar Company">
+<meta property="og:title" content="${esc(city.meta.ogTitle)}">
+<meta property="og:description" content="${esc(city.meta.ogDescription)}">
+<meta property="og:url" content="${url}">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(city.meta.ogTitle)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(city.meta.ogTitle)}">
+<meta name="twitter:description" content="${esc(city.meta.ogDescription)}">
+<meta name="twitter:image" content="${ogImg}">
+<meta name="theme-color" content="#F5EFE6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=${assets.css}">
+<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
+</head>
+<body class="page-city">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="tc-logo" viewBox="0 0 505 505">${logoPaths}</symbol></svg>
+<a class="skip" href="#main">${esc(ui.skip)}</a>
+<header class="topbar" id="topbar">
+<div class="wrap bar">
+<a class="brand" href="/">${logo()}${brandName()}</a>
+<nav class="nav" id="siteNav" aria-label="${esc(ui.menu)}">
+${navItems.map(([id, label]) => `<a class="nl" href="/#${id}">${esc(label)}</a>`).join('\n')}
+<a class="btn btn-primary btn-menu" href="#contato">${esc(nav.cta)}</a>
+</nav>
+<div class="tools">
+<button type="button" class="pill-ctl theme-btn" id="themeToggle" aria-label="${esc(ui.themeLabel)}" aria-pressed="false" data-light="${esc(ui.themeLight)}" data-dark="${esc(ui.themeDark)}" title="${esc(ui.themeLabel)}">${sun}${moon}</button>
+<a class="btn btn-primary btn-cta" href="#contato">${esc(nav.cta)}</a>
+<button type="button" class="pill-ctl menu-btn" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="${esc(ui.menu)}" title="${esc(ui.menu)}"><svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg><svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<section class="loc-hero" aria-labelledby="top">
+<div class="wrap">
+<nav class="crumbs" aria-label="Trilha"><a href="/">${esc(city.breadcrumb)}</a><span aria-hidden="true"> / </span><span aria-current="page">Feira de Santana</span></nav>
+<p class="hero-kicker"><span class="dot" aria-hidden="true"></span>${esc(city.hero.eyebrow)}</p>
+<h1 id="top">${esc(city.hero.title)}</h1>
+<p class="lead">${esc(city.hero.lead)}</p>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#contato">${esc(city.hero.ctaPrimary)}${ICON_ARROW}</a>
+<a class="btn btn-outline" href="#casos">${esc(city.hero.ctaSecondary)}</a>
+</div>
+</div>
+</section>
+
+<section class="section alt" id="casos" aria-labelledby="casos-h">
+<div class="wrap">
+${secHead(city.cases, 'casos-h')}
+<ul class="results loc-cases">
+${city.cases.items.map(caseItem).join('\n')}
+</ul>
+</div>
+</section>
+
+<section class="section" id="servicos" aria-labelledby="servicos-h">
+<div class="wrap">
+${secHead(city.services, 'servicos-h')}
+<ul class="loc-svcs">
+${services.items.map((it) => `<li class="reveal"><h3>${esc(it.title)}</h3><p>${esc(it.body)}</p></li>`).join('\n')}
+</ul>
+<div class="hero-cta reveal"><a class="btn btn-outline" href="/#services">${esc(city.services.more)}${ICON_ARROW}</a></div>
+</div>
+</section>
+
+<section class="section contact" id="contato" aria-labelledby="contato-h">
+<div class="wrap loc-contact">
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${esc(contact.teaLine)}</p></div>
+<h2 id="contato-h" class="reveal">${esc(city.contact.title)}</h2>
+<p class="body reveal">${esc(city.contact.body)}</p>
+<p class="mail-line reveal"><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
+<div class="hero-cta reveal"><a class="btn btn-primary" href="mailto:${esc(contact.email)}">${esc(city.contact.cta)}${ICON_ARROW}</a><a class="btn btn-outline" href="/#contact">${esc(city.contact.form)}</a></div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="wrap foot-row">
+<div><p class="tag">${esc(footer.tagline)}</p><p class="copy">© ${year} ${esc(footer.rights)} ${esc(footer.builtWith)}</p></div>
+<nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="/#${id}">${esc(label)}</a>`).join('')}<a href="#top">${esc(ui.backToTop)}</a></nav>
+</div>
+<div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
+</footer>
+<script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
 `;

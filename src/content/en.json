@@ -5,7 +5,7 @@
     "path": "/en/",
     "title": "Thiago Cerqueira (Teagar) · Custom software and automation",
     "langHint": { "text": "This page is also available in English.", "cta": "View in English", "close": "Dismiss language notice" },
-    "description": "Thiago Cerqueira, founder of Teagar Company: custom software, APIs, integrations and AI-powered automation for businesses. Based in Brazil, working 100% remotely.",
+    "description": "Thiago Cerqueira, founder of Teagar Company: custom software, APIs, integrations and AI-powered automation for businesses. Based in Feira de Santana, Brazil, working with clients remotely.",
     "ogTitle": "Thiago Cerqueira · Teagar Company",
     "ogDescription": "Custom software, integrations and automation built to survive production.",
     "portraitAlt": "Portrait of Thiago Cerqueira, with curly hair and a white t-shirt, lit in warm orange light"
@@ -43,7 +43,7 @@
     "ctaPrimary": "Talk about a project",
     "ctaSecondary": "See the work",
     "status": "Open for new projects",
-    "location": "Brazil · working 100% remotely",
+    "location": "Feira de Santana, Brazil · serving clients remotely",
     "stats": [
       { "value": "100+", "label": "public repositories on GitHub" },
       { "value": "2,200+", "label": "contributions in the last 12 months" },
@@ -300,12 +300,12 @@
     "kicker": "05 — About",
     "title": "Software engineer, founder and teacher",
     "paragraphs": [
-      "I'm Thiago Cerqueira — Teagar online. I've been publishing open-source code since 2021 and turned that work into Teagar Company, a technology company focused on custom software, integrations and automation for businesses across Brazil and anywhere, working remotely.",
+      "I'm Thiago Cerqueira — Teagar online. I've been publishing open-source code since 2021 and turned that work into Teagar Company, a technology company focused on custom software, integrations and automation for businesses in Feira de Santana, across Brazil and anywhere, working remotely.",
       "My focus is back-end, real-time systems and applied AI. Today I build tools that coordinate coding agents with the same rigor as a human team: clear contracts, delivery evidence and costs under control.",
       "I also teach. I maintain an open Systems Programming track and believe that explaining well is part of building well."
     ],
     "facts": [
-      { "label": "Based in", "value": "Brazil" },
+      { "label": "Based in", "value": "Feira de Santana, Brazil" },
       { "label": "Engagement", "value": "100% remote, Brazil and abroad" },
       { "label": "Languages", "value": "Portuguese, English, Spanish, Russian and Mandarin" },
       { "label": "Focus", "value": "Back-end, real-time, applied AI" }
@@ -344,6 +344,7 @@
   "footer": {
     "tagline": "Software built to survive production.",
     "rights": "Teagar Company. All rights reserved.",
-    "builtWith": "Static, bilingual site with no trackers. Planned in Gartrol."
+    "builtWith": "Static, bilingual site with no trackers. Planned in Gartrol.",
+    "localLink": "Feira de Santana (in Portuguese)"
   }
 }
