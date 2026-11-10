@@ -105,8 +105,8 @@ Scale (clamp): hero name 64→129 px; h2 51→101 px; h3 24→32 px; stat number
 Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 
 - Hero load: headline lines rise out of a mask (stagger 80 ms); the moon rises
-  from below the stage in 22 pixel-snapped `steps()` over 1.4 s, then its three
-  halo rings appear one by one (0.15 s apart); stars fade in by group; cut-out
+  from below the stage with an ease-out over 1.3 s, then its three
+  halo rings fade in one by one (0.15 s apart); stars fade in by group; cut-out
   portrait rises 32 px.
 - Hero idle (steps only, never smooth): the moon bobs 1 logical pixel every 3 s;
   the brightest halo ring cycles every 1.2 s; star groups twinkle at 1.6/2.3/3.1 s;
@@ -117,10 +117,12 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 - Day scene (light theme, steps only): the sun rises like the moon and bobs 1 px;
   the two ray frames alternate every 0.6 s; cloud group c1 drifts 10 logical px and
   c2 7 px, one logical pixel per step, ping-pong over 8 s and 5.6 s.
-- Theme swap (0.6 s total): toggling the theme while the hero is visible fades the new
-  pixel sky in over the old one in 6 opacity steps, so the stage passes through dusk or
-  dawn tones; meanwhile the current body sinks in 5 steps (0.25 s) and the other rises
-  in 7 steps (0.35 s). The portrait stays in front. Reduced motion: instant swap.
+- Theme swap (0.7 s total, eased, owner request): toggling the theme while the hero is
+  visible cross-fades the new pixel sky over the old one with ease-in-out, so the stage
+  passes through dusk or dawn tones; the current body sets with ease-in (0.35 s) and the
+  other rises with ease-out (0.5 s, starting at 0.2 s). The portrait stays in front.
+  Large moves (load rise, swap) are eased; small idle loops (bob, twinkle, rays, ring
+  pulse, clouds) stay in pixel steps. Reduced motion: instant swap.
 - Scroll ("moonset"; the sun sets the same way): the moon sinks up to 8 logical pixels, snapped to the grid,
   while the halo fades out in 4 steps.
 - Cards: a 280 px radial ember glow follows the pointer inside the card on hover.

@@ -4,7 +4,7 @@
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgb(46 158 98 / .5)}60%{box-shadow:0 0 0 7px rgb(46 158 98 / 0)}}
 .js .ln>span{animation:rise .9s var(--ease) both;animation-delay:calc(var(--i)*80ms + 120ms)}
 @keyframes moon-rise{from{transform:translateY(calc(var(--px-size)*110px))}to{transform:none}}
-@keyframes ring-in{0%,99%{opacity:0}100%{opacity:1}}
+@keyframes ring-in{from{opacity:0}to{opacity:1}}
 @keyframes bob{0%,100%{transform:none}50%{transform:translateY(calc(var(--px-size)*-1px))}}
 @keyframes pulse1{0%{opacity:.4}33.4%,100%{opacity:.24}}
 @keyframes pulse2{0%,33.3%{opacity:.12}33.4%{opacity:.26}66.7%,100%{opacity:.12}}
@@ -18,9 +18,9 @@
 @keyframes tw{0%{opacity:1}50%{opacity:.35}100%{opacity:1}}
 @keyframes spark{0%,90%{transform:none}93%,96%{transform:scale(1.8)}100%{transform:none}}
 .stars .sp{transform-box:fill-box;transform-origin:center}
-.js .rise{animation:moon-rise 1.4s steps(22) both}
-.js .ring{animation:ring-in .12s linear both}
-.js .r1{animation-delay:1.45s}.js .r2{animation-delay:1.6s}.js .r3{animation-delay:1.75s}
+.js .rise{animation:moon-rise 1.3s cubic-bezier(.16,1,.3,1) both}
+.js .ring{animation:ring-in .5s cubic-bezier(.65,0,.35,1) both}
+.js .r1{animation-delay:.9s}.js .r2{animation-delay:1.05s}.js .r3{animation-delay:1.2s}
 .js .bob{animation:bob 3s steps(1) infinite 2s}
 .js .r1 img{animation:pulse1 3.6s steps(1) infinite 2s}
 .js .r2 img{animation:pulse2 3.6s steps(1) infinite 2s}
@@ -34,14 +34,14 @@
 .js .rays .f2{animation:ray-b 1.2s steps(1) infinite 2s}
 .js .clouds .c1{animation:cloud-a 8s steps(10) infinite alternate}
 .js .clouds .c2{animation:cloud-b 5.6s steps(7) infinite alternate}
-/* theme swap (0.6 s, steps only): both scenes show; the new sky fades in over the old one in
-   6 steps, so the pixel sky passes through dusk tones; the old body sinks, then the new one rises */
+/* theme swap (0.7 s, eased): both scenes show; the new sky cross-fades over the old one with
+   ease-in-out, passing through dusk/dawn tones; the old body sets (ease-in), the new one rises (ease-out) */
 @keyframes scene-in{from{opacity:0}to{opacity:1}}
 .js .stage.swapping .scene.night,.js .stage.swapping .scene.day{display:block}
-html[data-theme="dark"] .stage.swapping .scene.night,html[data-theme="light"] .stage.swapping .scene.day{z-index:1;animation:scene-in .6s steps(6) both}
-html[data-theme="dark"] .stage.swapping .scene.day .rise,html[data-theme="light"] .stage.swapping .scene.night .rise{animation:moon-set .25s steps(5) both}
-html[data-theme="dark"] .stage.swapping .scene.day .halo,html[data-theme="light"] .stage.swapping .scene.night .halo{opacity:0}
-html[data-theme="dark"] .stage.swapping .scene.night .rise,html[data-theme="light"] .stage.swapping .scene.day .rise{animation:moon-rise .35s steps(7) both .25s}
+html[data-theme="dark"] .stage.swapping .scene.night,html[data-theme="light"] .stage.swapping .scene.day{z-index:1;animation:scene-in .7s cubic-bezier(.65,0,.35,1) both}
+html[data-theme="dark"] .stage.swapping .scene.day .rise,html[data-theme="light"] .stage.swapping .scene.night .rise{animation:moon-set .35s cubic-bezier(.55,0,1,.45) both}
+html[data-theme="dark"] .stage.swapping .scene.day .halo,html[data-theme="light"] .stage.swapping .scene.night .halo{opacity:0;transition:opacity .2s ease-in}
+html[data-theme="dark"] .stage.swapping .scene.night .rise,html[data-theme="light"] .stage.swapping .scene.day .rise{animation:moon-rise .5s cubic-bezier(.22,1,.36,1) both .2s}
 /* after the first swap the load intro never replays */
 .js .stage.settled .rise,.js .stage.settled .ring{animation:none}
 .js .stage.settled .stars .s1{animation:tw 1.6s steps(2) infinite}
