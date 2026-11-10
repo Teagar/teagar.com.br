@@ -2,7 +2,7 @@
 
 ## Audience
 
-1. **Primary — small and mid-sized businesses** (across Brazil, served remotely) with manual processes, spreadsheets and disconnected tools. They buy outcomes, not stacks.
+1. **Primary — small and mid-sized businesses** (Feira de Santana, BA first, then across Brazil, served remotely) with manual processes, spreadsheets and disconnected tools. They buy outcomes, not stacks.
 2. **Secondary — technical buyers and partners** (CTOs, agencies, recruiters) who want proof of engineering depth.
 
 ## Value proposition
@@ -55,3 +55,9 @@ The results section reports only what the owner stated, without client names:
 - Company focus: improve each person's working conditions and grow the business by applying real solutions.
 
 Do not add figures, methods or client details that the owner has not provided.
+
+## Local focus: Feira de Santana (owner decision, 2026-11-10)
+
+- The site names the city again: "Feira de Santana, BA · atendimento em todo o Brasil". The street address stays hidden (Google Business Profile shows a service area); never publish it.
+- `/feira-de-santana/` (pt-BR only) is the local landing page. Its local cases are the only ones the owner confirmed for the city: the customer service (SAC) automation and Gartrol (built to improve the management of developers).
+- The testimonial is a lightly edited excerpt of a Gartrol user's voice message ("gastrô"/"carros" in the raw transcription are Gartrol/cards). It stays anonymous unless the user agrees to be named.

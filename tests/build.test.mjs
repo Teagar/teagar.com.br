@@ -239,10 +239,10 @@ test('footer wordmark uses the self-hosted Teagar font', async () => {
   assert.match(await read('index.html'), /<p class="wordmark" aria-hidden="true">Teagar<\/p>/);
 });
 
-test('navbar name rolls Teagar into Thiago and location is Brasil', async () => {
+test('navbar name rolls Teagar into Thiago and location names Feira de Santana', async () => {
   for (const f of ['index.html', 'en/index.html']) {
     const html = await read(f);
-    assert.ok(!/Feira de Santana/.test(html), `${f} has no city`);
+    assert.match(html, /Feira de Santana/, `${f} names the city`);
     const brand = html.match(/<a class="brand"[\s\S]*?<\/a>/)[0];
     assert.match(brand, /<span class="vh">Teagar Cerqueira \(Thiago Cerqueira\)<\/span>/);
     assert.match(brand, /<span class="bw" aria-hidden="true">/);
@@ -251,8 +251,8 @@ test('navbar name rolls Teagar into Thiago and location is Brasil', async () => 
     assert.equal(from, 'Teagar');
     assert.equal(to, 'Thiago');
   }
-  assert.match(await read('index.html'), /Brasil · atendimento 100% online/);
-  assert.match(await read('en/index.html'), /Brazil · working 100% remotely/);
+  assert.match(await read('index.html'), /Feira de Santana, BA · atendimento em todo o Brasil/);
+  assert.match(await read('en/index.html'), /Feira de Santana, Brazil · serving clients remotely/);
 });
 
 test('about photo ships 4:5 crops large enough for 3x; languages and social icons', async () => {
@@ -322,4 +322,33 @@ test('llms.txt includes the results section', async () => {
   const llms = await read('llms.txt');
   assert.match(llms, /## Results/);
   assert.match(llms, /\+150% — production at a multinational e-commerce company\./);
+});
+
+test('Feira de Santana landing page: local cases, testimonial, JSON-LD, sitemap, links', async () => {
+  const html = await read('feira-de-santana/index.html');
+  const title = html.match(/<title>([^<]*)<\/title>/)[1];
+  assert.ok(/Feira de Santana/.test(title) && [...title].length <= 60, title);
+  assert.match(html, /<html lang="pt-BR"/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/teagar\.com\.br\/feira-de-santana\/">/);
+  assert.equal((html.match(/<h1/g) || []).length, 1);
+  assert.match(html, /SAC/);
+  assert.match(html, /\/assets\/img\/icons\/gartrol\.svg/);
+  assert.match(html, /<blockquote><p>Peguei o projeto todo/);
+  assert.ok(!/R\. Vicente|Papagaio|44055/.test(html), 'no street address');
+  const ld = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+  const types = ld['@graph'].map((n) => n['@type']);
+  assert.ok(types.includes('WebPage') && types.includes('BreadcrumbList'));
+  const svcs = ld['@graph'].filter((n) => n['@type'] === 'Service');
+  assert.equal(svcs.length, 6);
+  assert.ok(svcs.every((s) => s.areaServed.name === 'Feira de Santana'));
+  assert.match(await read('sitemap.xml'), /<loc>https:\/\/teagar\.com\.br\/feira-de-santana\/<\/loc>/);
+  assert.match(await read('llms.txt'), /feira-de-santana\//);
+  for (const f of ['index.html', 'en/index.html']) {
+    const home = await read(f);
+    assert.match(home, /<a href="\/feira-de-santana\/" hreflang="pt-BR">/);
+    const org = JSON.parse(home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'].find((n) => [].concat(n['@type']).includes('ProfessionalService'));
+    assert.equal(org.address.addressLocality, 'Feira de Santana');
+    assert.ok(!org.address.streetAddress);
+    assert.equal(org.areaServed[0].name, 'Feira de Santana');
+  }
 });

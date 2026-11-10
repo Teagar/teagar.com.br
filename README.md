@@ -8,7 +8,7 @@ Site pessoal e empresarial de Thiago Cerqueira (Teagar) e da Teagar Company, pub
 
 ### Estrutura
 
-- `src/content/*.json`: todo o texto do site (pt-BR e en).
+- `src/content/*.json`: todo o texto do site (pt-BR e en); `feira-de-santana.json` guarda a página local `/feira-de-santana/`, só em pt-BR.
 - `src/template.mjs`: template HTML que gera cada página e a página 404.
 - `src/styles/`: CSS em camadas (tokens, base, layout e componentes).
 - `src/scripts/`: JavaScript do cliente (tema, idioma e formulário).
@@ -76,7 +76,7 @@ Personal and business site of Thiago Cerqueira (Teagar) and Teagar Company, publ
 
 ### Structure
 
-- `src/content/*.json`: all site copy (pt-BR and en).
+- `src/content/*.json`: all site copy (pt-BR and en); `feira-de-santana.json` holds the pt-BR local landing page `/feira-de-santana/`.
 - `src/template.mjs`: HTML template that renders every page and the 404 page.
 - `src/styles/`: layered CSS (tokens, base, layout and components).
 - `src/scripts/`: client-side JavaScript (theme, language and form).

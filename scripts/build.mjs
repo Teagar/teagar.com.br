@@ -6,7 +6,7 @@ import { writeMoonAssets } from './moon.mjs';
 import { writeSunAssets } from './sun.mjs';
 import { writeTeaAssets } from './tea.mjs';
 import { writeIconAssets } from './pixel-icons.mjs';
-import { renderPage, render404, SITE, LOCALES } from '../src/template.mjs';
+import { renderPage, render404, renderCityPage, SITE, LOCALES, CITY_PATH } from '../src/template.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
@@ -48,21 +48,24 @@ async function main() {
   await writeFile(join(dist, 'index.html'), renderPage({ c: pt, locale: 'pt-BR', other: { locale: 'en', meta: en.meta }, assets, logoPaths }));
   await writeFile(join(dist, 'en/index.html'), renderPage({ c: en, locale: 'en', other: { locale: 'pt-BR', meta: pt.meta }, assets, logoPaths }));
   await writeFile(join(dist, '404.html'), render404({ assets }));
+  const city = JSON.parse(await readFile(join(root, 'src/content/feira-de-santana.json'), 'utf8'));
+  await mkdir(join(dist, CITY_PATH), { recursive: true });
+  await writeFile(join(dist, CITY_PATH, 'index.html'), renderCityPage({ c: pt, city, assets, logoPaths }));
 
   const alt = (l) => `<xhtml:link rel="alternate" hreflang="${l}" href="${LOCALES[l].url}"/>`;
   const links = [alt('pt-BR'), alt('en'), `<xhtml:link rel="alternate" hreflang="x-default" href="${LOCALES['pt-BR'].url}"/>`].join('');
   const today = new Date().toISOString().slice(0, 10);
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${Object.values(LOCALES).map((l) => `<url><loc>${l.url}</loc><lastmod>${today}</lastmod>${links}</url>`).join('\n')}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${Object.values(LOCALES).map((l) => `<url><loc>${l.url}</loc><lastmod>${today}</lastmod>${links}</url>`).join('\n')}\n<url><loc>${SITE}${CITY_PATH}</loc><lastmod>${today}</lastmod></url>\n</urlset>\n`;
   await writeFile(join(dist, 'sitemap.xml'), sitemap);
   await writeFile(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
-  await writeFile(join(dist, 'llms.txt'), llmsTxt(en, pt));
+  await writeFile(join(dist, 'llms.txt'), llmsTxt(en, pt, city));
   console.log(`built dist/ (css ${assets.css}, js ${assets.js})`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
 
 /** llms.txt (https://llmstxt.org): a plain summary of the site for AI assistants, generated from the same copy as the pages */
-function llmsTxt(en, pt) {
+function llmsTxt(en, pt, city) {
   const plain = (t) => String(t).replace(/\s+/g, ' ').trim();
   const lines = [
     '# Teagar Company — Thiago Cerqueira (Teagar)',
@@ -78,6 +81,7 @@ function llmsTxt(en, pt) {
     '',
     `- [Portuguese (pt-BR)](${LOCALES['pt-BR'].url}): ${plain(pt.meta.description)}`,
     `- [English](${LOCALES.en.url}): ${plain(en.meta.description)}`,
+    `- [Feira de Santana (pt-BR)](${SITE}${CITY_PATH}): ${plain(city.meta.description)}`,
     '',
     '## Services',
     '',
