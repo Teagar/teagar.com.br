@@ -39,8 +39,8 @@ const firstSentence = (text) => {
   return m ? [m[1], String(text).slice(m[0].length)] : [String(text), ''];
 };
 
-const ext = (ui, label, url) =>
-  `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}${ICON_EXT}<span class="vh"> (${esc(ui.external)})</span></a>`;
+const ext = (ui, label, url, icon) =>
+  `<a href="${esc(url)}" target="_blank" rel="noopener">${icon ? `<img class="soc-ico" src="/assets/img/icons/social-${icon}.svg" width="16" height="16" alt="" decoding="async">` : ''}${esc(label)}${ICON_EXT}<span class="vh"> (${esc(ui.external)})</span></a>`;
 
 const picture = ({ base, exts, sizes, widths, w, h, alt, attrs, fallback }) => {
   const set = (e) => widths.map((x) => `/assets/img/${base}-${x}.${e} ${x}w`).join(', ');
@@ -114,7 +114,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
         name: 'Thiago Cerqueira',
         alternateName: 'Teagar',
         url: SITE + '/',
-        image: `${SITE}/assets/img/portrait-960.jpg`,
+        image: `${SITE}/assets/img/about-800.jpg`,
         jobTitle: about.title,
         sameAs: [GH, GH_ORG, LI],
         worksFor: { '@id': `${SITE}/#org` },
@@ -139,7 +139,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
   const rest = work.items.filter((i) => !i.featured);
   const [quote, restOfP1] = firstSentence(about.paragraphs[1]);
   const mqGroups = stack.groups.map((g) => `<div class="mq-group"><h3>${esc(g.name)}</h3><ul>${g.items.map((i) => `<li class="chip">${esc(i)}</li>`).join('')}</ul></div>`).join('');
-  const portraitSizes = '(max-width: 860px) 360px, 480px';
+  const portraitSizes = '(max-width: 860px) 360px, 500px';
 
   const sun = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
   const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
@@ -279,7 +279,7 @@ ${proc.steps.map((s) => `<li class="step reveal"><span class="n" aria-hidden="tr
 <section class="section alt" id="about" aria-labelledby="about-h">
 <div class="wrap about">
 <figure class="portrait reveal">
-${picture({ base: 'portrait', exts: ['avif', 'webp', 'jpg'], widths: [480, 960, 1440], sizes: '(max-width: 860px) 420px, 480px', w: 960, h: 960, alt: meta.portraitAlt, attrs: 'loading="lazy" decoding="async"' })}
+${picture({ base: 'about', exts: ['avif', 'webp', 'jpg'], widths: [480, 800, 1200, 1600], sizes: '(max-width: 860px) min(440px, calc(100vw - 40px)), min(500px, 40vw)', w: 800, h: 1000, alt: meta.portraitAlt, attrs: 'loading="lazy" decoding="async"' })}
 </figure>
 <div class="about-text">
 <h2 id="about-h" class="reveal"><span class="sun-dot" aria-hidden="true"></span>${esc(about.title)}</h2>
@@ -316,9 +316,9 @@ ${secHead(stack, 'stack-h')}
 <div class="social reveal">
 <h3>${esc(contact.socialTitle)}</h3>
 <ul>
-<li>${ext(ui, 'GitHub Teagar', GH)}</li>
-<li>${ext(ui, 'GitHub teagarcompany', GH_ORG)}</li>
-<li>${ext(ui, 'LinkedIn', LI)}</li>
+<li>${ext(ui, 'GitHub Teagar', GH, 'github')}</li>
+<li>${ext(ui, 'GitHub teagarcompany', GH_ORG, 'github')}</li>
+<li>${ext(ui, 'LinkedIn', LI, 'linkedin')}</li>
 </ul>
 </div>
 </div>

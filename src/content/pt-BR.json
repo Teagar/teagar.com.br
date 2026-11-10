@@ -295,7 +295,7 @@
     "facts": [
       { "label": "Base", "value": "Brasil" },
       { "label": "Atendimento", "value": "100% online, Brasil e exterior" },
-      { "label": "Idiomas", "value": "Português e inglês" },
+      { "label": "Idiomas", "value": "Português, inglês, espanhol, russo e mandarim" },
       { "label": "Foco", "value": "Back-end, tempo real, IA aplicada" }
     ]
   },

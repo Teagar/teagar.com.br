@@ -254,3 +254,26 @@ test('navbar name rolls Teagar into Thiago and location is Brasil', async () => 
   assert.match(await read('index.html'), /Brasil · atendimento 100% online/);
   assert.match(await read('en/index.html'), /Brazil · working 100% remotely/);
 });
+
+test('about photo ships 4:5 crops large enough for 3x; languages and social icons', async () => {
+  const { stat } = await import('node:fs/promises');
+  for (const w of [480, 800, 1200, 1600]) {
+    for (const e of ['avif', 'webp', 'jpg']) assert.ok((await stat(join(root, `dist/assets/img/about-${w}.${e}`))).size > 0, `about-${w}.${e}`);
+  }
+  for (const [f, langs] of [['index.html', 'Português, inglês, espanhol, russo e mandarim'], ['en/index.html', 'Portuguese, English, Spanish, Russian and Mandarin']]) {
+    const html = await read(f);
+    const fig = html.match(/<figure class="portrait[\s\S]*?<\/figure>/)[0];
+    assert.match(fig, /about-1600\.avif 1600w/);
+    assert.match(fig, /width="800" height="1000"/);
+    assert.ok(!/portrait-\d+/.test(html), `${f} has no old portrait files`);
+    assert.ok(html.includes(langs), `${f} lists languages`);
+    const social = html.match(/<div class="social[\s\S]*?<\/ul>/)[0];
+    assert.equal((social.match(/social-github\.svg/g) || []).length, 2);
+    assert.equal((social.match(/social-linkedin\.svg/g) || []).length, 1);
+    assert.equal((social.match(/class="soc-ico"[^>]*alt=""/g) || []).length, 3);
+  }
+  const { SOCIAL_ICONS } = await import('../scripts/pixel-icons.mjs');
+  for (const id of Object.keys(SOCIAL_ICONS)) {
+    assert.match(await read(`assets/img/icons/social-${id}.svg`), /shape-rendering="crispEdges"/);
+  }
+});

@@ -155,7 +155,7 @@ html[data-theme="dark"] .section.alt .card .chip{background:var(--surface-2)}
 /* about */
 .about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gutter);align-items:start}
 .portrait{grid-column:1/6;border-radius:var(--r-card);overflow:hidden;background:var(--bg);position:sticky;top:calc(var(--bar) + 24px)}
-.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
 .about-text{grid-column:7/-1}
 .about-text h2{font-size:clamp(2.3rem,3.91vw,3.45rem);line-height:1.05;color:var(--muted)}
 .pull{margin-top:clamp(28px,4vw,48px);font-family:var(--display);font-weight:500;font-size:clamp(2.25rem,4.6vw,4rem);line-height:1.04;letter-spacing:-.005em;text-wrap:balance}
@@ -190,6 +190,8 @@ html[data-theme="dark"] .contact{background:var(--surface)}
 .social{margin-top:36px}
 .social h3{font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;color:var(--muted);margin-bottom:12px}
 .social ul{display:flex;flex-wrap:wrap;gap:8px}
+.soc-ico{width:32px;height:32px;margin:-6px 10px -6px -10px;image-rendering:pixelated;flex:none;transition:transform .1s steps(1)}
+.social a:hover .soc-ico,.social a:focus-visible .soc-ico{transform:translateY(-2px)}
 .form{grid-column:8/-1;display:grid;gap:20px;padding:clamp(24px,3vw,40px);background:var(--bg);border-radius:var(--r-card);box-shadow:var(--shadow)}
 html[data-theme="dark"] .form{background:var(--bg)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
