@@ -167,6 +167,14 @@ html[data-theme="dark"] .section.alt .card .chip{background:var(--surface-2)}
 .facts dt{color:var(--muted);font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em}
 .facts dd{margin-top:2px;font-weight:500}
 @media (max-width:860px){.about{grid-template-columns:1fr}.portrait,.about-text{grid-column:1}.portrait{position:static;max-width:440px}}
+/* "Agora" / "Now": a dated now-page block (Derek Sivers' /now idea) */
+.now{max-width:36em;margin-top:clamp(28px,4vw,44px);padding:22px 24px;border:1.5px solid var(--line);border-radius:var(--r-input)}
+.now h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;font-family:var(--display);font-size:1.5rem;font-weight:800;line-height:1.1}
+.now h3 .live-dot{align-self:center;margin:0}
+.now-date{font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;color:var(--muted)}
+.now ul{display:grid;gap:10px;margin-top:14px}
+.now li{position:relative;padding-left:20px}
+.now li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;background:var(--ember)}
 @media (max-width:480px){.facts{grid-template-columns:1fr}}
 
 /* stack marquee */

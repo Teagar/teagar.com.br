@@ -300,17 +300,28 @@
   },
   "about": {
     "kicker": "05 — About",
-    "title": "Software engineer, founder and teacher",
+    "title": "Thiago on paper, Teagar on GitHub.",
     "paragraphs": [
-      "I'm Thiago Cerqueira — Teagar online. I've been publishing open-source code since 2021 and turned that work into Teagar Company, a technology company focused on custom software, integrations and automation for businesses in Feira de Santana, across Brazil and anywhere, working remotely.",
-      "My focus is back-end, real-time systems and applied AI. Today I build tools that coordinate coding agents with the same rigor as a human team: clear contracts, delivery evidence and costs under control.",
-      "I also teach. I maintain an open Systems Programming track and believe that explaining well is part of building well."
+      "I live in Feira de Santana, Brazil. Teagar Company started with the code I published on GitHub and now builds custom software, integrations and automation for businesses here and in other cities, working remotely.",
+      "Almost every project of mine starts with someone doing by hand what a computer could do. That was the case with TNF-e, which read invoices from more than 200 carriers for a customer service team, and with Gartrol, which I built to organize developers’ work and which now organizes AI agents too.",
+      "I also teach. I maintain an open Systems Programming track with 21 modules, from logic to Laravel, and 20 exercises in each."
     ],
+    "now": {
+      "title": "Now",
+      "updated": "updated November 2026",
+      "datetime": "2026-11",
+      "items": [
+        "Gartrol is live, with its first users planning whole projects in it.",
+        "Teagarden is in beta: a desktop environment for working with several coding agents at once.",
+        "Writing plugins for Noctalia, a Wayland desktop shell.",
+        "Open for new projects."
+      ]
+    },
     "facts": [
       { "label": "Based in", "value": "Feira de Santana, Brazil" },
       { "label": "Engagement", "value": "100% remote, Brazil and abroad" },
       { "label": "Languages", "value": "Portuguese, English, Spanish, Russian and Mandarin" },
-      { "label": "Focus", "value": "Back-end, real-time, applied AI" }
+      { "label": "Open source", "value": "Since 2021" }
     ]
   },
   "stack": {

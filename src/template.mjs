@@ -343,6 +343,10 @@ ${picture({ base: 'about', exts: ['avif', 'webp', 'jpg'], widths: [480, 800, 120
 <div class="prose reveal">
 ${[about.paragraphs[0], restOfP1, ...about.paragraphs.slice(2)].filter(Boolean).map((p) => `<p>${esc(p)}</p>`).join('\n')}
 </div>
+<div class="now reveal">
+<h3><span class="live-dot" aria-hidden="true"></span>${esc(about.now.title)} <time class="now-date" datetime="${esc(about.now.datetime)}">${esc(about.now.updated)}</time></h3>
+<ul>${about.now.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
+</div>
 <dl class="facts reveal">
 ${about.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join('\n')}
 </dl>
