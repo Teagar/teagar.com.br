@@ -1,0 +1,21 @@
+name: teagar-site
+
+services:
+  web:
+    image: caddy:2-alpine
+    container_name: teagar-site
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /config
+      - /data
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./dist:/srv/teagar.com.br:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: teagar_proxy
+    external: true
