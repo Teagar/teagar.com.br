@@ -44,3 +44,14 @@ Copy line, not a visual rule: the visual identity is defined separately in `docs
 ## Voice
 
 Direct, specific, first person singular for Thiago, company name for offers. No hype words, no emojis. pt-BR is the source language; en is a native rewrite, not a literal translation.
+
+## Results (owner statement, 2026-11-10)
+
+The results section reports only what the owner stated, without client names:
+
+- +150% production at a multinational e-commerce company.
+- Customer service automations that sped up the team's work, raising productivity and improving service quality and quality of life.
+- A very serious LGPD incident prevented at a multinational: a flaw that could have leaked the personal data of every registered user.
+- Company focus: improve each person's working conditions and grow the business by applying real solutions.
+
+Do not add figures, methods or client details that the owner has not provided.

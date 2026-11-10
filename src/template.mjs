@@ -109,7 +109,7 @@ const teaStack = (steam) => `${steam ? `<span class="tea-steam">${[1, 2, 3].map(
 export function renderPage({ c, locale, other, assets, logoPaths }) {
   const L = LOCALES[locale];
   const O = LOCALES[other.locale];
-  const { meta, ui, nav, hero, services, work, process: proc, about, stack, contact, footer } = c;
+  const { meta, ui, nav, hero, services, results, work, process: proc, about, stack, contact, footer } = c;
   const year = new Date().getFullYear();
   const ogImg = `${SITE}/og-image.jpg`;
 
@@ -286,6 +286,16 @@ ${secHead(services, 'services-h')}
 <ol class="svc-list">
 ${services.items.map((it, i) => `<li class="svc reveal"><span class="svc-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h3>${esc(it.title)}</h3><div class="svc-body"><p>${esc(it.body)}</p><ul class="points">${it.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>${ICON_ARROW}</li>`).join('\n')}
 </ol>
+</div>
+</section>
+
+<section class="section" id="results" aria-labelledby="results-h">
+<div class="wrap">
+${secHead(results, 'results-h')}
+<ul class="results">
+${results.items.map((it) => `<li class="res reveal"><img class="res-ico" src="/assets/img/icons/${esc(it.icon)}.svg" width="72" height="72" alt="" decoding="async"><h3><span class="res-v">${esc(it.value)}</span> <span class="res-l">${esc(it.label)}</span></h3>${it.body ? `<p>${esc(it.body)}</p>` : ''}</li>`).join('\n')}
+</ul>
+<p class="res-note reveal">${esc(results.note)}</p>
 </div>
 </section>
 

@@ -93,8 +93,19 @@
       }
     ]
   },
+  "results": {
+    "kicker": "02 — Results",
+    "title": "Real results, for people and for the business",
+    "intro": "Teagar Company focuses on improving each person’s working conditions and on growing the business, by applying real solutions.",
+    "note": "Client names withheld for confidentiality.",
+    "items": [
+      {"icon": "result-growth", "value": "+150%", "label": "production at a multinational e-commerce company", "body": "A multinational e-commerce operation went on to produce 150% more."},
+      {"icon": "result-support", "value": "Support", "label": "more productive, with better quality of life", "body": "Automations that sped up customer service teams’ work, raising productivity and improving both service quality and the quality of life of the people doing it."},
+      {"icon": "result-privacy", "value": "LGPD", "label": "critical incident prevented at a multinational", "body": "A flaw that could have leaked the personal data of every registered user was stopped before it became an incident (LGPD is Brazil’s data protection law)."}
+    ]
+  },
   "work": {
-    "kicker": "02 — Work",
+    "kicker": "03 — Work",
     "title": "Selected work",
     "intro": "Teagar Company's own products, systems in development and open-source projects. Some code is private; the thinking is here.",
     "legend": "Project status",
@@ -275,7 +286,7 @@
     ]
   },
   "process": {
-    "kicker": "03 — Process",
+    "kicker": "04 — Process",
     "title": "How a project moves",
     "intro": "No black box. You always know what is being built, why, and how to confirm it is done.",
     "steps": [
@@ -286,7 +297,7 @@
     ]
   },
   "about": {
-    "kicker": "04 — About",
+    "kicker": "05 — About",
     "title": "Software engineer, founder and teacher",
     "paragraphs": [
       "I'm Thiago Cerqueira — Teagar online. I've been publishing open-source code since 2021 and turned that work into Teagar Company, a technology company focused on custom software, integrations and automation for businesses across Brazil and anywhere, working remotely.",
@@ -301,7 +312,7 @@
     ]
   },
   "stack": {
-    "kicker": "05 — Stack",
+    "kicker": "06 — Stack",
     "title": "Tools of the trade",
     "groups": [
       { "name": "Languages", "items": ["TypeScript", "JavaScript", "Python", "PHP", "C#", "Rust", "Java", "Lua", "SQL", "Bash"] },

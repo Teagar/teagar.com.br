@@ -93,8 +93,19 @@
       }
     ]
   },
+  "results": {
+    "kicker": "02 — Resultados",
+    "title": "Resultados reais, para as pessoas e para o negócio",
+    "intro": "A Teagar Company foca em melhorar as condições de trabalho de cada pessoa e em fazer o negócio crescer, aplicando soluções reais.",
+    "note": "Nomes de clientes omitidos por confidencialidade.",
+    "items": [
+      {"icon": "result-growth", "value": "+150%", "label": "de produção em um e-commerce multinacional", "body": "Uma operação de e-commerce multinacional passou a produzir 150% a mais."},
+      {"icon": "result-support", "value": "Atendimento", "label": "mais produtivo, com mais qualidade de vida", "body": "Automações que agilizaram o trabalho das equipes de atendimento ao cliente, aumentando a produtividade e melhorando a qualidade do atendimento e a qualidade de vida de quem atende."},
+      {"icon": "result-privacy", "value": "LGPD", "label": "incidente gravíssimo evitado em uma multinacional", "body": "Uma falha que poderia vazar os dados pessoais de todos os usuários já cadastrados foi evitada antes de virar incidente."}
+    ]
+  },
   "work": {
-    "kicker": "02 — Projetos",
+    "kicker": "03 — Projetos",
     "title": "Trabalho selecionado",
     "intro": "Produtos próprios da Teagar Company, sistemas em desenvolvimento e projetos abertos. Alguns códigos são privados; o raciocínio está aqui.",
     "legend": "Status dos projetos",
@@ -275,7 +286,7 @@
     ]
   },
   "process": {
-    "kicker": "03 — Processo",
+    "kicker": "04 — Processo",
     "title": "Como um projeto anda",
     "intro": "Sem caixa-preta. Você sabe o que está sendo feito, por quê e como confirmar que ficou pronto.",
     "steps": [
@@ -286,7 +297,7 @@
     ]
   },
   "about": {
-    "kicker": "04 — Sobre",
+    "kicker": "05 — Sobre",
     "title": "Engenheiro de software, fundador e professor",
     "paragraphs": [
       "Sou Thiago Cerqueira — Teagar na internet. Publico código aberto desde 2021 e transformei esse trabalho na Teagar Company, uma empresa de tecnologia focada em software sob medida, integrações e automação para empresas de todo o Brasil, com atendimento remoto.",
@@ -301,7 +312,7 @@
     ]
   },
   "stack": {
-    "kicker": "05 — Stack",
+    "kicker": "06 — Stack",
     "title": "Ferramentas de trabalho",
     "groups": [
       { "name": "Linguagens", "items": ["TypeScript", "JavaScript", "Python", "PHP", "C#", "Rust", "Java", "Lua", "SQL", "Bash"] },
