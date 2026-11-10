@@ -55,8 +55,12 @@ O script gera o build, roda os testes, envia `dist/` por SSH e recria só o `tea
 
 ### Idioma e tema
 
-- **Idioma:** a raiz `/` redireciona para `/en/` somente quando não há preferência de idioma salva e o idioma principal do navegador não é português. A escolha manual feita pelo seletor de idioma é salva no navegador e tem prioridade sobre a detecção.
+- **Idioma:** não há redirecionamento automático. Assim o Google indexa cada versão como ela é, conforme a orientação dele para sites multilíngues. Quando o idioma principal do navegador não corresponde ao da página e não há escolha salva, aparece um aviso discreto no canto oferecendo a outra versão. Trocar de idioma ou fechar o aviso salva a escolha no navegador.
 - **Tema:** segue `prefers-color-scheme` do sistema até que o usuário alterne o tema manualmente. A escolha manual é salva no navegador.
+
+### SEO e IA
+
+Cada página tem `title` de até 60 caracteres, `canonical` e `hreflang`, além de JSON-LD com `Person` (idiomas e áreas de atuação), `Organization`/`ProfessionalService` (serviços em `makesOffer`), `WebSite` e `WebPage`. O build também gera `sitemap.xml`, `robots.txt` (que não bloqueia nenhum robô, inclusive os de IA) e `llms.txt`, um resumo em Markdown para assistentes de IA montado a partir do mesmo conteúdo do site.
 
 ### Fontes
 
@@ -119,8 +123,12 @@ The script builds, runs the tests, uploads `dist/` over SSH and recreates only `
 
 ### Language and theme detection
 
-- **Language:** the root `/` redirects to `/en/` only when there is no stored language preference and the browser's primary language is not Portuguese. A manual choice made with the language switcher is stored in the browser and takes precedence over detection.
+- **Language:** there is no automatic redirect, so Google indexes each version as it is (as Google advises for multilingual sites). When the browser's primary language does not match the page and no choice is stored, a small corner notice offers the other version. Switching or dismissing it stores the choice in the browser.
 - **Theme:** follows `prefers-color-scheme` until the user toggles the theme manually. The manual choice is stored in the browser.
+
+### SEO and AI
+
+Each page has a `title` of at most 60 characters, `canonical` and `hreflang`, and JSON-LD with `Person` (languages and areas of expertise), `Organization`/`ProfessionalService` (services in `makesOffer`), `WebSite` and `WebPage`. The build also writes `sitemap.xml`, `robots.txt` (which blocks no crawler, AI crawlers included) and `llms.txt`, a Markdown summary for AI assistants built from the same copy as the site.
 
 ### Fonts
 

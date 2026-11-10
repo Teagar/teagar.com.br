@@ -42,6 +42,27 @@
   }
   if (mq.addEventListener) mq.addEventListener('change', onScheme);
 
+  /* language suggestion: never redirect (search engines must see each page as is);
+     offer the other language when the browser prefers it and no choice is stored */
+  var hint = document.getElementById('langHint');
+  if (hint) {
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    var pref = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+    var wantsPt = pref.indexOf('pt') === 0;
+    var target = hint.getAttribute('data-for');
+    if (!saved && pref && (target === 'en' ? !wantsPt : wantsPt)) {
+      hint.hidden = false;
+      requestAnimationFrame(function () { hint.classList.add('in'); });
+    }
+    var remember = function (v) { try { localStorage.setItem('lang', v); } catch (e) {} };
+    hint.querySelector('.lh-go').addEventListener('click', function () { remember(target === 'en' ? 'en' : 'pt-BR'); });
+    hint.querySelector('.lh-x').addEventListener('click', function () {
+      remember(target === 'en' ? 'pt-BR' : 'en');
+      hint.hidden = true;
+    });
+  }
+
   /* language switch remembers the choice */
   var langLink = document.getElementById('langSwitch');
   if (langLink) {

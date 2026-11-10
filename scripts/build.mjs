@@ -55,7 +55,47 @@ async function main() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${Object.values(LOCALES).map((l) => `<url><loc>${l.url}</loc><lastmod>${today}</lastmod>${links}</url>`).join('\n')}\n</urlset>\n`;
   await writeFile(join(dist, 'sitemap.xml'), sitemap);
   await writeFile(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+  await writeFile(join(dist, 'llms.txt'), llmsTxt(en, pt));
   console.log(`built dist/ (css ${assets.css}, js ${assets.js})`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
+
+/** llms.txt (https://llmstxt.org): a plain summary of the site for AI assistants, generated from the same copy as the pages */
+function llmsTxt(en, pt) {
+  const plain = (t) => String(t).replace(/\s+/g, ' ').trim();
+  const lines = [
+    '# Teagar Company — Thiago Cerqueira (Teagar)',
+    '',
+    `> ${plain(en.meta.description)}`,
+    '',
+    plain(en.hero.lead),
+    '',
+    `Location: ${plain(en.hero.location)}. Languages: ${plain(en.about.facts.find((f) => /language/i.test(f.label))?.value || '')}.`,
+    `Contact: ${en.contact.email}`,
+    '',
+    '## Pages',
+    '',
+    `- [Portuguese (pt-BR)](${LOCALES['pt-BR'].url}): ${plain(pt.meta.description)}`,
+    `- [English](${LOCALES.en.url}): ${plain(en.meta.description)}`,
+    '',
+    '## Services',
+    '',
+    ...en.services.items.map((s) => `- ${plain(s.title)}: ${plain(s.body)}`),
+    '',
+    '## Projects',
+    '',
+    ...en.work.items.map((i) => {
+      const link = i.links && i.links[0] ? `[${plain(i.name)}](${i.links[0].url})` : plain(i.name);
+      return `- ${link} (${plain(i.category)}, ${plain(String(i.year))}): ${plain(i.summary)}`;
+    }),
+    '',
+    '## Profiles',
+    '',
+    '- [GitHub (Teagar)](https://github.com/Teagar)',
+    '- [GitHub (Teagar Company)](https://github.com/teagarcompany)',
+    '- [LinkedIn](https://www.linkedin.com/in/teagar/)',
+    '',
+  ];
+  return lines.join('\n');
+}
