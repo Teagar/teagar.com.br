@@ -33,6 +33,8 @@ const CONTRIB_REPO = 'https://github.com/noctalia-dev/community-plugins';
 const GH_ORG = 'https://github.com/teagarcompany';
 const LI = 'https://www.linkedin.com/in/teagar/';
 
+/** Teagar Company logo pointing right (tc-point), used as the service hover marker */
+const ICON_POINT = `<svg class="arrow point" viewBox="0 44 612 526" fill="currentColor" aria-hidden="true"><path d="M293.24 566.233 C349.589 559.534 404.168 534.564 447.41 491.322 L376.628 420.54 C361.137 436.032 343.278 447.733 324.223 455.636 C280.674 473.697 230.839 471.944 188.518 450.359 L412.023 226.854 L561.95 376.782 L597.345 341.387 C616.885 321.847 616.885 290.153 597.345 270.613 L447.41 120.678 C435.304 108.573 422.31 97.906 408.637 88.661 C373.468 64.887 333.815 50.591 293.24 45.767 C272.553 43.294 251.623 43.294 230.935 45.767 C174.586 52.466 120.007 77.436 76.766 120.678 C33.524 163.92 8.554 218.499 1.855 274.848 C-0.618 295.535 -0.618 316.465 1.855 337.152 C6.679 377.727 20.974 417.381 44.749 452.549 C53.993 466.222 64.66 479.217 76.766 491.322 C88.871 503.428 101.865 514.094 115.538 523.339 C150.707 547.113 190.361 561.409 230.935 566.233 C251.623 568.706 272.553 568.706 293.24 566.233 Z M112.451 243.865 C120.355 224.81 132.056 206.951 147.547 191.46 C163.039 175.968 180.898 164.267 199.953 156.364 C243.501 138.303 293.337 140.056 335.657 161.641 L117.728 379.57 C96.144 337.249 94.39 287.414 112.451 243.865 Z"/></svg>`;
 const ICON_ARROW = '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const ICON_EXT = '<svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
 
@@ -288,7 +290,7 @@ ${hero.stats.map((s) => `<div class="reveal"><dt>${esc(s.value)}</dt><dd>${esc(s
 <div class="wrap">
 ${secHead(services, 'services-h')}
 <ol class="svc-list">
-${services.items.map((it, i) => `<li class="svc reveal"><span class="svc-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h3>${esc(it.title)}</h3><div class="svc-body"><p>${esc(it.body)}</p><ul class="points">${it.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>${ICON_ARROW}</li>`).join('\n')}
+${services.items.map((it, i) => `<li class="svc reveal"><span class="svc-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h3>${esc(it.title)}</h3><div class="svc-body"><p>${esc(it.body)}</p><ul class="points">${it.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></div>${ICON_POINT}</li>`).join('\n')}
 </ol>
 </div>
 </section>

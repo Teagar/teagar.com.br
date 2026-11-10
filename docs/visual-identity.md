@@ -227,3 +227,8 @@ dark brown `#2A1D14`, grey-stone `#A89C8E` (neutral accents) and green
 (`aria-hidden`), drawn at 2 CSS px per pixel and animated with `steps()`
 sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 `</>` (open source). All designs are original; no third-party marks.
+
+## Service hover marker and contact form (2026-11-10)
+
+- On hover or focus, each service row shows the Teagar Company logo pointing right (`tc-point.svg`, one path, `fill: currentColor`) in `--ember`, instead of a generic arrow. It is decorative (`aria-hidden`).
+- Contact form: every control is 52 px tall with 16 px text; the select draws its own chevron (`appearance: none`); the form spans columns 7–12; the empty status line is visually hidden but stays in the DOM as the live region; the submit label is short enough to fit one line at 320 px.

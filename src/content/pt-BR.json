@@ -335,7 +335,7 @@
       "need": "O que você precisa?",
       "needOptions": ["Software sob medida", "Automação de processos", "Integração / API", "IA e agentes", "Site ou landing page", "Consultoria técnica", "Outro"],
       "message": "Conte um pouco sobre o projeto",
-      "submit": "Abrir e-mail com a mensagem",
+      "submit": "Abrir no e-mail",
       "subject": "Novo projeto via teagar.com.br",
       "required": "Preencha seu nome e a mensagem."
     },

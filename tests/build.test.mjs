@@ -355,3 +355,14 @@ test('Feira de Santana landing page: local cases, testimonial, JSON-LD, sitemap,
     assert.equal(org.areaServed[0].name, 'Feira de Santana');
   }
 });
+
+test('service hover marker is the Teagar logo pointing right; contact form button fits one line', async () => {
+  for (const f of ['index.html', 'en/index.html']) {
+    const html = await read(f);
+    const svcs = html.match(/<li class="svc reveal">[\s\S]*?<\/li>\n/g);
+    assert.equal(svcs.length, 6);
+    for (const li of svcs) assert.match(li, /<svg class="arrow point" viewBox="0 44 612 526" fill="currentColor" aria-hidden="true"><path d="M293\.24 566\.233 /);
+  }
+  assert.match(await read('index.html'), /type="submit">Abrir no e-mail/);
+  assert.match(await read('en/index.html'), /type="submit">Open in email/);
+});
