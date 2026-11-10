@@ -235,5 +235,5 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 ## Hero numbers and project statuses (2026-11-10)
 
-- Four hero numbers (4 columns on desktop, 2×2 from 861 to 1100 px, label beside the number on mobile). The fourth is accepted open-source contributions to large projects: 5 merged PRs in Noctalia's official community plugins (Noctalia ≈ 12k stars), checked on GitHub. Update it only from GitHub data.
+- Four hero numbers (4 columns on desktop, 2×2 from 861 to 1100 px, label beside the number on mobile). The fourth is accepted open-source contributions to large projects: 5 merged PRs in Noctalia's official community plugins (Noctalia ≈ 12k stars), checked on GitHub. The label gives only the count and the stars, without naming the project (owner decision). Update it only from GitHub data.
 - Statuses, in legend order: live (green broadcast), beta (static 8×8 pixel flask, chip in `--text`), in development (hourglass), open source. Gartrol is live and Teagarden is beta.

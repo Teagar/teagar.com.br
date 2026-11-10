@@ -367,8 +367,8 @@ test('service hover marker is the Teagar logo pointing left; contact form button
   assert.match(await read('en/index.html'), /type="submit">Open in email/);
   const pt = await read('index.html'), en = await read('en/index.html');
   assert.equal((pt.match(/<dl class="stats">[\s\S]*?<\/dl>/)[0].match(/<dt>/g) || []).length, 4);
-  assert.match(pt, /<dt>5<\/dt><dd>contribuições aceitas no Noctalia/);
-  assert.match(en, /<dt>5<\/dt><dd>accepted contributions to Noctalia/);
+  assert.match(pt, /<dt>5<\/dt><dd>contribuições aceitas em open source com ~12 mil estrelas<\/dd>/);
+  assert.match(en, /<dt>5<\/dt><dd>accepted contributions to open source with ~12k stars<\/dd>/);
   const chip = (html, slug) => html.match(new RegExp(`id="work-${slug}"[\\s\\S]*?class="status-chip (\\w+)"`))?.[1];
   for (const html of [pt, en]) {
     assert.equal(chip(html, 'gartrol'), 'live');
