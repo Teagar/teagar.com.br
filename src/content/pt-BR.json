@@ -300,17 +300,28 @@
   },
   "about": {
     "kicker": "05 — Sobre",
-    "title": "Engenheiro de software, fundador e professor",
+    "title": "Thiago no RG, Teagar no GitHub.",
     "paragraphs": [
-      "Sou Thiago Cerqueira — Teagar na internet. Publico código aberto desde 2021 e transformei esse trabalho na Teagar Company, uma empresa de tecnologia focada em software sob medida, integrações e automação para empresas de Feira de Santana e de todo o Brasil, com atendimento remoto.",
-      "Meu foco é back-end, sistemas em tempo real e IA aplicada. Hoje construo ferramentas para coordenar agentes de código com o mesmo rigor de um time humano: contratos claros, evidência de entrega e custo sob controle.",
-      "Também ensino. Mantenho uma trilha aberta de Programação de Sistemas e acredito que explicar bem é parte de construir bem."
+      "Moro em Feira de Santana. A Teagar Company começou com o código que eu publicava no GitHub e hoje faz software sob medida, integrações e automações para empresas daqui e de outras cidades do Brasil, com atendimento remoto.",
+      "Quase todo projeto meu começa com alguém fazendo à mão o que o computador podia fazer. Foi assim com o TNF-e, que lia as notas fiscais de mais de 200 transportadoras para uma equipe de SAC, e com o Gartrol, que criei para organizar o trabalho de desenvolvedores e que hoje organiza agentes de IA também.",
+      "Também dou aula. Mantenho uma trilha aberta de Programação de Sistemas com 21 módulos, de lógica a Laravel, e 20 exercícios em cada um."
     ],
+    "now": {
+      "title": "Agora",
+      "updated": "atualizado em novembro de 2026",
+      "datetime": "2026-11",
+      "items": [
+        "Gartrol no ar, com os primeiros usuários planejando projetos inteiros nele.",
+        "Teagarden em beta: um ambiente desktop para trabalhar com vários agentes de código ao mesmo tempo.",
+        "Escrevendo plugins para o Noctalia, um shell de desktop para Wayland.",
+        "Agenda aberta para novos projetos."
+      ]
+    },
     "facts": [
       { "label": "Base", "value": "Feira de Santana, BA" },
       { "label": "Atendimento", "value": "100% online, Brasil e exterior" },
       { "label": "Idiomas", "value": "Português, inglês, espanhol, russo e mandarim" },
-      { "label": "Foco", "value": "Back-end, tempo real, IA aplicada" }
+      { "label": "Código aberto", "value": "Desde 2021" }
     ]
   },
   "stack": {

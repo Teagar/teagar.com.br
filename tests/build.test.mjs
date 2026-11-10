@@ -375,3 +375,16 @@ test('service hover marker is the Teagar logo pointing left; contact form button
     assert.equal(chip(html, 'teagarden'), 'beta');
   }
 });
+
+test('about: own voice title, concrete pull quote and a dated "now" block', async () => {
+  const pt = await read('index.html'), en = await read('en/index.html');
+  assert.match(pt, /<h2 id="about-h"[^>]*>[\s\S]*?Thiago no RG, Teagar no GitHub\.<\/h2>/);
+  assert.match(en, /<h2 id="about-h"[^>]*>[\s\S]*?Thiago on paper, Teagar on GitHub\.<\/h2>/);
+  assert.match(pt, /<blockquote class="pull reveal"><p>Quase todo projeto meu começa com alguém fazendo à mão o que o computador podia fazer\.<\/p>/);
+  for (const html of [pt, en]) {
+    const now = html.match(/<div class="now reveal">[\s\S]*?<\/div>/)[0];
+    assert.match(now, /<time class="now-date" datetime="2026-11">/);
+    assert.equal((now.match(/<li>/g) || []).length, 4);
+    assert.ok(!/Back-end, tempo real, IA aplicada|Back-end, real-time, applied AI/.test(html), 'generic focus line removed');
+  }
+});

@@ -62,3 +62,8 @@ Do not add figures, methods or client details that the owner has not provided.
 - `/feira-de-santana/` (pt-BR only) is the local landing page. Its local cases are the only ones the owner confirmed for the city: the customer service (SAC) automation and Gartrol (built to improve the management of developers).
 - The SAC case is TNF-e (owner statement, 2026-11-10): it extracted the data from invoice (NF) PDFs of more than 200 carriers, turned it into usable data and built the direct tracking link for each package. Do not name the employer or add figures beyond these.
 - The testimonial is a lightly edited excerpt of a Gartrol user's voice message ("gastrô"/"carros" in the raw transcription are Gartrol/cards). It stays anonymous unless the user agrees to be named.
+
+## About section voice (owner request, 2026-11-10)
+
+- The owner found the old About generic and AI-sounding. It now uses a first-person voice built only on facts already on the site: the Thiago/Teagar pair (same idea as the navbar roll), TNF-e, Gartrol and the 21-module teaching track. Avoid slogans, rule-of-three lists, aphorisms and em dashes in this section.
+- "Agora" / "Now" is a dated now-page block (Derek Sivers' /now idea). Keep it short and factual, and update the date and items when the work changes.
