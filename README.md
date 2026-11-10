@@ -56,7 +56,7 @@ Os nomes `<servidor>` e `<diretorio-do-compose>` são placeholders. Não há cre
 
 ### Fontes
 
-Big Shoulders Display, Public Sans e IBM Plex Mono (self-hosted). As fontes em `public/fonts/` são distribuídas sob a licença SIL Open Font License 1.1. Veja `public/fonts/LICENSE-OFL.txt`.
+Big Shoulders Display, Public Sans e IBM Plex Mono (self-hosted). As fontes em `public/fonts/` são distribuídas sob a licença SIL Open Font License 1.1. Veja `public/fonts/LICENSE-OFL.txt`. A exceção é `teagar-regular.woff2`, a fonte própria Teagar, usada só no wordmark do rodapé; ela pertence a Thiago Cerqueira e não está sob a OFL.
 
 ---
 
@@ -116,4 +116,4 @@ The server runs Caddy in Docker on the external network `teagar_proxy`, and Cadd
 
 ### Fonts
 
-Big Shoulders Display, Public Sans and IBM Plex Mono (self-hosted). The fonts in `public/fonts/` are distributed under the SIL Open Font License 1.1. See `public/fonts/LICENSE-OFL.txt`.
+Big Shoulders Display, Public Sans and IBM Plex Mono (self-hosted). The fonts in `public/fonts/` are distributed under the SIL Open Font License 1.1. See `public/fonts/LICENSE-OFL.txt`. The exception is `teagar-regular.woff2`, the owner's own Teagar typeface, used only for the footer wordmark; it belongs to Thiago Cerqueira and is not under the OFL.

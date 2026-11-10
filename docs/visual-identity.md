@@ -76,8 +76,8 @@ No gradients except one: a soft radial ember glow (`radial-gradient` of
 - **Typography (design-system fonts, owner request 2026-11-09):** the owner
   asked for the Teagar design-system typefaces, used with these roles only:
   - **Display** (`--display`): *Big Shoulders Display*, variable 100–900.
-    Headings (h1, h2, h3), stat numbers, section numerals, wordmark and the
-    pull quote. Headings use weight 800, sentence case, tracking -0.005em and
+    Headings (h1, h2, h3), stat numbers, section numerals and the pull
+    quote. Headings use weight 800, sentence case, tracking -0.005em and
     leading 0.95–1.0. The hero emphasis (`titleB`) is the same face at
     weight 300 colored `--ember`; there is no italic anywhere.
   - **Body and UI** (`--body`): *Public Sans*, variable 100–900. Body 400,
@@ -186,9 +186,12 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    with soft fields (12 px radius inputs, labels above, ember focus ring). Above
    the title, a decorative pixel teacup with steam (4 CSS px per logical px, 3 on
    mobile) next to the line `contact.teaLine`.
-9. **Footer:** large display wordmark "Teagar" cropped by the page edge, tagline,
-   links, © line, back to top. A small pixel teacup (2 CSS px per logical px, no
-   steam) rests on the wordmark like a dot on the i; decorative.
+9. **Footer:** large wordmark "Teagar" set in the owner's own **Teagar** typeface
+   (`/fonts/teagar-regular.woff2`, owner request 2026-11-10), at 23vw (72–304 px)
+   so the whole word fits, its lower part cropped by the page edge; tagline, links,
+   © line, back to top. A small pixel teacup (2 CSS px per logical px, 1 at 960 px
+   and below, no steam) rests on the "r" like a dot on the i; decorative. The
+   Teagar font is used only here.
 
 ## Accessibility floor (unchanged)
 

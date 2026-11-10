@@ -229,3 +229,12 @@ test('sun generator: sun, rays and day sky are deterministic, on-palette and sma
     assert.ok(html.includes('/assets/img/sun.svg') && html.includes('sun-rays-2.svg') && html.includes('class="clouds"'));
   }
 });
+
+test('footer wordmark uses the self-hosted Teagar font', async () => {
+  const css = await read('assets/site.css');
+  assert.match(css, /font-family:"Teagar";[^}]*src:url\(\/fonts\/teagar-regular\.woff2\)/);
+  assert.match(css, /\.wordmark\{[^}]*font-family:"Teagar"/);
+  const font = await readFile(join(root, 'dist/fonts/teagar-regular.woff2'));
+  assert.equal(font.subarray(0, 4).toString('latin1'), 'wOF2');
+  assert.match(await read('index.html'), /<p class="wordmark" aria-hidden="true">Teagar<\/p>/);
+});
