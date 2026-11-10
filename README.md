@@ -40,14 +40,18 @@ npm run build   # gera os arquivos estáticos em dist/
 
 ### Deploy
 
-O servidor executa Caddy em Docker, na rede externa `teagar_proxy`, que termina TLS. Para publicar:
+O site roda na VPS da Teagar. O Caddy compartilhado (`teagar-caddy`, rede externa `teagar_proxy`) termina TLS e faz proxy para o container `teagar-site`, que serve os arquivos de `dist/`.
 
-1. Gere o build com `npm run build`.
-2. Copie `dist/` para o diretório do servidor montado no Caddy, por exemplo:
-   `rsync -az --delete dist/ <servidor>:<diretorio-do-compose>/teagar.com.br/dist/`
-3. Garanta que o Caddy monte esse diretório como `/srv/teagar.com.br` (veja `deploy/docker-compose.example.yml`) e que o bloco do site em `deploy/Caddyfile.example` esteja mesclado ao Caddyfile existente, sem alterar os demais blocos.
+- `deploy/compose.yaml` e `deploy/Caddyfile`: o container `teagar-site` (Caddy só de arquivos, somente leitura), em `/opt/apps/teagar.com.br`.
+- `deploy/proxy-site-block.example`: os blocos `teagar.com.br` e `www` já incluídos no Caddyfile compartilhado. Para alterá-lo, siga o runbook da VPS (backup, `caddy validate`, escrita no lugar e `USR1`), sem tocar nos outros blocos.
 
-Os nomes `<servidor>` e `<diretorio-do-compose>` são placeholders. Não há credenciais no repositório.
+Para publicar uma nova versão:
+
+```sh
+DEPLOY_HOST=<usuario>@<servidor> scripts/deploy.sh
+```
+
+O script gera o build, roda os testes, envia `dist/` por SSH e recria só o `teagar-site`. O Caddy compartilhado não reinicia. `<usuario>` e `<servidor>` são placeholders; não há credenciais no repositório.
 
 ### Idioma e tema
 
@@ -100,14 +104,18 @@ npm run build   # writes static files to dist/
 
 ### Deploy
 
-The server runs Caddy in Docker on the external network `teagar_proxy`, and Caddy terminates TLS. To publish:
+The site runs on the Teagar VPS. The shared Caddy (`teagar-caddy`, external network `teagar_proxy`) terminates TLS and reverse-proxies to the `teagar-site` container, which serves the files in `dist/`.
 
-1. Build with `npm run build`.
-2. Copy `dist/` to the server directory mounted into Caddy, for example:
-   `rsync -az --delete dist/ <server>:<compose-directory>/teagar.com.br/dist/`
-3. Make sure Caddy mounts that directory at `/srv/teagar.com.br` (see `deploy/docker-compose.example.yml`) and that the site block in `deploy/Caddyfile.example` is merged into the existing Caddyfile without changing other site blocks.
+- `deploy/compose.yaml` and `deploy/Caddyfile`: the `teagar-site` container (a read-only, file-only Caddy) in `/opt/apps/teagar.com.br`.
+- `deploy/proxy-site-block.example`: the `teagar.com.br` and `www` blocks already present in the shared Caddyfile. To change it, follow the VPS runbook (backup, `caddy validate`, write in place, `USR1`) and leave the other blocks untouched.
 
-`<server>` and `<compose-directory>` are placeholders. The repository contains no credentials.
+To publish a new version:
+
+```sh
+DEPLOY_HOST=<user>@<server> scripts/deploy.sh
+```
+
+The script builds, runs the tests, uploads `dist/` over SSH and recreates only `teagar-site`. The shared Caddy is not restarted. `<user>` and `<server>` are placeholders; the repository contains no credentials.
 
 ### Language and theme detection
 

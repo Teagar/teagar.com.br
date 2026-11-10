@@ -1,21 +1,20 @@
-# Example site blocks for the teagar.com.br static site.
-# Merge these blocks into the existing Caddyfile used by the Caddy container
-# on the teagar_proxy network. Do not modify or remove any other site blocks.
-# Files are served from /srv/teagar.com.br, which is the container path of the
-# dist/ volume mount (see docker-compose.example.yml).
+# Static file server for teagar.com.br. TLS and the public hostname live in
+# /opt/apps/proxy/Caddyfile (teagar-caddy), which reverse-proxies here.
+{
+	admin off
+	auto_https off
+}
 
-teagar.com.br {
+:80 {
 	root * /srv/teagar.com.br
 	encode zstd gzip
 
 	try_files {path} {path}/ {path}/index.html
 	file_server
 
-	# Long-lived, content-hashed or versioned assets.
 	@static path /fonts/* /assets/*
 	header @static Cache-Control "public, max-age=31536000, immutable"
 
-	# HTML must always be revalidated so new deploys show up immediately.
 	@html path_regexp html (/|\.html)$
 	header @html Cache-Control "no-cache"
 
@@ -31,14 +30,6 @@ teagar.com.br {
 		Referrer-Policy "strict-origin-when-cross-origin"
 		Permissions-Policy "camera=(), microphone=(), geolocation=()"
 		X-Frame-Options "DENY"
-		# 'unsafe-inline' in script-src is required by the inline theme/lang head
-		# script. It can be removed by replacing it with the script's sha256 hash.
-		# 'unsafe-inline' in style-src is required by the inline style attribute
-		# present in the built HTML (style="position:absolute").
 		Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline'; form-action 'self' mailto:; base-uri 'self'; frame-ancestors 'none'"
 	}
-}
-
-www.teagar.com.br {
-	redir https://teagar.com.br{uri} permanent
 }

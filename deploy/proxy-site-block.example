@@ -1,0 +1,13 @@
+# Site blocks appended to the shared proxy Caddyfile (/opt/apps/proxy/Caddyfile,
+# container teagar-caddy). TLS terminates there; files are served by the
+# teagar-site container defined in deploy/compose.yaml. Do not modify or remove
+# any other site block. Follow the backup -> validate -> write in place -> USR1
+# procedure from the VPS runbook; the shared Caddy never needs a restart.
+
+teagar.com.br {
+	reverse_proxy teagar-site:80
+}
+
+www.teagar.com.br {
+	redir https://teagar.com.br{uri} permanent
+}
