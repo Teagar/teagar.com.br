@@ -326,9 +326,10 @@ ${secHead(proc, 'process-h')}
 <div class="steps-wrap" id="steps">
 <div class="track" aria-hidden="true"><span class="track-dot"></span></div>
 <ol class="steps">
-${proc.steps.map((s) => `<li class="step reveal"><span class="n" aria-hidden="true">${esc(s.n)}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p></li>`).join('\n')}
+${proc.steps.map((s) => `<li class="step reveal"><span class="n" aria-hidden="true">${esc(s.n)}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p><div class="get"><span class="get-l">${esc(proc.getLabel)}</span><p>${esc(s.get)}</p></div></li>`).join('\n')}
 </ol>
 </div>
+<div class="proc-cta reveal"><a class="btn btn-primary" href="#contact">${esc(proc.cta)}${ICON_ARROW}</a><p>${esc(proc.ctaNote)}</p></div>
 </div>
 </section>
 

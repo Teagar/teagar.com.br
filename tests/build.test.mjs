@@ -393,3 +393,14 @@ test('about: own voice title, concrete pull quote and a dated "now" block', asyn
     assert.ok(!/Back-end, tempo real, IA aplicada|Back-end, real-time, applied AI/.test(html), 'generic focus line removed');
   }
 });
+
+test('process: each step says what the client gets, no slogan or dashes, ends with a CTA', async () => {
+  for (const [f, label, cta] of [['index.html', 'Você recebe', 'Começar pelo diagnóstico'], ['en/index.html', 'You get', 'Start with a diagnosis']]) {
+    const html = await read(f);
+    const sec = html.match(/<section class="section" id="process"[\s\S]*?<\/section>/)[0];
+    assert.equal((sec.match(/<li class="step reveal">/g) || []).length, 4);
+    assert.equal((sec.match(new RegExp(`<span class="get-l">${label}</span>`, 'g')) || []).length, 4);
+    assert.match(sec, new RegExp(`<a class="btn btn-primary" href="#contact">${cta}`));
+    assert.ok(!/caixa-preta|black box|—/.test(sec), `${f}: no slogan or em dash`);
+  }
+});

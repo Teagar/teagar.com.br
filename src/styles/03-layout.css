@@ -139,20 +139,27 @@ html[data-theme="dark"] .section.alt .card .chip{background:var(--surface-2)}
 @media (max-width:980px){.work-rest{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:700px){.work-feat,.work-rest{grid-template-columns:1fr}}
 
-/* process */
-.steps-wrap{position:relative}
-.track{position:absolute;left:0;right:0;top:calc(clamp(4.6rem,8.05vw,7.48rem)*.5);height:1px;background:var(--line)}
+/* process: number, title, what happens, what you get (rows aligned across columns via subgrid), then a CTA */
+.steps-wrap{position:relative;--step-n:clamp(3.5rem,6vw,5.5rem)}
+.track{position:absolute;left:0;right:0;top:calc(var(--step-n)*.5);height:1px;background:var(--line)}
 .track-dot{position:absolute;top:50%;left:calc(var(--p,0)*100%);width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 8px var(--glow)}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gutter)}
-.step{position:relative;padding-top:0}
-.step .n{display:inline-block;padding-right:16px;background:var(--bg);font-family:var(--display);font-weight:800;font-size:clamp(4.6rem,8.05vw,7.48rem);line-height:1;color:var(--text);font-variant-numeric:tabular-nums}
-.step h3{margin-top:24px}
-.step p{margin-top:12px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gutter);row-gap:0}
+.step{position:relative;display:grid;grid-row:span 4;grid-template-rows:subgrid;align-content:start}
+.step .n{justify-self:start;padding-right:16px;background:var(--bg);font-family:var(--display);font-weight:800;font-size:var(--step-n);line-height:1;color:var(--text);font-variant-numeric:tabular-nums}
+.step h3{margin-top:20px;font-size:clamp(1.625rem,2.2vw,2rem)}
+.step>p{margin-top:10px;color:var(--text)}
+.get{align-self:stretch;margin-top:18px;padding:14px 16px;border-radius:var(--r-input);background:var(--surface);border:1px solid var(--line)}
+.get-l{display:block;font-family:var(--mono);font-size:.75rem;font-weight:500;letter-spacing:.02em;color:var(--ember-text)}
+.get p{margin-top:4px;font-size:.9375rem;line-height:1.5;color:var(--muted)}
+.proc-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:clamp(36px,5vw,56px)}
+.proc-cta p{max-width:30em;color:var(--muted)}
+@media (min-width:861px) and (max-width:1100px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.step:nth-child(n+3){margin-top:40px}.track{display:none}}
 @media (max-width:860px){
-  .steps{grid-template-columns:1fr;gap:40px;padding-left:32px}
+  .steps{grid-template-columns:1fr;padding-left:32px}
+  .step+.step{margin-top:40px}
   .track{left:6px;right:auto;top:0;bottom:0;width:1px;height:auto}
   .track-dot{left:50%;top:calc(var(--p,0)*100%);margin:-8px 0 0 -8px}
-  .step .n{background:none;font-size:4.03rem;padding:0}
+  .step .n{background:none;font-size:3.5rem;padding:0}
 }
 
 /* about: headline over the text column; portrait + quick facts pinned on the left; title, photo, text on mobile */

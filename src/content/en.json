@@ -290,13 +290,16 @@
   "process": {
     "kicker": "04 — Process",
     "title": "How a project moves",
-    "intro": "No black box. You always know what is being built, why, and how to confirm it is done.",
+    "intro": "Four steps, and in each one you know what you will get before I start.",
+    "getLabel": "You get",
     "steps": [
-      { "n": "01", "title": "Diagnosis", "body": "A conversation to understand the process, the bottleneck and what success means for your business." },
-      { "n": "02", "title": "Proposal", "body": "Fixed scope, timeline, investment and written acceptance criteria — before a single line of code." },
-      { "n": "03", "title": "Build", "body": "Short, verifiable deliveries with demos, tests and a record of every decision." },
-      { "n": "04", "title": "Operate", "body": "Deployment, monitoring, documentation and support so the system keeps standing after handoff." }
-    ]
+      { "n": "01", "title": "Diagnosis", "body": "We talk about how the work is done today and where it gets stuck.", "get": "A summary of the problem and what is worth solving first." },
+      { "n": "02", "title": "Proposal", "body": "Before any code, we agree in writing on what will be built.", "get": "Scope, timeline, price and how each delivery will be checked." },
+      { "n": "03", "title": "Build", "body": "I deliver in small parts that you test while the project moves.", "get": "A demo at every delivery, with tests and a record of decisions." },
+      { "n": "04", "title": "Operate", "body": "I put the system live and stay close after handoff.", "get": "A system that is live, monitored and documented, with support." }
+    ],
+    "cta": "Start with a diagnosis",
+    "ctaNote": "The first conversation is online and is there to see whether it makes sense to go on."
   },
   "about": {
     "kicker": "05 — About",
