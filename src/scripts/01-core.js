@@ -19,16 +19,12 @@
       var st = document.getElementById('stage');
       var swap = st && !reduce.matches && st.getBoundingClientRect().bottom > 0 && st.getBoundingClientRect().top < window.innerHeight;
       if (swap) {
-        /* stepped swap: old body sinks (0.5 s), then sky switches and the new body rises (0.5 s) */
-        st.setAttribute('data-hold', prev);
-        st.classList.remove('swap-in');
-        st.classList.add('swap-out');
+        /* 0.6 s stepped swap: the new sky fades in over the old one while the bodies set and rise */
+        st.classList.remove('swapping');
+        void st.offsetWidth;
+        st.classList.add('swapping', 'settled');
         clearTimeout(swapTimer);
-        swapTimer = setTimeout(function () {
-          st.removeAttribute('data-hold');
-          st.classList.remove('swap-out');
-          st.classList.add('swap-in');
-        }, 500);
+        swapTimer = setTimeout(function () { st.classList.remove('swapping'); }, 650);
       }
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}

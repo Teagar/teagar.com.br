@@ -34,11 +34,19 @@
 .js .rays .f2{animation:ray-b 1.2s steps(1) infinite 2s}
 .js .clouds .c1{animation:cloud-a 8s steps(10) infinite alternate}
 .js .clouds .c2{animation:cloud-b 5.6s steps(7) infinite alternate}
-/* theme swap: the old body sinks, the new one rises (steps only) */
-.js .stage.swap-out .rise{animation:moon-set .5s steps(8) both}
-.js .stage.swap-out .halo{opacity:0}
-.js .stage.swap-in .rise{animation:moon-rise .5s steps(8) both}
-.js .stage.swap-in .r1,.js .stage.swap-in .r2,.js .stage.swap-in .r3,.js .stage.swap-in .rays{animation-delay:.5s}
+/* theme swap (0.6 s, steps only): both scenes show; the new sky fades in over the old one in
+   6 steps, so the pixel sky passes through dusk tones; the old body sinks, then the new one rises */
+@keyframes scene-in{from{opacity:0}to{opacity:1}}
+.js .stage.swapping .scene.night,.js .stage.swapping .scene.day{display:block}
+html[data-theme="dark"] .stage.swapping .scene.night,html[data-theme="light"] .stage.swapping .scene.day{z-index:1;animation:scene-in .6s steps(6) both}
+html[data-theme="dark"] .stage.swapping .scene.day .rise,html[data-theme="light"] .stage.swapping .scene.night .rise{animation:moon-set .25s steps(5) both}
+html[data-theme="dark"] .stage.swapping .scene.day .halo,html[data-theme="light"] .stage.swapping .scene.night .halo{opacity:0}
+html[data-theme="dark"] .stage.swapping .scene.night .rise,html[data-theme="light"] .stage.swapping .scene.day .rise{animation:moon-rise .35s steps(7) both .25s}
+/* after the first swap the load intro never replays */
+.js .stage.settled .rise,.js .stage.settled .ring{animation:none}
+.js .stage.settled .stars .s1{animation:tw 1.6s steps(2) infinite}
+.js .stage.settled .stars .s2{animation:tw 2.3s steps(2) infinite}
+.js .stage.settled .stars .s3{animation:tw 3.1s steps(2) infinite}
 .js .cut{animation:fade-up .9s var(--ease) both .35s}
 .js .hero-kicker,.js .lead,.js .hero-cta,.js .status{animation:fade-up .8s var(--ease) both;animation-delay:.45s}
 .js .lead{animation-delay:.55s}.js .hero-cta{animation-delay:.65s}.js .status{animation-delay:.75s}

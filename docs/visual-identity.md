@@ -117,9 +117,10 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 - Day scene (light theme, steps only): the sun rises like the moon and bobs 1 px;
   the two ray frames alternate every 0.6 s; cloud group c1 drifts 10 logical px and
   c2 7 px, one logical pixel per step, ping-pong over 8 s and 5.6 s.
-- Theme swap: toggling the theme while the hero is visible sinks the current body
-  below the horizon in 8 steps (0.5 s), switches the sky instantly, then the other
-  body rises in 8 steps (0.5 s). Reduced motion: instant swap.
+- Theme swap (0.6 s total): toggling the theme while the hero is visible fades the new
+  pixel sky in over the old one in 6 opacity steps, so the stage passes through dusk or
+  dawn tones; meanwhile the current body sinks in 5 steps (0.25 s) and the other rises
+  in 7 steps (0.35 s). The portrait stays in front. Reduced motion: instant swap.
 - Scroll ("moonset"; the sun sets the same way): the moon sinks up to 8 logical pixels, snapped to the grid,
   while the halo fades out in 4 steps.
 - Cards: a 280 px radial ember glow follows the pointer inside the card on hover.

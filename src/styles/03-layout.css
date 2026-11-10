@@ -56,8 +56,6 @@ html[data-theme="dark"] .theme-btn .moon{display:none}
 html[data-theme="light"] .scene.day{display:block}
 html[data-theme="light"] .scene.night{display:none}
 @media (prefers-color-scheme:dark){html.no-js .scene.day{display:none}html.no-js .scene.night{display:block}}
-.stage[data-hold="dark"] .scene.night{display:block}.stage[data-hold="dark"] .scene.day{display:none}
-.stage[data-hold="light"] .scene.day{display:block}.stage[data-hold="light"] .scene.night{display:none}
 .sky,.stars,.clouds{position:absolute;inset:0;width:100%;height:100%}
 .sky img{width:100%;height:100%;display:block;image-rendering:pixelated}
 .moon-wrap,.sun-wrap{position:absolute;left:50%;top:calc(var(--px-size)*6px);width:calc(64px*var(--px-size));margin-left:calc(-32px*var(--px-size));aspect-ratio:1;transform:translate(calc(var(--mx,0)*var(--px-size)*1px),calc((var(--my,0) + var(--sink,0))*var(--px-size)*1px))}
@@ -71,7 +69,7 @@ html[data-theme="light"] .scene.night{display:none}
 .r1 img{opacity:.24}.r2 img{opacity:.12}.r3 img{opacity:.06}
 .stars,.clouds{transform:translate(calc(var(--sx,0)*var(--px-size)*1px),calc(var(--sy,0)*var(--px-size)*1px))}
 .rays .f2{opacity:0}
-.cut-pos{position:absolute;inset:auto 0 0 0;transform:translate(calc(var(--px,0)*-6px),calc(var(--py,0)*-6px));transition:transform .6s var(--ease)}
+.cut-pos{position:absolute;z-index:2;inset:auto 0 0 0;transform:translate(calc(var(--px,0)*-6px),calc(var(--py,0)*-6px));transition:transform .6s var(--ease)}
 .cut img{width:100%;height:auto}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter);margin-top:clamp(56px,8vw,112px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--line)}
 .stats dt{font-family:var(--display);font-weight:800;font-size:clamp(3.45rem,7.36vw,6.33rem);line-height:1;letter-spacing:-.005em}
