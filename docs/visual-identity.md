@@ -140,7 +140,11 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 ## Layout by section
 
 1. **Header:** transparent over the hero, becomes `--bg` with a bottom divider
-   after scrolling. Left: logo mark (ember) + "Thiago Cerqueira" in Big Shoulders Display.
+   after scrolling. Left: logo mark (ember) + "Teagar Cerqueira" in Big Shoulders Display.
+   On hover (pointer devices) or keyboard focus, each letter of "Teagar" rolls up into the
+   matching letter of "Thiago" (staggered 45 ms, 0.42 s ease-in-out, slot widths animate so
+   "Cerqueira" glides) and the first name turns `--ember-text`; reduced motion swaps instantly.
+   The accessible name is "Teagar Cerqueira (Thiago Cerqueira)".
    Center/right: nav in sentence case, language pill showing a pixel flag of the
    target language (USA on pt-BR, Brazil on en; the language name is in `aria-label` and `title`),
    theme pill (sun/moon icon), primary button "Iniciar projeto" (ember pill).

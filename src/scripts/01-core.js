@@ -160,4 +160,14 @@
       });
     });
   }
+
+  /* navbar name: give each rolling letter slot its exact from/to width */
+  function sizeBrand() {
+    Array.prototype.forEach.call(document.querySelectorAll('.brand .bs'), function (slot) {
+      var a = slot.querySelector('.ba'), b = slot.querySelector('.bb');
+      slot.style.setProperty('--w0', a.getBoundingClientRect().width + 'px');
+      slot.style.setProperty('--w1', b.getBoundingClientRect().width + 'px');
+    });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeBrand); else sizeBrand();
 })();

@@ -238,3 +238,19 @@ test('footer wordmark uses the self-hosted Teagar font', async () => {
   assert.equal(font.subarray(0, 4).toString('latin1'), 'wOF2');
   assert.match(await read('index.html'), /<p class="wordmark" aria-hidden="true">Teagar<\/p>/);
 });
+
+test('navbar name rolls Teagar into Thiago and location is Brasil', async () => {
+  for (const f of ['index.html', 'en/index.html']) {
+    const html = await read(f);
+    assert.ok(!/Feira de Santana/.test(html), `${f} has no city`);
+    const brand = html.match(/<a class="brand"[\s\S]*?<\/a>/)[0];
+    assert.match(brand, /<span class="vh">Teagar Cerqueira \(Thiago Cerqueira\)<\/span>/);
+    assert.match(brand, /<span class="bw" aria-hidden="true">/);
+    const from = [...brand.matchAll(/class="(?:bl|ba)">(.)</g)].map((m) => m[1]).join('');
+    const to = [...brand.matchAll(/class="(?:bl|bb)">(.)</g)].map((m) => m[1]).join('');
+    assert.equal(from, 'Teagar');
+    assert.equal(to, 'Thiago');
+  }
+  assert.match(await read('index.html'), /Brasil · atendimento 100% online/);
+  assert.match(await read('en/index.html'), /Brazil · working 100% remotely/);
+});
