@@ -237,3 +237,10 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 - Four hero numbers (4 columns on desktop, 2×2 from 861 to 1100 px, label beside the number on mobile). The fourth is accepted open-source contributions to large projects: 5 merged PRs in Noctalia's official community plugins (Noctalia ≈ 12k stars), checked on GitHub. The label gives only the count and the stars, without naming the project (owner decision). Update it only from GitHub data.
 - Statuses, in legend order: live (green broadcast), beta (static 8×8 pixel flask, chip in `--text`), in development (hourglass), open source. Gartrol is live and Teagarden is beta.
+
+## About layout (2026-11-10)
+
+- Desktop: the playful title is the headline over the text column (columns 6–12), the pull line sits under it in `--ember-text` as a lead, then prose and the "Agora" block. The portrait (columns 1–4) carries a mono name tag ("Thiago Cerqueira, o Teagar") and the quick facts right below it; photo and facts stay pinned together while the text scrolls.
+- 861–1100 px: the quick facts drop to one column.
+- Mobile: title, photo, text, "Agora", then the quick facts (the side column uses `display: contents` so the facts can move to the end).
+- References: split photo/bio layouts, a badge over the portrait corner, and facts as a mini résumé next to the photo.

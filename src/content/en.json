@@ -305,8 +305,9 @@
     "paragraphs": [
       "I live in Feira de Santana, Brazil. Teagar Company started with the code I published on GitHub and now builds custom software, integrations and automation for businesses here and in other cities, working remotely.",
       "Almost every project of mine starts with someone doing by hand what a computer could do. That was the case with TNF-e, which read invoices from more than 200 carriers for a customer service team, and with Gartrol, which I built to organize developers’ work and which now organizes AI agents too.",
-      "I also teach. I maintain an open Systems Programming track with 21 modules, from logic to Laravel, and 20 exercises in each."
+      "I also teach: I maintain an open Systems Programming track."
     ],
+    "photoTag": "Thiago Cerqueira, aka Teagar",
     "now": {
       "title": "Now",
       "updated": "updated November 2026",

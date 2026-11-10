@@ -380,7 +380,9 @@ test('about: own voice title, concrete pull quote and a dated "now" block', asyn
   const pt = await read('index.html'), en = await read('en/index.html');
   assert.match(pt, /<h2 id="about-h"[^>]*>[\s\S]*?Thiago no RG, Teagar no GitHub\.<\/h2>/);
   assert.match(en, /<h2 id="about-h"[^>]*>[\s\S]*?Thiago on paper, Teagar on GitHub\.<\/h2>/);
-  assert.match(pt, /<blockquote class="pull reveal"><p>Quase todo projeto meu começa com alguém fazendo à mão o que o computador podia fazer\.<\/p>/);
+  assert.match(pt, /<p class="pull reveal">Quase todo projeto meu começa com alguém fazendo à mão o que o computador podia fazer\.<\/p>/);
+  assert.match(pt, /<figcaption class="ptag">Thiago Cerqueira, o Teagar<\/figcaption>/);
+  assert.match(pt, /Também dou aula: mantenho uma trilha aberta de Programação de Sistemas\.<\/p>/);
   const person = (html) => JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'].find((n) => n['@type'] === 'Person');
   assert.equal(person(pt).jobTitle, 'Engenheiro de software, fundador e professor');
   assert.equal(person(en).jobTitle, 'Software engineer, founder and teacher');

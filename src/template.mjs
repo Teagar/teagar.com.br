@@ -334,12 +334,18 @@ ${proc.steps.map((s) => `<li class="step reveal"><span class="n" aria-hidden="tr
 
 <section class="section alt" id="about" aria-labelledby="about-h">
 <div class="wrap about">
+<h2 id="about-h" class="about-title reveal"><span class="sun-dot" aria-hidden="true"></span>${esc(about.title)}</h2>
+<div class="about-side">
 <figure class="portrait reveal">
-${picture({ base: 'about', exts: ['avif', 'webp', 'jpg'], widths: [480, 800, 1200, 1600], sizes: '(max-width: 860px) min(440px, calc(100vw - 40px)), min(500px, 40vw)', w: 800, h: 1000, alt: meta.portraitAlt, attrs: 'loading="lazy" decoding="async"' })}
+${picture({ base: 'about', exts: ['avif', 'webp', 'jpg'], widths: [480, 800, 1200, 1600], sizes: '(max-width: 860px) min(440px, calc(100vw - 40px)), min(420px, 32vw)', w: 800, h: 1000, alt: meta.portraitAlt, attrs: 'loading="lazy" decoding="async"' })}
+<figcaption class="ptag">${esc(about.photoTag)}</figcaption>
 </figure>
+<dl class="facts reveal">
+${about.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join('\n')}
+</dl>
+</div>
 <div class="about-text">
-<h2 id="about-h" class="reveal"><span class="sun-dot" aria-hidden="true"></span>${esc(about.title)}</h2>
-<blockquote class="pull reveal"><p>${esc(quote)}</p></blockquote>
+<p class="pull reveal">${esc(quote)}</p>
 <div class="prose reveal">
 ${[about.paragraphs[0], restOfP1, ...about.paragraphs.slice(2)].filter(Boolean).map((p) => `<p>${esc(p)}</p>`).join('\n')}
 </div>
@@ -347,9 +353,6 @@ ${[about.paragraphs[0], restOfP1, ...about.paragraphs.slice(2)].filter(Boolean).
 <h3><span class="live-dot" aria-hidden="true"></span>${esc(about.now.title)} <time class="now-date" datetime="${esc(about.now.datetime)}">${esc(about.now.updated)}</time></h3>
 <ul>${about.now.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
 </div>
-<dl class="facts reveal">
-${about.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join('\n')}
-</dl>
 </div>
 </div>
 </section>
