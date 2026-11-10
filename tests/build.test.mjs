@@ -332,6 +332,9 @@ test('Feira de Santana landing page: local cases, testimonial, JSON-LD, sitemap,
   assert.match(html, /<link rel="canonical" href="https:\/\/teagar\.com\.br\/feira-de-santana\/">/);
   assert.equal((html.match(/<h1/g) || []).length, 1);
   assert.match(html, /SAC/);
+  assert.match(html, /TNF-e[\s\S]*mais de 200 transportadoras[\s\S]*link de rastreio/);
+  assert.match(await read('index.html'), /TNF-e/);
+  assert.match(await read('en/index.html'), /TNF-e, read invoice PDFs from more than 200 carriers/);
   assert.match(html, /\/assets\/img\/icons\/gartrol\.svg/);
   assert.match(html, /<blockquote><p>Peguei o projeto todo/);
   assert.ok(!/R\. Vicente|Papagaio|44055/.test(html), 'no street address');
