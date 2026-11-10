@@ -1,6 +1,18 @@
 // HTML templates. Every interpolated string goes through esc().
 import { starsInline } from '../scripts/moon.mjs';
 import { cloudsInline } from '../scripts/sun.mjs';
+
+// Navbar name: "Teagar Cerqueira" by default; on hover/focus each letter of
+// "Teagar" rolls into the matching letter of "Thiago" (both have 6 letters).
+const BRAND_FROM = 'Teagar';
+const BRAND_TO = 'Thiago';
+function brandName() {
+  const slots = [...BRAND_FROM].map((c, i) => c === BRAND_TO[i]
+    ? `<span class="bl">${c}</span>`
+    : `<span class="bs" style="--i:${i}"><span class="ba">${c}</span><span class="bb">${BRAND_TO[i]}</span></span>`).join('');
+  return `<span class="bn"><span class="vh">Teagar Cerqueira (Thiago Cerqueira)</span><span class="bw" aria-hidden="true"><span class="bf">${slots}</span> Cerqueira</span></span>`;
+}
+
 export const SITE = 'https://teagar.com.br';
 export const LOCALES = {
   'pt-BR': { path: '/', url: `${SITE}/`, short: 'pt-BR' },
@@ -117,7 +129,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
         founder: { '@id': `${SITE}/#person` },
         sameAs: [GH_ORG],
         areaServed: ['BR', 'Worldwide'],
-        address: { '@type': 'PostalAddress', addressLocality: 'Feira de Santana', addressRegion: 'BA', addressCountry: 'BR' },
+        address: { '@type': 'PostalAddress', addressCountry: 'BR' },
       },
     ],
   };
@@ -175,7 +187,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
 <a class="skip" href="#main">${esc(ui.skip)}</a>
 <header class="topbar" id="topbar">
 <div class="wrap bar">
-<a class="brand" href="${L.path}#top">${logo()}<span>Thiago Cerqueira</span></a>
+<a class="brand" href="${L.path}#top">${logo()}${brandName()}</a>
 <nav class="nav" id="siteNav" aria-label="${esc(ui.menu)}">
 ${navItems.map(([id, label]) => `<a class="nl" href="#${id}">${esc(label)}</a>`).join('\n')}
 <a class="btn btn-primary btn-menu" href="#contact">${esc(nav.cta)}</a>

@@ -42,7 +42,7 @@
     "ctaPrimary": "Talk about a project",
     "ctaSecondary": "See the work",
     "status": "Open for new projects",
-    "location": "Feira de Santana, Brazil · working 100% remotely",
+    "location": "Brazil · working 100% remotely",
     "stats": [
       { "value": "100+", "label": "public repositories on GitHub" },
       { "value": "2,200+", "label": "contributions in the last 12 months" },
@@ -288,12 +288,12 @@
     "kicker": "04 — About",
     "title": "Software engineer, founder and teacher",
     "paragraphs": [
-      "I'm Thiago Cerqueira — Teagar online. I've been publishing open-source code since 2021 and turned that work into Teagar Company, a technology company focused on custom software, integrations and automation for businesses in Feira de Santana, across Bahia and anywhere remotely.",
+      "I'm Thiago Cerqueira — Teagar online. I've been publishing open-source code since 2021 and turned that work into Teagar Company, a technology company focused on custom software, integrations and automation for businesses across Brazil and anywhere, working remotely.",
       "My focus is back-end, real-time systems and applied AI. Today I build tools that coordinate coding agents with the same rigor as a human team: clear contracts, delivery evidence and costs under control.",
       "I also teach. I maintain an open Systems Programming track and believe that explaining well is part of building well."
     ],
     "facts": [
-      { "label": "Based in", "value": "Feira de Santana, Brazil" },
+      { "label": "Based in", "value": "Brazil" },
       { "label": "Engagement", "value": "100% remote, Brazil and abroad" },
       { "label": "Languages", "value": "Portuguese and English" },
       { "label": "Focus", "value": "Back-end, real-time, applied AI" }

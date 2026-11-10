@@ -2,7 +2,7 @@
 
 ## Audience
 
-1. **Primary — small and mid-sized businesses** (Feira de Santana, Bahia, remote Brazil) with manual processes, spreadsheets and disconnected tools. They buy outcomes, not stacks.
+1. **Primary — small and mid-sized businesses** (across Brazil, served remotely) with manual processes, spreadsheets and disconnected tools. They buy outcomes, not stacks.
 2. **Secondary — technical buyers and partners** (CTOs, agencies, recruiters) who want proof of engineering depth.
 
 ## Value proposition

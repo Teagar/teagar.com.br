@@ -215,7 +215,8 @@ html[data-theme="dark"] .field.has-error input,html[data-theme="dark"] .field.ha
 .foot-links{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:flex-start}
 .foot-links a{padding:10px 14px;border-radius:var(--r-pill);text-decoration:none;font-weight:600}
 .foot-links a:hover{background:var(--surface-2)}
-.wordmark{margin:clamp(24px,4vw,56px) 0 0;font-family:var(--display);font-weight:800;font-size:clamp(9.2rem,35.65vw,29.9rem);line-height:.74;letter-spacing:-.005em;text-align:center;color:var(--surface-2);white-space:nowrap;user-select:none;height:.6em;overflow:hidden}
+.wm{--wm:clamp(4.5rem,23vw,19rem);margin-top:clamp(24px,5vw,40px)}
+.wordmark{margin:clamp(24px,4vw,56px) 0 0;font-family:"Teagar",var(--display);font-weight:400;font-size:var(--wm);line-height:.71;text-align:center;color:var(--surface-2);white-space:nowrap;user-select:none;height:.56em;overflow:hidden}
 html[data-theme="dark"] .wordmark{color:var(--surface-2)}
 
 /* 404 */
@@ -227,7 +228,7 @@ html[data-theme="dark"] .wordmark{color:var(--surface-2)}
 /* review fixes */
 .step .n{position:relative;z-index:1}
 @media (max-width:400px){
-  .brand span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .brand .bn{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 }
 @media (min-width:861px) and (max-width:1099px){.stage{--px-size:4}}
 @media (min-width:1100px) and (max-width:1299px){.stage{--px-size:5}}
@@ -246,7 +247,8 @@ html[data-theme="dark"] .wordmark{color:var(--surface-2)}
 .tea-line{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.1;color:var(--text);max-width:11em;padding-bottom:calc(12px*4)}
 .tea-row .tea-line{padding-bottom:calc(12px*4)}
 .wm{position:relative}
-.tea-mini{--tp:2;position:absolute;right:clamp(16px,6vw,96px);top:calc(-8px*var(--tp))}
+.tea-mini{--tp:2;position:absolute;left:calc(50% + var(--wm)*1.71);bottom:calc(var(--wm)*.4);transform:translateX(-50%)}
+@media (max-width:960px){.tea-mini{--tp:1}}
 @media (max-width:860px){.tea-row .tea{--tp:3}.tea-row .tea-line{padding-bottom:calc(12px*3)}}
 @media (max-width:359px){.tea-row{flex-wrap:wrap;gap:12px}.tea-row .tea-line{padding-bottom:0}}
 /* pixel icons */
@@ -287,3 +289,16 @@ html[data-theme="dark"] .section.alt .contrib-item .chip{background:var(--surfac
 .contrib-proj a{display:inline-flex;align-items:center}
 .contrib-proj .ext{width:.6em;height:.6em;margin-left:.35em}
 @media (max-width:560px){.contrib-card{padding-inline:16px}.contrib-item{padding:16px}.prs a{border-radius:14px;padding:8px 12px;align-items:flex-start;line-height:1.35}.prs img{margin-top:2px}.contrib-head .pico{width:48px;height:48px}}
+
+/* navbar name: Teagar -> Thiago letter roll */
+.bw{display:inline-flex;align-items:baseline;white-space:pre}
+.bf{display:inline-flex}
+.bs{display:inline-grid;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.24em;width:var(--w0,auto);justify-items:start;transition:width .42s cubic-bezier(.65,0,.35,1) calc(var(--i)*45ms)}
+.ba,.bb{grid-area:1/1;transition:transform .42s cubic-bezier(.65,0,.35,1) calc(var(--i)*45ms),opacity .3s ease calc(var(--i)*45ms)}
+.bb{transform:translateY(140%);opacity:0;color:var(--ember-text)}
+.bl{transition:color .3s ease}
+.brand:focus-visible .bl{color:var(--ember-text)}
+.brand:focus-visible .bs{width:var(--w1,auto)}
+.brand:focus-visible .ba{transform:translateY(-140%);opacity:0}
+.brand:focus-visible .bb{transform:none;opacity:1}
+@media (hover:hover){.brand:hover .bl{color:var(--ember-text)}.brand:hover .bs{width:var(--w1,auto)}.brand:hover .ba{transform:translateY(-140%);opacity:0}.brand:hover .bb{transform:none;opacity:1}}
