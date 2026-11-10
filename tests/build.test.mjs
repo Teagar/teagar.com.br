@@ -28,7 +28,7 @@ for (const [file, lang, canonical] of [['index.html', 'pt-BR', 'https://teagar.c
     const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
     assert.ok(ld, 'json-ld present');
     const data = JSON.parse(ld[1]);
-    assert.deepEqual(data['@graph'].map((n) => n['@type']), ['Person', 'Organization']);
+    assert.deepEqual(data['@graph'].map((n) => n['@type']), ['Person', ['Organization', 'ProfessionalService'], 'WebSite', 'WebPage']);
     for (const img of html.match(/<img\b[^>]*>/g) || []) assert.match(img, /\balt="/, img);
     for (const a of html.match(/<a\b[^>]*target="_blank"[^>]*>/g) || []) assert.match(a, /rel="[^"]*noopener/, a);
     assert.ok(!html.includes('{{'));
@@ -276,4 +276,29 @@ test('about photo ships 4:5 crops large enough for 3x; languages and social icon
   for (const id of Object.keys(SOCIAL_ICONS)) {
     assert.match(await read(`assets/img/icons/social-${id}.svg`), /shape-rendering="crispEdges"/);
   }
+});
+
+test('seo: no language redirect, short titles, full JSON-LD, llms.txt and favicon.ico', async () => {
+  const { stat } = await import('node:fs/promises');
+  for (const [f, hintLang] of [['index.html', 'en'], ['en/index.html', 'pt']]) {
+    const html = await read(f);
+    assert.ok(!/location\.replace/.test(html), `${f} has no JS redirect`);
+    const title = html.match(/<title>([^<]*)<\/title>/)[1];
+    assert.ok([...title].length <= 60, `${f} title ${[...title].length} chars`);
+    assert.match(html, new RegExp(`<div class="lang-hint" id="langHint" lang="[^"]+" data-for="${hintLang}" hidden>`));
+    const ld = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    const byType = (t) => ld['@graph'].find((n) => [].concat(n['@type']).includes(t));
+    const person = byType('Person');
+    assert.ok(person.description && person.knowsAbout.length >= 6);
+    assert.deepEqual(person.knowsLanguage.map((l) => l.alternateName), ['pt', 'en', 'es', 'ru', 'zh']);
+    const org = byType('ProfessionalService');
+    assert.equal(org.makesOffer.length, 6);
+    assert.ok(org.makesOffer.every((o) => o.itemOffered['@type'] === 'Service' && o.itemOffered.name));
+    assert.ok(byType('WebSite') && byType('WebPage'));
+  }
+  const llms = await read('llms.txt');
+  assert.match(llms, /^# Teagar Company/);
+  assert.match(llms, /## Services/);
+  assert.match(llms, /https:\/\/teagar\.com\.br\/en\//);
+  assert.ok((await stat(join(root, 'dist/favicon.ico'))).size > 0);
 });

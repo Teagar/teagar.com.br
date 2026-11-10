@@ -22,6 +22,8 @@ export const LOCALES = {
 const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 
+/** spoken languages (BCP 47 code, English name) for knowsLanguage */
+const LANGS = [['pt', 'Portuguese'], ['en', 'English'], ['es', 'Spanish'], ['ru', 'Russian'], ['zh', 'Mandarin Chinese']];
 const GH = 'https://github.com/Teagar';
 const CONTRIB_REPO = 'https://github.com/noctalia-dev/community-plugins';
 const GH_ORG = 'https://github.com/teagarcompany';
@@ -92,7 +94,13 @@ ${ct.items.map((it) => `<li class="contrib-item">
 </div>
 </div>`;
 
-const themeScript = `(function(){var d=document.documentElement;d.className='js';try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.setAttribute('data-theme',t);if(d.lang==='pt-BR'&&location.pathname==='/'){var l=localStorage.getItem('lang');var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';if(!l&&n&&n.toLowerCase().indexOf('pt')!==0){location.replace('/en/'+location.hash)}}}catch(e){d.setAttribute('data-theme','light')}})();`;
+const themeScript = `(function(){var d=document.documentElement;d.className='js';try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.setAttribute('data-theme',t);}catch(e){d.setAttribute('data-theme','light')}})();`;
+
+/** suggestion (not a redirect) to switch language, written in the other language; shown by JS only when the browser prefers it */
+const langHint = (other, O) => {
+  const h = other.meta.langHint;
+  return `<div class="lang-hint" id="langHint" lang="${O.short}" data-for="${other.locale === 'en' ? 'en' : 'pt'}" hidden><p>${esc(h.text)}</p><a class="lh-go" href="${O.path}" hreflang="${O.short}">${esc(h.cta)}</a><button type="button" class="lh-x" aria-label="${esc(h.close)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>`;
+};
 
 const teaImg = (n, cls = '') => `<img${cls ? ` class="${cls}"` : ''} src="/assets/img/${n}.svg" alt="" width="48" height="${n.startsWith('tea-steam') ? 24 : 40}" decoding="async">`;
 /** decorative pixel teacup; steam frames and glint are stacked images animated with steps() in CSS */
@@ -116,20 +124,52 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
         url: SITE + '/',
         image: `${SITE}/assets/img/about-800.jpg`,
         jobTitle: about.title,
+        description: hero.lead,
+        knowsAbout: [...services.items.map((s) => s.title), ...stack.groups.flatMap((g) => g.items).slice(0, 24)],
+        knowsLanguage: LANGS.map(([code, name]) => ({ '@type': 'Language', name, alternateName: code })),
         sameAs: [GH, GH_ORG, LI],
         worksFor: { '@id': `${SITE}/#org` },
       },
       {
-        '@type': 'Organization',
+        '@type': ['Organization', 'ProfessionalService'],
         '@id': `${SITE}/#org`,
         name: 'Teagar Company',
         url: SITE + '/',
+        description: meta.description,
+        slogan: meta.ogDescription,
+        image: ogImg,
+        knowsLanguage: LANGS.map(([code]) => code),
+        makesOffer: services.items.map((it) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: it.title, description: it.body, provider: { '@id': `${SITE}/#org` }, areaServed: ['BR', 'Worldwide'] },
+        })),
         logo: `${SITE}/assets/brand/apple-touch-icon.png`,
         email: contact.email,
         founder: { '@id': `${SITE}/#person` },
         sameAs: [GH_ORG],
         areaServed: ['BR', 'Worldwide'],
         address: { '@type': 'PostalAddress', addressCountry: 'BR' },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE}/#website`,
+        url: SITE + '/',
+        name: 'Teagar Company',
+        alternateName: 'Thiago Cerqueira (Teagar)',
+        inLanguage: ['pt-BR', 'en'],
+        publisher: { '@id': `${SITE}/#org` },
+        about: { '@id': `${SITE}/#person` },
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${L.url}#webpage`,
+        url: L.url,
+        name: meta.title,
+        description: meta.description,
+        inLanguage: locale,
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#org` },
+        primaryImageOfPage: ogImg,
       },
     ],
   };
@@ -342,6 +382,7 @@ ${secHead(stack, 'stack-h')}
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
+${langHint(other, O)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
