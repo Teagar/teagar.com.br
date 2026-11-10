@@ -278,6 +278,88 @@ export const PROJECT_ICONS = {
   ],
 };
 
+/** 24x24 icons for the results section: growth chart, support headset, privacy shield */
+export const RESULT_ICONS = {
+  'result-growth': [
+    '.........ooooooo........',
+    '.........ohhhhho........',
+    '.........oohhhho........',
+    '...........ohhho........',
+    '..........ohohho.ooooo..',
+    '.........oho.oho.olllo..',
+    '........oho..ooo.omBlo..',
+    '.......oho.......omBlo..',
+    '......oho...oooooomBlo..',
+    '.....oho....ollloomBlo..',
+    '....oho.....omBloomBlo..',
+    '...oho......omBloomBlo..',
+    '..oho..oooooomBloomBlo..',
+    '..oo...ollloomBloomBlo..',
+    '.......omBloomBloomBlo..',
+    '..oooooomBloomBloomBlo..',
+    '..ollloomBloomBloomBlo..',
+    '..omBloomBloomBloomBlo..',
+    '..omBloomBloomBloomBlo..',
+    '..omBloomBloomBloomBlo..',
+    '..oooooooooooooooooooo..',
+    '.oooooooooooooooooooooo.',
+    '........................',
+    '........................',
+  ],
+  'result-support': [
+    '........................',
+    '........................',
+    '........oooooooo........',
+    '......ooBBBBlllloo......',
+    '.....oBBBBoooollllo.....',
+    '....oBBBoo....oolllo....',
+    '...oBBBo........olllo...',
+    '...oBBo..........ollo...',
+    '..oBBo............ollo..',
+    '..oBo..............olo..',
+    '..oBo..............olo..',
+    '.oooooo..........oooooo.',
+    '.oolllo..........ollloo.',
+    '..omBlo..........omBlo..',
+    '..omBlo..........omBlo..',
+    '..omBlo..........omBlo..',
+    '..omBlo..........omBlo..',
+    '..omBlo..........omBlo..',
+    '..ooooo..........ooooo..',
+    '.....o..................',
+    '.....o.....ooo..........',
+    '......ooooooco..........',
+    '...........ooo..........',
+    '........................',
+  ],
+  'result-privacy': [
+    '........................',
+    '........................',
+    '....oooooooooooooooo....',
+    '....oBBBBBBBlllllllo....',
+    '....oBBBBBBBlllllllo....',
+    '....oBBBBBBBlllllllo....',
+    '....oBBBBBBBlllllllo....',
+    '....oBBBBBcccclllllo....',
+    '....oBBBBcBBllcllllo....',
+    '....oBBBBcBBllcllllo....',
+    '....oBBBBcBBllcllllo....',
+    '....oBBBcccccccclllo....',
+    '....oBBBcccccccclllo....',
+    '....oBBBccckkccclllo....',
+    '.....oBBccckkcccllo.....',
+    '......oBcccccccclo......',
+    '.......occcccccco.......',
+    '........oBBBlllo........',
+    '.........oBBllo.........',
+    '..........oBlo..........',
+    '...........oo...........',
+    '........................',
+    '........................',
+    '........................',
+  ],
+};
+
 /** 8x8 status icons; each is a list of animation frames (drawn at 2 CSS px per pixel) */
 export const STATUS_ICONS = {
   // hourglass, 3 frames: sand on top, falling, sand at the bottom
@@ -407,6 +489,7 @@ export const statusSvg = (id) => {
 export const ICON_FILES = () => {
   const f = {};
   for (const id of Object.keys(PROJECT_ICONS)) f[`${id}.svg`] = projectSvg(id);
+  for (const id of Object.keys(RESULT_ICONS)) f[`${id}.svg`] = svgWrap(24, 24, runs(parse(RESULT_ICONS[id], 24, 24)));
   for (const id of Object.keys(STATUS_ICONS)) f[`status-${id}.svg`] = statusSvg(id);
   for (const id of Object.keys(FLAG_ICONS)) f[`flag-${id}.svg`] = flagSvg(id);
   for (const id of Object.keys(SOCIAL_ICONS)) f[`social-${id}.svg`] = socialSvg(id);

@@ -302,3 +302,24 @@ test('seo: no language redirect, short titles, full JSON-LD, llms.txt and favico
   assert.match(llms, /https:\/\/teagar\.com\.br\/en\//);
   assert.ok((await stat(join(root, 'dist/favicon.ico'))).size > 0);
 });
+
+test('results section: three cases with pixel icons, focus statement, renumbered kickers', async () => {
+  const { RESULT_ICONS } = await import('../scripts/pixel-icons.mjs');
+  for (const [f, words] of [['index.html', ['+150%', 'e-commerce multinacional', 'atendimento ao cliente', 'LGPD', 'condições de trabalho', 'confidencialidade']], ['en/index.html', ['+150%', 'multinational e-commerce', 'customer service', 'LGPD', 'working conditions', 'confidentiality']]]) {
+    const html = await read(f);
+    const sec = html.match(/<section class="section" id="results"[\s\S]*?<\/section>/)[0];
+    assert.equal((sec.match(/<li class="res reveal">/g) || []).length, 3);
+    for (const id of Object.keys(RESULT_ICONS)) assert.ok(sec.includes(`/assets/img/icons/${id}.svg`), `${f} uses ${id}`);
+    for (const w of words) assert.ok(sec.includes(w), `${f} mentions ${w}`);
+    assert.ok(html.indexOf('id="services"') < html.indexOf('id="results"') && html.indexOf('id="results"') < html.indexOf('id="work"'));
+  }
+  for (const id of Object.keys(RESULT_ICONS)) assert.match(await read(`assets/img/icons/${id}.svg`), /shape-rendering="crispEdges"/);
+  const pt = JSON.parse(await readFile(join(root, 'src/content/pt-BR.json'), 'utf8'));
+  assert.deepEqual(['services', 'results', 'work', 'process', 'about', 'stack'].map((k) => pt[k].kicker.slice(0, 2)), ['01', '02', '03', '04', '05', '06']);
+});
+
+test('llms.txt includes the results section', async () => {
+  const llms = await read('llms.txt');
+  assert.match(llms, /## Results/);
+  assert.match(llms, /\+150% — production at a multinational e-commerce company\./);
+});

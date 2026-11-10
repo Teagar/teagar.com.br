@@ -166,6 +166,12 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    points in a second column. Dividers between rows. On hover/focus the row
    number turns ember and an arrow slides in. Section heading uses the ember dot
    marker + h2 (`services.title`), with the intro in a side column.
+3b. **Results** (`results`, section 02): heading with the company focus as intro, then
+   three cards on `--surface` (rounded 24 px, 1 px `--line` border) in a 3-column grid (one
+   column at 960 px and below). Each card has its own 24x24 pixel icon at 3 CSS px per pixel
+   (`result-growth`, `result-support`, `result-privacy`), a large display value in
+   `--ember-text` (+150%, Atendimento/Support, LGPD), a short bold label and a muted body.
+   A mono note says client names are withheld.
 4. **Work:** featured three as large rounded cards in a 2-column masonry-like
    grid (first card full width with a large title), the other six in a
    3-column grid of smaller cards. Card content: category · year (muted),
