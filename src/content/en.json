@@ -335,7 +335,7 @@
       "need": "What do you need?",
       "needOptions": ["Custom software", "Process automation", "Integration / API", "AI and agents", "Website or landing page", "Technical consulting", "Other"],
       "message": "Tell me a bit about the project",
-      "submit": "Open email with the message",
+      "submit": "Open in email",
       "subject": "New project via teagar.com.br",
       "required": "Please fill in your name and message."
     },

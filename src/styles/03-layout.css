@@ -93,13 +93,13 @@ html[data-theme="light"] .scene.night{display:none}
 
 /* services */
 .svc-list{border-top:1px solid var(--line)}
-.svc{position:relative;display:grid;grid-template-columns:minmax(52px,.5fr) minmax(0,3fr) minmax(0,4fr) 32px;gap:var(--gutter);align-items:start;padding-block:clamp(28px,3.6vw,48px);border-bottom:1px solid var(--line)}
+.svc{position:relative;display:grid;grid-template-columns:minmax(52px,.5fr) minmax(0,3fr) minmax(0,4fr) 40px;gap:var(--gutter);align-items:start;padding-block:clamp(28px,3.6vw,48px);border-bottom:1px solid var(--line)}
 .svc-n{font-family:var(--display);font-size:clamp(2rem,3vw,2.75rem);font-weight:300;line-height:1;color:var(--muted);font-variant-numeric:tabular-nums;transition:color .4s}
 .svc h3{font-size:clamp(2rem,3.6vw,3rem);line-height:1}
 .svc-body p{color:var(--text)}
 .points{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .points li{padding:4px 14px;border-radius:var(--r-pill);background:var(--surface-2);font-size:.875rem;font-weight:500}
-.svc>.arrow{width:28px;height:28px;color:var(--ember-text);opacity:0;transform:translateX(-12px);transition:opacity .4s,transform .5s var(--ease)}
+.svc>.arrow{width:40px;height:auto;aspect-ratio:612/526;margin-top:.35em;color:var(--ember);opacity:0;transform:translateX(-12px);transition:opacity .4s,transform .5s var(--ease)}
 .svc:hover .svc-n,.svc:focus-within .svc-n{color:var(--ember-text)}
 .svc:hover>.arrow,.svc:focus-within>.arrow{opacity:1;transform:none}
 @media (max-width:860px){.svc{grid-template-columns:44px minmax(0,1fr);gap:12px 16px}.svc-body{grid-column:2}.svc>.arrow{display:none}}
@@ -192,22 +192,24 @@ html[data-theme="dark"] .contact{background:var(--surface)}
 .social ul{display:flex;flex-wrap:wrap;gap:8px}
 .soc-ico{width:32px;height:32px;margin:-6px 10px -6px -10px;image-rendering:pixelated;flex:none;transition:transform .1s steps(1)}
 .social a:hover .soc-ico,.social a:focus-visible .soc-ico{transform:translateY(-2px)}
-.form{grid-column:8/-1;display:grid;gap:20px;padding:clamp(24px,3vw,40px);background:var(--bg);border-radius:var(--r-card);box-shadow:var(--shadow)}
+.form{position:relative;grid-column:7/-1;display:grid;gap:24px;padding:clamp(24px,3vw,40px);background:var(--bg);border-radius:var(--r-card);box-shadow:var(--shadow)}
 html[data-theme="dark"] .form{background:var(--bg)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .field{display:grid;gap:8px}
 .field label{font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em}
-.field input,.field select,.field textarea{width:100%;min-height:48px;padding:12px 16px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-input);transition:border-color .3s}
-html[data-theme="dark"] .field input,html[data-theme="dark"] .field select,html[data-theme="dark"] .field textarea{background:var(--surface-2)}
-.field textarea{resize:vertical;min-height:140px}
+.field input,.field select,.field textarea{display:block;width:100%;height:52px;padding:0 16px;font-size:1rem;line-height:1.5;background-color:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-input);transition:border-color .3s}
+html[data-theme="dark"] .field input,html[data-theme="dark"] .field select,html[data-theme="dark"] .field textarea{background-color:var(--surface-2)}
+.field select{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 23px) 50%,calc(100% - 17px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+.field textarea{height:auto;min-height:160px;padding:14px 16px;resize:vertical}
 .field input:hover,.field select:hover,.field textarea:hover{border-color:var(--muted)}
 .field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-color:var(--focus)}
 .field.has-error input,.field.has-error textarea{border-color:#C0392B}
 html[data-theme="dark"] .field.has-error input,html[data-theme="dark"] .field.has-error textarea{border-color:#FF7A6B}
-.form-msg{min-height:1.5em;font-size:.9375rem;font-weight:500}
-.form .btn{justify-self:start}
+.form-msg{font-size:.9375rem;font-weight:500}
+.form-msg:empty{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.form .btn{justify-self:start;margin-top:4px}
 @media (max-width:980px){.contact-copy,.form{grid-column:1/-1}}
-@media (max-width:520px){.row2{grid-template-columns:1fr}.form .btn{justify-self:stretch}}
+@media (max-width:520px){.row2{grid-template-columns:1fr}.form .btn{justify-self:stretch;justify-content:center}}
 
 /* footer */
 .footer{position:relative;overflow:hidden;padding-top:clamp(48px,6vw,80px)}
