@@ -25,6 +25,7 @@
     "private": "Código privado",
     "inProgress": "Em desenvolvimento",
     "live": "No ar",
+    "beta": "Beta",
     "openSource": "Código aberto"
   },
   "nav": {
@@ -47,7 +48,8 @@
     "stats": [
       { "value": "100+", "label": "repositórios públicos no GitHub" },
       { "value": "2.200+", "label": "contribuições nos últimos 12 meses" },
-      { "value": "3", "label": "produtos próprios em desenvolvimento" }
+      { "value": "3", "label": "produtos próprios: um no ar, um em beta" },
+      { "value": "5", "label": "contribuições aceitas no Noctalia, open source com ~12 mil estrelas" }
     ]
   },
   "services": {
@@ -171,7 +173,7 @@
         "name": "Gartrol",
         "category": "Produto Teagar",
         "year": "2026",
-        "status": "inProgress",
+        "status": "live",
         "featured": true,
         "summary": "Plano de controle local-first para trabalho humano e multiagente. Cards funcionam como contratos (o quê, por quê e como confirmar), com claims, leases, evidências, custos auditáveis e roteamento de modelos por complexidade. Este site foi planejado e entregue dentro dele.",
         "stack": ["TypeScript", "MCP", "API", "CLI"],
@@ -183,7 +185,7 @@
         "name": "Teagarden",
         "category": "Produto Teagar",
         "year": "2026",
-        "status": "inProgress",
+        "status": "beta",
         "featured": true,
         "summary": "Ambiente desktop para desenvolvimento multiagente: workspaces, terminais em painéis, missões e orquestração de agentes de código, com persistência e restauração de sessão.",
         "stack": ["Rust", "Desktop", "Terminais", "Agentes"],

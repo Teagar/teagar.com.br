@@ -373,6 +373,10 @@ export const STATUS_ICONS = {
     ['........', '........', '..g..g..', '..gggg..', '..gggg..', '..g..g..', '........', '........'],
     ['........', '........', 'g.g..g.g', 'g.gggg.g', 'g.gggg.g', 'g.g..g.g', '........', '........'],
   ],
+  // lab flask with liquid (static): beta
+  beta: [
+    ['..BBBB..', '...BB...', '...BB...', '..B..B..', '.B....B.', '.BllllB.', 'BllllllB', 'BBBBBBBB'],
+  ],
   // </> brackets
   openSource: [
     ['........', '.....r..', '.r...r.r', 'r...r..r', 'r...r..r', '.r..r.r.', '.....r..', '........'],

@@ -25,6 +25,7 @@
     "private": "Private code",
     "inProgress": "In development",
     "live": "Live",
+    "beta": "Beta",
     "openSource": "Open source"
   },
   "nav": {
@@ -47,7 +48,8 @@
     "stats": [
       { "value": "100+", "label": "public repositories on GitHub" },
       { "value": "2,200+", "label": "contributions in the last 12 months" },
-      { "value": "3", "label": "in-house products in development" }
+      { "value": "3", "label": "in-house products: one live, one in beta" },
+      { "value": "5", "label": "accepted contributions to Noctalia, an open source project with ~12k stars" }
     ]
   },
   "services": {
@@ -171,7 +173,7 @@
         "name": "Gartrol",
         "category": "Teagar product",
         "year": "2026",
-        "status": "inProgress",
+        "status": "live",
         "featured": true,
         "summary": "A local-first control plane for human and multi-agent work. Cards act as contracts (what, why and how to confirm), with claims, leases, evidence, auditable costs and model routing by complexity. This site was planned and delivered inside it.",
         "stack": ["TypeScript", "MCP", "API", "CLI"],
@@ -183,7 +185,7 @@
         "name": "Teagarden",
         "category": "Teagar product",
         "year": "2026",
-        "status": "inProgress",
+        "status": "beta",
         "featured": true,
         "summary": "A desktop environment for multi-agent development: workspaces, paned terminals, missions and orchestration of coding agents, with session persistence and restore.",
         "stack": ["Rust", "Desktop", "Terminals", "Agents"],

@@ -166,7 +166,7 @@ test('pixel icons: one per work item, status sprites, palette, determinism, size
     for (const c of cols) assert.ok(ok.has(c), `${n} uses disallowed ${c}`);
     assert.equal(s, await read(`assets/img/icons/${n}`), `${n} matches dist`);
   }
-  for (const st of ['inProgress', 'live', 'openSource', 'merged']) assert.ok(files[`status-${st}.svg`], `status ${st}`);
+  for (const st of ['inProgress', 'live', 'beta', 'openSource', 'merged']) assert.ok(files[`status-${st}.svg`], `status ${st}`);
   const again = ICON_FILES();
   for (const n of Object.keys(files)) assert.equal(files[n], again[n], `${n} deterministic`);
 });
@@ -356,13 +356,22 @@ test('Feira de Santana landing page: local cases, testimonial, JSON-LD, sitemap,
   }
 });
 
-test('service hover marker is the Teagar logo pointing right; contact form button fits one line', async () => {
+test('service hover marker is the Teagar logo pointing left; contact form button; OSS stat; product statuses', async () => {
   for (const f of ['index.html', 'en/index.html']) {
     const html = await read(f);
     const svcs = html.match(/<li class="svc reveal">[\s\S]*?<\/li>\n/g);
     assert.equal(svcs.length, 6);
-    for (const li of svcs) assert.match(li, /<svg class="arrow point" viewBox="0 44 612 526" fill="currentColor" aria-hidden="true"><path d="M293\.24 566\.233 /);
+    for (const li of svcs) assert.match(li, /<svg class="arrow point" viewBox="0 44 612 526" fill="currentColor" aria-hidden="true"><path transform="matrix\(-1 0 0 1 612 0\)" d="M293\.24 566\.233 /);
   }
   assert.match(await read('index.html'), /type="submit">Abrir no e-mail/);
   assert.match(await read('en/index.html'), /type="submit">Open in email/);
+  const pt = await read('index.html'), en = await read('en/index.html');
+  assert.equal((pt.match(/<dl class="stats">[\s\S]*?<\/dl>/)[0].match(/<dt>/g) || []).length, 4);
+  assert.match(pt, /<dt>5<\/dt><dd>contribuições aceitas no Noctalia/);
+  assert.match(en, /<dt>5<\/dt><dd>accepted contributions to Noctalia/);
+  const chip = (html, slug) => html.match(new RegExp(`id="work-${slug}"[\\s\\S]*?class="status-chip (\\w+)"`))?.[1];
+  for (const html of [pt, en]) {
+    assert.equal(chip(html, 'gartrol'), 'live');
+    assert.equal(chip(html, 'teagarden'), 'beta');
+  }
 });
