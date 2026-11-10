@@ -49,7 +49,7 @@
       { "value": "100+", "label": "repositórios públicos no GitHub" },
       { "value": "2.200+", "label": "contribuições nos últimos 12 meses" },
       { "value": "3", "label": "produtos próprios: um no ar, um em beta" },
-      { "value": "5", "label": "contribuições aceitas no Noctalia, open source com ~12 mil estrelas" }
+      { "value": "5", "label": "contribuições aceitas em open source com ~12 mil estrelas" }
     ]
   },
   "services": {
