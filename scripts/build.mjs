@@ -2,6 +2,10 @@ import { readFile, writeFile, mkdir, rm, cp, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { writeMoonAssets } from './moon.mjs';
+import { writeSunAssets } from './sun.mjs';
+import { writeTeaAssets } from './tea.mjs';
+import { writeIconAssets } from './pixel-icons.mjs';
 import { renderPage, render404, SITE, LOCALES } from '../src/template.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -28,6 +32,10 @@ async function main() {
   await mkdir(join(dist, 'en'), { recursive: true });
   await cp(join(root, 'public'), dist, { recursive: true });
 
+  await writeMoonAssets(join(dist, 'assets/img'));
+  await writeSunAssets(join(dist, 'assets/img'));
+  await writeTeaAssets(join(dist, 'assets/img'));
+  await writeIconAssets(join(dist, 'assets/img/icons'));
   const css = await bundle('src/styles', '.css', minCss);
   const js = await bundle('src/scripts', '.js', minJs);
   const assets = { css: hash(css), js: hash(js) };

@@ -1,0 +1,97 @@
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fade-up{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgb(46 158 98 / .5)}60%{box-shadow:0 0 0 7px rgb(46 158 98 / 0)}}
+.js .ln>span{animation:rise .9s var(--ease) both;animation-delay:calc(var(--i)*80ms + 120ms)}
+@keyframes moon-rise{from{transform:translateY(calc(var(--px-size)*110px))}to{transform:none}}
+@keyframes ring-in{from{opacity:0}to{opacity:1}}
+@keyframes bob{0%,100%{transform:none}50%{transform:translateY(calc(var(--px-size)*-1px))}}
+@keyframes pulse1{0%{opacity:.4}33.4%,100%{opacity:.24}}
+@keyframes pulse2{0%,33.3%{opacity:.12}33.4%{opacity:.26}66.7%,100%{opacity:.12}}
+@keyframes pulse3{0%,66.6%{opacity:.06}66.7%{opacity:.18}100%{opacity:.06}}
+@keyframes moon-set{from{transform:none}to{transform:translateY(calc(var(--px-size)*110px))}}
+@keyframes ray-a{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes ray-b{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+@keyframes cloud-a{to{transform:translateX(10px)}}
+@keyframes cloud-b{to{transform:translateX(-7px)}}
+@keyframes star-in{from{opacity:0}to{opacity:1}}
+@keyframes tw{0%{opacity:1}50%{opacity:.35}100%{opacity:1}}
+@keyframes spark{0%,90%{transform:none}93%,96%{transform:scale(1.8)}100%{transform:none}}
+.stars .sp{transform-box:fill-box;transform-origin:center}
+.js .rise{animation:moon-rise 1.3s cubic-bezier(.16,1,.3,1) both}
+.js .ring{animation:ring-in .5s cubic-bezier(.65,0,.35,1) both}
+.js .r1{animation-delay:.9s}.js .r2{animation-delay:1.05s}.js .r3{animation-delay:1.2s}
+.js .bob{animation:bob 3s steps(1) infinite 2s}
+.js .r1 img{animation:pulse1 3.6s steps(1) infinite 2s}
+.js .r2 img{animation:pulse2 3.6s steps(1) infinite 2s}
+.js .r3 img{animation:pulse3 3.6s steps(1) infinite 2s}
+.js .stars .s1{animation:star-in .6s steps(3) both .5s,tw 1.6s steps(2) infinite 1.1s}
+.js .stars .s2{animation:star-in .6s steps(3) both 1s,tw 2.3s steps(2) infinite 1.6s}
+.js .stars .s3{animation:star-in .6s steps(3) both 1.5s,tw 3.1s steps(2) infinite 2.1s}
+.js .stars .sp{animation:spark 7s steps(1) infinite 3s}
+.js .stars .s2 .sp{animation-delay:5s}.js .stars .s3 .sp{animation-delay:7s}
+.js .rays .f1{animation:ray-a 1.2s steps(1) infinite 2s}
+.js .rays .f2{animation:ray-b 1.2s steps(1) infinite 2s}
+.js .clouds .c1{animation:cloud-a 8s steps(10) infinite alternate}
+.js .clouds .c2{animation:cloud-b 5.6s steps(7) infinite alternate}
+/* theme swap (0.7 s, eased): both scenes show; the new sky cross-fades over the old one with
+   ease-in-out, passing through dusk/dawn tones; the old body sets (ease-in), the new one rises (ease-out) */
+@keyframes scene-in{from{opacity:0}to{opacity:1}}
+.js .stage.swapping .scene.night,.js .stage.swapping .scene.day{display:block}
+html[data-theme="dark"] .stage.swapping .scene.night,html[data-theme="light"] .stage.swapping .scene.day{z-index:1;animation:scene-in .7s cubic-bezier(.65,0,.35,1) both}
+html[data-theme="dark"] .stage.swapping .scene.day .rise,html[data-theme="light"] .stage.swapping .scene.night .rise{animation:moon-set .35s cubic-bezier(.55,0,1,.45) both}
+html[data-theme="dark"] .stage.swapping .scene.day .halo,html[data-theme="light"] .stage.swapping .scene.night .halo{opacity:0;transition:opacity .2s ease-in}
+html[data-theme="dark"] .stage.swapping .scene.night .rise,html[data-theme="light"] .stage.swapping .scene.day .rise{animation:moon-rise .5s cubic-bezier(.22,1,.36,1) both .2s}
+/* after the first swap the load intro never replays */
+.js .stage.settled .rise,.js .stage.settled .ring{animation:none}
+.js .stage.settled .stars .s1{animation:tw 1.6s steps(2) infinite}
+.js .stage.settled .stars .s2{animation:tw 2.3s steps(2) infinite}
+.js .stage.settled .stars .s3{animation:tw 3.1s steps(2) infinite}
+.js .cut{animation:fade-up .9s var(--ease) both .35s}
+.js .hero-kicker,.js .lead,.js .hero-cta,.js .status{animation:fade-up .8s var(--ease) both;animation-delay:.45s}
+.js .lead{animation-delay:.55s}.js .hero-cta{animation-delay:.65s}.js .status{animation-delay:.75s}
+.live-dot{animation:pulse 2.4s ease-out infinite}
+@media (hover:none){.glow-card::before{display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+  .moon-wrap,.sun-wrap,.stars,.clouds,.cut-pos{transform:none}
+  .rays .f2{opacity:0}
+  .btn-primary:hover,.btn:hover .arrow{transform:none}
+  .svc>.arrow{transform:none}
+  .marquee{overflow:visible;margin:0;padding:0}
+  .mq-track{width:auto;display:block}
+  .mq-set{display:grid;gap:20px;padding:0 var(--gutter);max-width:calc(var(--wrap) + var(--gutter)*2);margin-inline:auto}
+  .mq-copy{display:none}
+  .mq-group{flex-wrap:wrap;align-items:baseline}
+  .mq-group h3{flex:0 0 100%}
+  .mq-group ul{flex-wrap:wrap}
+  .mq-group .chip{font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;padding:4px 14px}
+}
+
+/* pixel tea: steps only, like the moon */
+@keyframes tea-f1{0%,33.2%{opacity:1}33.3%,100%{opacity:0}}
+@keyframes tea-f2{0%,33.2%{opacity:0}33.3%,66.5%{opacity:1}66.6%,100%{opacity:0}}
+@keyframes tea-f3{0%,66.5%{opacity:0}66.6%,100%{opacity:1}}
+@keyframes tea-blink{0%,92%,100%{opacity:1}93%,97%{opacity:0}}
+@keyframes tea-pop{0%,24%{transform:scale(.4)}25%,49%{transform:scale(.7)}50%,74%{transform:scale(1.12)}75%,100%{transform:scale(1)}}
+.tea-steam .st1{animation:tea-f1 1.05s steps(1) infinite}
+.tea-steam .st2{animation:tea-f2 1.05s steps(1) infinite}
+.tea-steam .st3{animation:tea-f3 1.05s steps(1) infinite}
+.tea-cup .glint{animation:tea-blink 4s steps(1) infinite}
+.js .tea-row .tea{opacity:0;transform-origin:50% 100%}
+.js .tea-row .tea.in{opacity:1;animation:tea-pop .45s steps(1) both}
+@media (prefers-reduced-motion:reduce){.js .tea-row .tea{opacity:1}}
+/* pixel icons */
+@keyframes st-sand{to{background-position:-48px 0}}
+@keyframes st-blink{0%{background-position:0 0}50%{background-position:-16px 0}}
+.st-dev{animation:st-sand 2.4s steps(3) infinite}
+.st-live{animation:st-blink 1.6s steps(1) infinite}
+.pico{transition:transform .2s steps(1,start)}
+.glow-card:hover .pico,.glow-card:focus-within .pico{transform:translateY(-2px)}
+.card.big:hover .pico,.card.big:focus-within .pico,.card.mid:hover .pico,.card.mid:focus-within .pico{transform:translateY(-3px)}
+@media (prefers-reduced-motion:reduce){
+  .glow-card:hover .pico,.glow-card:focus-within .pico{transform:none!important}
+}
+@media print{.js .tea-row .tea{opacity:1}}

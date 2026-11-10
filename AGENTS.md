@@ -12,13 +12,13 @@ Portfólio pessoal e empresarial de Thiago Cerqueira (Teagar) e da Teagar Compan
 ## Requisitos
 - Bilíngue pt-BR / en, escolhido pela preferência do navegador (navigator.languages) com troca manual persistida; páginas pré-renderizadas por idioma para SEO (hreflang).
 - Tema claro/escuro por prefers-color-scheme com troca manual persistida, sem flash.
-- Identidade: design system Teagar (/home/teagar/Documents/design-system/teagar-design-system.skill.md) — signal #FF6700 pontual, charcoal, paper, blueprint; Big Shoulders Display / Public Sans / IBM Plex Mono; raios 2–4 px; sem gradientes roxos, glassmorphism, emojis ou botões pílula.
+- Identidade visual PRÓPRIA, definida em docs/visual-identity.md. Da marca Teagar Company ficam a logo, o laranja #FF6700 e a tipografia (Big Shoulders Display, Public Sans, IBM Plex Mono); o restante do design system não é usado.
 - Assets: logo tc_logo_c1, foto me_orange.jpg e recorte transparente me_orange_Without_BG.png para camadas/motion.
 - Site estático sem framework, acessível (WCAG 2.2 AA), reduced motion, responsivo 320–1440 px, metadados sociais.
 - Sem segredos no repositório. Repositório GitHub Teagar/teagar.com.br (Teagar/portfolio é o portfólio antigo de 2023, não alterar).
 
 ## Deploy
-Servidor 2.57.91.91 com Caddy em Docker (rede teagar_proxy). O site é publicado como arquivos estáticos (dist/).
+VPS da Teagar (200.141.25.232, a mesma do gartrol.teagar.com.br) com Caddy em Docker (rede teagar_proxy, container teagar-caddy, configuração em /opt/apps/proxy). O site é publicado como arquivos estáticos (dist/). 2.57.91.91 é o IP de estacionamento da Hostinger, não o servidor: o registro A de teagar.com.br precisa apontar para a VPS.
 
 ## Gartrol operating contract
 
