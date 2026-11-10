@@ -67,3 +67,9 @@ Do not add figures, methods or client details that the owner has not provided.
 
 - The owner found the old About generic and AI-sounding. It now uses a first-person voice built only on facts already on the site: the Thiago/Teagar pair (same idea as the navbar roll), TNF-e, Gartrol and the 21-module teaching track. Avoid slogans, rule-of-three lists, aphorisms and em dashes in this section.
 - "Agora" / "Now" is a dated now-page block (Derek Sivers' /now idea). Keep it short and factual, and update the date and items when the work changes.
+
+## Customer service time per case (owner statement, 2026-11-10)
+
+- At one of the multinationals the owner worked with, the average time per customer service case went from 7–15 minutes to 3–6 minutes after his solutions, with better quality of life and service quality. Shown on the support result card as "3–6 min" with a before/after range chart.
+- Publish the ranges as given; do not turn them into a single average or percentage, and do not name the company.
+

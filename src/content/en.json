@@ -102,7 +102,7 @@
     "note": "Client names withheld for confidentiality.",
     "items": [
       {"icon": "result-growth", "value": "+150%", "label": "production at a multinational e-commerce company", "body": "A multinational e-commerce operation went on to produce 150% more."},
-      {"icon": "result-support", "value": "Support", "label": "more productive, with better quality of life", "body": "Automations that sped up customer service teams’ work, raising productivity and improving both service quality and the quality of life of the people doing it. One of them, TNF-e, read invoice PDFs from more than 200 carriers and returned usable data with a direct tracking link for each package."},
+      {"icon": "result-support", "value": "3–6 min", "label": "per customer service case at a multinational, down from 7–⁠15 min", "chart": {"title": "Average time per case", "unit": "min", "max": 15, "ticks": [0, 5, 10, 15], "rows": [{"label": "Before", "from": 7, "to": 15}, {"label": "After", "from": 3, "to": 6}]}, "body": "Automations that sped up customer service teams’ work and improved both service quality and the quality of life of the people doing it. One of them, TNF-e, read invoice PDFs from more than 200 carriers and returned usable data with a direct tracking link for each package."},
       {"icon": "result-privacy", "value": "LGPD", "label": "critical incident prevented at a multinational", "body": "A flaw that could have leaked the personal data of every registered user was stopped before it became an incident (LGPD is Brazil’s data protection law)."}
     ]
   },

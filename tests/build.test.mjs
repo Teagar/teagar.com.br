@@ -404,3 +404,15 @@ test('process: each step says what the client gets, no slogan or dashes, ends wi
     assert.ok(!/caixa-preta|black box|—/.test(sec), `${f}: no slogan or em dash`);
   }
 });
+
+test('support result shows time per case 7-15 -> 3-6 min with a labelled range chart', async () => {
+  for (const [f, before, after] of [['index.html', 'Antes', 'Depois'], ['en/index.html', 'Before', 'After']]) {
+    const html = await read(f);
+    const card = html.match(/<li class="res reveal"><img class="res-ico" src="\/assets\/img\/icons\/result-support\.svg"[\s\S]*?<\/li>/)[0];
+    assert.match(card, /<span class="res-v">3–6 min<\/span>/);
+    const chart = card.match(/<figure class="range-chart">[\s\S]*?<\/figure>/)[0];
+    assert.match(chart, new RegExp(`<span class="rc-l">${before}</span><span class="rc-track"><span class="rc-bar" style="left:46\\.667%;width:53\\.333%"></span></span><span class="rc-v">7–15 min</span>`));
+    assert.match(chart, new RegExp(`<span class="rc-l">${after}</span><span class="rc-track"><span class="rc-bar" style="left:20%;width:20%"></span></span><span class="rc-v">3–6 min</span>`));
+    assert.match(chart, /<div class="rc-row rc-axis" aria-hidden="true">/);
+  }
+});

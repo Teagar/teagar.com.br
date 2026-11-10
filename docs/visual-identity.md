@@ -252,3 +252,7 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 - The section ends with a "Começar pelo diagnóstico" button to #contact and a short note. No timelines or prices unless the owner provides them.
 - References: process sections pair each stage with an output and the client's part, use 3–5 steps and close with the next action.
 
+## Range chart in result cards (2026-11-10)
+
+- Before/after ranges on a shared 0..max axis, one row per period: label and printed value on top, bar below, light ticks every 5 units. One hue in two shades, checked with the dataviz palette validator: light #FF7A1F (before) / #A63D05 (after) on #FFFAF3; dark #9E3C07 / #F0600A on #17120F. Values are always printed, so identity never depends on color; the axis is `aria-hidden`.
+
