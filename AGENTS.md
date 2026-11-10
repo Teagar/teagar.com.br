@@ -18,7 +18,7 @@ Portfólio pessoal e empresarial de Thiago Cerqueira (Teagar) e da Teagar Compan
 - Sem segredos no repositório. Repositório GitHub Teagar/teagar.com.br (Teagar/portfolio é o portfólio antigo de 2023, não alterar).
 
 ## Deploy
-Servidor 2.57.91.91 com Caddy em Docker (rede teagar_proxy). O site é publicado como arquivos estáticos (dist/).
+VPS da Teagar (200.141.25.232, a mesma do gartrol.teagar.com.br) com Caddy em Docker (rede teagar_proxy, container teagar-caddy, configuração em /opt/apps/proxy). O site é publicado como arquivos estáticos (dist/). 2.57.91.91 é o IP de estacionamento da Hostinger, não o servidor: o registro A de teagar.com.br precisa apontar para a VPS.
 
 ## Gartrol operating contract
 
