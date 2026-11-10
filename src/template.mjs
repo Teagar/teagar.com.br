@@ -129,7 +129,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
         alternateName: 'Teagar',
         url: SITE + '/',
         image: `${SITE}/assets/img/about-800.jpg`,
-        jobTitle: about.title,
+        jobTitle: about.jobTitle,
         description: hero.lead,
         knowsAbout: [...services.items.map((s) => s.title), ...stack.groups.flatMap((g) => g.items).slice(0, 24)],
         knowsLanguage: LANGS.map(([code, name]) => ({ '@type': 'Language', name, alternateName: code })),
