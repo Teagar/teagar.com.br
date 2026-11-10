@@ -180,13 +180,17 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    connected by a thin line on which a small ember dot travels as the section
    scrolls (static under reduced motion).
 6. **About:** a large display pull quote built from the first sentence of the
-   second paragraph, next to the normal portrait (rounded 24 px, warm). Then
+   second paragraph, next to the normal portrait (rounded 24 px, warm). The portrait
+   ships pre-cropped to 4:5 (`about-{480,800,1200,1600}` in avif/webp/jpg, from the
+   2048 px original) with `sizes` matching the column, so 1x–3x screens never upscale. Then
    the remaining paragraphs and the facts as a simple two-column list.
 7. **Stack:** heading + marquee (all items from all groups, group names as
    muted separators). Under reduced motion: grouped wrapped chips.
 8. **Contact:** big section on `--surface-2` (light) / `--surface` (dark):
    huge display `contact.title`, body, email as a big
-   underlined display link, social pills; the form in a rounded `--surface` card
+   underlined display link, social pills that open with a 16x16 pixel icon drawn at
+   2 CSS px per pixel (`social-github`, `social-linkedin`: the GitHub mark and the
+   LinkedIn "in" redrawn in the site palette, decorative, `alt=""`); the form in a rounded `--surface` card
    with soft fields (12 px radius inputs, labels above, ember focus ring). Above
    the title, a decorative pixel teacup with steam (4 CSS px per logical px, 3 on
    mobile) next to the line `contact.teaLine`.

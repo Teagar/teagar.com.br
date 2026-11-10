@@ -301,6 +301,46 @@ export const STATUS_ICONS = {
   ],
 };
 
+/** 16x16 icons for the external profile links (GitHub mark, LinkedIn "in"), pixel versions in the site palette */
+export const SOCIAL_ICONS = {
+  github: [
+    '......oooo......',
+    '....oolllloo....',
+    '...oBBBlllllo...',
+    '..oBcBBBlllclo..',
+    '.oBBccBBBlccllo.',
+    '.oBBccccccccllo.',
+    'omBBcccccccclllo',
+    'ommBcccccccclllo',
+    'ommmccccccccBllo',
+    'ommmccccccccBBlo',
+    '.omcmccccccBBBo.',
+    '.omcmmccccBBBBo.',
+    '..occcccccBBBo..',
+    '...ommccccBBo...',
+    '....ooccccoo....',
+    '......oooo......',
+  ],
+  linkedin: [
+    '.oooooooooooooo.',
+    'ooBbbbbblllllloo',
+    'oBBBbbbbbllllllo',
+    'oBBccbbbbblllllo',
+    'oBBccBbbbbbllllo',
+    'oBBBBBBbbbbblllo',
+    'oBBccBcccccbbllo',
+    'oBBccBccccccbblo',
+    'omBccBccBBbccbbo',
+    'ommccBccBBBccbbo',
+    'ommccBccBBBccbbo',
+    'ommccBccBBBccbbo',
+    'ommccmccBBBccBbo',
+    'ommmmmmBBBBBBBBo',
+    'oommmmmmBBBBBBoo',
+    '.oooooooooooooo.',
+  ],
+};
+
 /** flags are public symbols, so they use their real colours (the only exception to the orange palette) */
 export const FLAG_COLORS = {
   outline: '#3D1702', green: '#009C3B', yellow: '#FFDF00', blue: '#002776', white: '#FFFFFF',
@@ -352,6 +392,7 @@ const parseWith = (rows, w, h, leg) => {
 };
 const parse = (rows, w, h) => parseWith(rows, w, h, LEG);
 
+export const socialSvg = (id) => svgWrap(16, 16, runs(parse(SOCIAL_ICONS[id], 16, 16)));
 export const flagSvg = (id) => svgWrap(16, 11, runs(parseWith(FLAG_ICONS[id], 16, 11, FLAG_LEG)));
 
 export const projectSvg = (id) => svgWrap(24, 24, runs(parse(PROJECT_ICONS[id], 24, 24)));
@@ -368,6 +409,7 @@ export const ICON_FILES = () => {
   for (const id of Object.keys(PROJECT_ICONS)) f[`${id}.svg`] = projectSvg(id);
   for (const id of Object.keys(STATUS_ICONS)) f[`status-${id}.svg`] = statusSvg(id);
   for (const id of Object.keys(FLAG_ICONS)) f[`flag-${id}.svg`] = flagSvg(id);
+  for (const id of Object.keys(SOCIAL_ICONS)) f[`social-${id}.svg`] = socialSvg(id);
   return f;
 };
 
