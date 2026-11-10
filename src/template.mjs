@@ -24,6 +24,15 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 
 /** spoken languages (BCP 47 code, English name) for knowsLanguage */
 const LANGS = [['pt', 'Portuguese'], ['en', 'English'], ['es', 'Spanish'], ['ru', 'Russian'], ['zh', 'Mandarin Chinese']];
+/** Before/after range chart (HTML/CSS): one row per period, bar from `from` to `to` on a shared 0..max axis,
+ *  values always printed beside the bar so identity and value never depend on color. */
+function rangeChart(ch) {
+  const pct = (v) => +(v / ch.max * 100).toFixed(3);
+  const rows = ch.rows.map((r, i) => `<div class="rc-row rc-${i === ch.rows.length - 1 ? 'after' : 'before'}"><span class="rc-l">${esc(r.label)}</span><span class="rc-track"><span class="rc-bar" style="left:${pct(r.from)}%;width:${pct(r.to - r.from)}%"></span></span><span class="rc-v">${r.from}–${r.to} ${esc(ch.unit)}</span></div>`).join('');
+  const ticks = ch.ticks.map((t) => `<span style="left:${pct(t)}%">${t}${t === ch.max ? ` ${esc(ch.unit)}` : ''}</span>`).join('');
+  return `<figure class="range-chart"><figcaption class="rc-t">${esc(ch.title)}</figcaption>${rows}<div class="rc-row rc-axis" aria-hidden="true"><span></span><span class="rc-track">${ticks}</span><span class="rc-v">${esc(ch.unit)}</span></div></figure>`;
+}
+
 /** local landing page and the areas the company serves (city first: local SEO) */
 export const CITY_PATH = '/feira-de-santana/';
 const CITY = { '@type': 'City', name: 'Feira de Santana', containedInPlace: { '@type': 'State', name: 'Bahia' } };
@@ -299,7 +308,7 @@ ${services.items.map((it, i) => `<li class="svc reveal"><span class="svc-n" aria
 <div class="wrap">
 ${secHead(results, 'results-h')}
 <ul class="results">
-${results.items.map((it) => `<li class="res reveal"><img class="res-ico" src="/assets/img/icons/${esc(it.icon)}.svg" width="72" height="72" alt="" decoding="async"><h3><span class="res-v">${esc(it.value)}</span> <span class="res-l">${esc(it.label)}</span></h3>${it.body ? `<p>${esc(it.body)}</p>` : ''}</li>`).join('\n')}
+${results.items.map((it) => `<li class="res reveal"><img class="res-ico" src="/assets/img/icons/${esc(it.icon)}.svg" width="72" height="72" alt="" decoding="async"><h3><span class="res-v">${esc(it.value)}</span> <span class="res-l">${esc(it.label)}</span></h3>${it.chart ? rangeChart(it.chart) : ''}${it.body ? `<p>${esc(it.body)}</p>` : ''}</li>`).join('\n')}
 </ul>
 <p class="res-note reveal">${esc(results.note)}</p>
 </div>
