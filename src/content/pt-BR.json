@@ -100,7 +100,7 @@
     "note": "Nomes de clientes omitidos por confidencialidade.",
     "items": [
       {"icon": "result-growth", "value": "+150%", "label": "de produção em um e-commerce multinacional", "body": "Uma operação de e-commerce multinacional passou a produzir 150% a mais."},
-      {"icon": "result-support", "value": "Atendimento", "label": "mais produtivo, com mais qualidade de vida", "body": "Automações que agilizaram o trabalho das equipes de atendimento ao cliente, aumentando a produtividade e melhorando a qualidade do atendimento e a qualidade de vida de quem atende."},
+      {"icon": "result-support", "value": "Atendimento", "label": "mais produtivo, com mais qualidade de vida", "body": "Automações que agilizaram o trabalho das equipes de atendimento ao cliente, aumentando a produtividade e melhorando a qualidade do atendimento e a qualidade de vida de quem atende. Uma delas, o TNF-e, lia o PDF da nota fiscal de mais de 200 transportadoras e devolvia os dados prontos, com o link de rastreio direto da encomenda."},
       {"icon": "result-privacy", "value": "LGPD", "label": "incidente gravíssimo evitado em uma multinacional", "body": "Uma falha que poderia vazar os dados pessoais de todos os usuários já cadastrados foi evitada antes de virar incidente."}
     ]
   },

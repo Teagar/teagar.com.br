@@ -60,4 +60,5 @@ Do not add figures, methods or client details that the owner has not provided.
 
 - The site names the city again: "Feira de Santana, BA · atendimento em todo o Brasil". The street address stays hidden (Google Business Profile shows a service area); never publish it.
 - `/feira-de-santana/` (pt-BR only) is the local landing page. Its local cases are the only ones the owner confirmed for the city: the customer service (SAC) automation and Gartrol (built to improve the management of developers).
+- The SAC case is TNF-e (owner statement, 2026-11-10): it extracted the data from invoice (NF) PDFs of more than 200 carriers, turned it into usable data and built the direct tracking link for each package. Do not name the employer or add figures beyond these.
 - The testimonial is a lightly edited excerpt of a Gartrol user's voice message ("gastrô"/"carros" in the raw transcription are Gartrol/cards). It stays anonymous unless the user agrees to be named.
