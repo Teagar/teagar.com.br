@@ -230,5 +230,10 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 ## Service hover marker and contact form (2026-11-10)
 
-- On hover or focus, each service row shows the Teagar Company logo pointing right (`tc-point.svg`, one path, `fill: currentColor`) in `--ember`, instead of a generic arrow. It is decorative (`aria-hidden`).
-- Contact form: every control is 52 px tall with 16 px text; the select draws its own chevron (`appearance: none`); the form spans columns 7–12; the empty status line is visually hidden but stays in the DOM as the live region; the submit label is short enough to fit one line at 320 px.
+- On hover or focus, each service row shows the Teagar Company logo (`tc-point.svg`, one path, `fill: currentColor`) mirrored to point left, in `--ember`, sliding in from the right. It is decorative (`aria-hidden`).
+- Contact form: every control is 52 px tall with 16 px text; the select draws its own chevron (`appearance: none`); the form spans columns 7–12; the empty status line is visually hidden but stays in the DOM as the live region; the submit button spans the full form width and its label fits one line at 320 px.
+
+## Hero numbers and project statuses (2026-11-10)
+
+- Four hero numbers (4 columns on desktop, 2×2 from 861 to 1100 px, label beside the number on mobile). The fourth is accepted open-source contributions to large projects: 5 merged PRs in Noctalia's official community plugins (Noctalia ≈ 12k stars), checked on GitHub. Update it only from GitHub data.
+- Statuses, in legend order: live (green broadcast), beta (static 8×8 pixel flask, chip in `--text`), in development (hourglass), open source. Gartrol is live and Teagarden is beta.
