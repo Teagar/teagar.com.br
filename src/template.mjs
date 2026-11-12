@@ -24,6 +24,13 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 
 /** spoken languages (BCP 47 code, English name) for knowsLanguage */
 const LANGS = [['pt', 'Portuguese'], ['en', 'English'], ['es', 'Spanish'], ['ru', 'Russian'], ['zh', 'Mandarin Chinese']];
+/** Contact tea line with the tea word set like a text selection: the "tea" in Teagar. */
+function teaLine(contact) {
+  const line = esc(contact.teaLine), word = esc(contact.teaWord || '');
+  const i = word ? line.indexOf(word) : -1;
+  return i < 0 ? line : `${line.slice(0, i)}<span class="tea-word">${word}</span>${line.slice(i + word.length)}`;
+}
+
 /** Before/after range chart (HTML/CSS): one row per period, bar from `from` to `to` on a shared 0..max axis,
  *  values always printed beside the bar so identity and value never depend on color. */
 function rangeChart(ch) {
@@ -382,7 +389,7 @@ ${secHead(stack, 'stack-h')}
 <section class="section contact" id="contact" aria-labelledby="contact-h">
 <div class="wrap contact-grid">
 <div class="contact-copy">
-<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${esc(contact.teaLine)}</p></div>
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p></div>
 <h2 id="contact-h" class="reveal">${esc(contact.title)}</h2>
 <p class="body reveal">${esc(contact.body)}</p>
 <p class="mail-line reveal">${esc(contact.emailLabel)}<br><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
@@ -576,7 +583,7 @@ ${services.items.map((it) => `<li class="reveal"><h3>${esc(it.title)}</h3><p>${e
 
 <section class="section contact" id="contato" aria-labelledby="contato-h">
 <div class="wrap loc-contact">
-<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${esc(contact.teaLine)}</p></div>
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p></div>
 <h2 id="contato-h" class="reveal">${esc(city.contact.title)}</h2>
 <p class="body reveal">${esc(city.contact.body)}</p>
 <p class="mail-line reveal"><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>

@@ -261,3 +261,7 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 - When the theme toggle is pressed (and reduced motion is off), the whole page's colors (background, text, borders, fills, shadows) transition with the same 0.7 s `cubic-bezier(.65,0,.35,1)` as the moon/sun sky cross-fade, so page and sky change together. The toggle sets `html.theme-anim` for 1.5 s; inherited colors trail their parent slightly, so the class outlives the 0.7 s to avoid a snap. The hero stage keeps its own motion and is excluded.
 
+## Tea word highlight (owner request 2026-11-12)
+
+- In the contact tea line, the word "chá" / "tea" (`contact.teaWord`) is set like a text selection (`--ember` background, `--on-ember` text, the same colors as `::selection`) so the "tea" in Teagar is obvious. Selecting it swaps to text/background colors so a real selection still shows.
+
