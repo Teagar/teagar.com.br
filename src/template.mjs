@@ -10,7 +10,7 @@ function brandName() {
   const slots = [...BRAND_FROM].map((c, i) => c === BRAND_TO[i]
     ? `<span class="bl">${c}</span>`
     : `<span class="bs" style="--i:${i}"><span class="ba">${c}</span><span class="bb">${BRAND_TO[i]}</span></span>`).join('');
-  return `<span class="bn"><span class="vh">Teagar Cerqueira (Thiago Cerqueira)</span><span class="bw" aria-hidden="true"><span class="bf">${slots}</span> Cerqueira</span></span>`;
+  return `<span class="bn"><span class="vh">Teagar Cerqueira (Thiago Cerqueira)</span><span class="bw" aria-hidden="true"><span class="bf">${slots}</span><span class="bc"> C</span>erqueira</span></span>`;
 }
 
 export const SITE = 'https://teagar.com.br';
@@ -234,7 +234,6 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/teagar-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css?v=${assets.css}">
 <script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
 </head>
@@ -522,7 +521,6 @@ export function renderCityPage({ c, city, assets, logoPaths }) {
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
 <link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/teagar-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css?v=${assets.css}">
 <script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
 </head>

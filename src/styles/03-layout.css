@@ -326,17 +326,16 @@ html[data-theme="dark"] .section.alt .contrib-item .chip{background:var(--surfac
 @media (max-width:560px){.contrib-card{padding-inline:16px}.contrib-item{padding:16px}.prs a{border-radius:14px;padding:8px 12px;align-items:flex-start;line-height:1.35}.prs img{margin-top:2px}.contrib-head .pico{width:48px;height:48px}}
 
 /* navbar name: Teagar -> Thiago letter roll */
-.bw{display:inline-flex;align-items:baseline;white-space:pre;font-family:"Teagar",var(--display);font-weight:400}
+.bw{display:inline-flex;align-items:baseline;white-space:pre}
 .bf{display:inline-flex}
 .bs{display:inline-grid;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.24em;width:var(--w0,auto);justify-items:start;transition:width .42s cubic-bezier(.65,0,.35,1) calc(var(--i)*45ms)}
 .ba,.bb{grid-area:1/1;transition:transform .42s cubic-bezier(.65,0,.35,1) calc(var(--i)*45ms),opacity .3s ease calc(var(--i)*45ms)}
 .bb{transform:translateY(140%);opacity:0;color:var(--ember-text)}
-.bl{transition:color .3s ease}
-.brand:focus-visible .bl{color:var(--ember-text)}
+.bl,.bc{color:var(--ember-text)}
 .brand:focus-visible .bs{width:var(--w1,auto)}
 .brand:focus-visible .ba{transform:translateY(-140%);opacity:0}
 .brand:focus-visible .bb{transform:none;opacity:1}
-@media (hover:hover){.brand:hover .bl{color:var(--ember-text)}.brand:hover .bs{width:var(--w1,auto)}.brand:hover .ba{transform:translateY(-140%);opacity:0}.brand:hover .bb{transform:none;opacity:1}}
+@media (hover:hover){.brand:hover .bs{width:var(--w1,auto)}.brand:hover .ba{transform:translateY(-140%);opacity:0}.brand:hover .bb{transform:none;opacity:1}}
 
 /* language suggestion (replaces the old automatic redirect) */
 .lang-hint{position:fixed;left:var(--gutter);bottom:var(--gutter);z-index:20;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;max-width:min(440px,calc(100vw - var(--gutter)*2));padding:10px 10px 10px 18px;border:1.5px solid var(--line);border-radius:22px;background:var(--surface);color:var(--text);box-shadow:0 10px 30px rgba(0,0,0,.18);font-size:.9375rem;opacity:0;transform:translateY(12px);transition:opacity .35s var(--ease),transform .35s var(--ease)}

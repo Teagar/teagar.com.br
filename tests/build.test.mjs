@@ -246,6 +246,7 @@ test('navbar name rolls Teagar into Thiago and location names Feira de Santana',
     const brand = html.match(/<a class="brand"[\s\S]*?<\/a>/)[0];
     assert.match(brand, /<span class="vh">Teagar Cerqueira \(Thiago Cerqueira\)<\/span>/);
     assert.match(brand, /<span class="bw" aria-hidden="true">/);
+    assert.match(brand, /<span class="bl">T<\/span>[\s\S]*<span class="bc"> C<\/span>erqueira/, 'initials T and C are marked');
     const from = [...brand.matchAll(/class="(?:bl|ba)">(.)</g)].map((m) => m[1]).join('');
     const to = [...brand.matchAll(/class="(?:bl|bb)">(.)</g)].map((m) => m[1]).join('');
     assert.equal(from, 'Teagar');
