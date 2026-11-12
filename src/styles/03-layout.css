@@ -330,8 +330,9 @@ html[data-theme="dark"] .section.alt .contrib-item .chip{background:var(--surfac
 .bf{display:inline-flex}
 .bs{display:inline-grid;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.24em;width:var(--w0,auto);justify-items:start;transition:width .42s cubic-bezier(.65,0,.35,1) calc(var(--i)*45ms)}
 .ba,.bb{grid-area:1/1;transition:transform .42s cubic-bezier(.65,0,.35,1) calc(var(--i)*45ms),opacity .3s ease calc(var(--i)*45ms)}
-.bb{transform:translateY(140%);opacity:0;color:var(--ember-text)}
-.bl,.bc{color:var(--ember-text)}
+.bb{transform:translateY(140%);opacity:0;color:var(--ember)}
+/* brand name letters match the logo mark (WCAG 1.4.3 logotype exception) */
+.bl,.bc{color:var(--ember)}
 .brand:focus-visible .bs{width:var(--w1,auto)}
 .brand:focus-visible .ba{transform:translateY(-140%);opacity:0}
 .brand:focus-visible .bb{transform:none;opacity:1}
