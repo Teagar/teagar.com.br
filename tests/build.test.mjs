@@ -426,3 +426,12 @@ test('theme switch: page colors use the same duration and easing as the sky cros
   assert.ok(page, 'theme-anim rule found');
   for (const prop of ['background-color', 'color', 'border-color']) assert.ok(page[1].includes(`${prop} ${sky[1]}`), `${prop} follows the sky`);
 });
+
+test('contact tea line marks the tea word like a selection, in every page', async () => {
+  for (const [f, word] of [['index.html', 'chá'], ['en/index.html', 'tea'], ['feira-de-santana/index.html', 'chá']]) {
+    const html = await read(f);
+    assert.match(html, new RegExp(`<p class="tea-line reveal">[^<]*<span class="tea-word">${word}</span>`), `${f} marks ${word}`);
+  }
+  const css = await read('assets/site.css');
+  assert.match(css, /\.tea-word\{background:var\(--ember\);color:var\(--on-ember\)/);
+});
