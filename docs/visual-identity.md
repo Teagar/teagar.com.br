@@ -141,7 +141,7 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
 
 1. **Header:** transparent over the hero, becomes `--bg` with a bottom divider
    after scrolling. Left: logo mark (ember) + "Teagar Cerqueira" in Big Shoulders Display, with the initials
-   "T" and "C" in `--ember-text` by default (owner request 2026-11-12).
+   "T" and "C" (and the rolled "hiago") in `--ember` #FF6700, the same orange as the logo mark (owner request 2026-11-12; brand name, so the WCAG 1.4.3 logotype exception applies).
    On hover (pointer devices) or keyboard focus, each letter of "Teagar" rolls up into the
    matching letter of "Thiago" (staggered 45 ms, 0.42 s ease-in-out, slot widths animate so
    "Cerqueira" glides) and the first name turns `--ember-text`; reduced motion swaps instantly.
