@@ -417,3 +417,12 @@ test('support result shows time per case 7-15 -> 3-6 min with a labelled range c
     assert.match(chart, /<div class="rc-row rc-axis" aria-hidden="true">/);
   }
 });
+
+test('theme switch: page colors use the same duration and easing as the sky cross-fade', async () => {
+  const css = await read('assets/site.css');
+  const sky = css.match(/scene-in (\.7s cubic-bezier\(\.65,0,\.35,1\))/);
+  assert.ok(sky, 'sky cross-fade timing found');
+  const page = css.match(/html\.theme-anim[^{]*\{transition:([^}]*)\}/);
+  assert.ok(page, 'theme-anim rule found');
+  for (const prop of ['background-color', 'color', 'border-color']) assert.ok(page[1].includes(`${prop} ${sky[1]}`), `${prop} follows the sky`);
+});

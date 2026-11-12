@@ -42,6 +42,8 @@ html[data-theme="dark"] .stage.swapping .scene.night,html[data-theme="light"] .s
 html[data-theme="dark"] .stage.swapping .scene.day .rise,html[data-theme="light"] .stage.swapping .scene.night .rise{animation:moon-set .35s cubic-bezier(.55,0,1,.45) both}
 html[data-theme="dark"] .stage.swapping .scene.day .halo,html[data-theme="light"] .stage.swapping .scene.night .halo{opacity:0;transition:opacity .2s ease-in}
 html[data-theme="dark"] .stage.swapping .scene.night .rise,html[data-theme="light"] .stage.swapping .scene.day .rise{animation:moon-rise .5s cubic-bezier(.22,1,.36,1) both .2s}
+/* the rest of the page changes color with the sky (class set by the toggle for 1.5 s; the stage keeps its own motion) */
+html.theme-anim,html.theme-anim body,html.theme-anim :where(body *:not(.stage,.stage *)),html.theme-anim :where(body *:not(.stage,.stage *))::before,html.theme-anim :where(body *:not(.stage,.stage *))::after{transition:background-color .7s cubic-bezier(.65,0,.35,1),color .7s cubic-bezier(.65,0,.35,1),border-color .7s cubic-bezier(.65,0,.35,1),fill .7s cubic-bezier(.65,0,.35,1),stroke .7s cubic-bezier(.65,0,.35,1),outline-color .7s cubic-bezier(.65,0,.35,1),text-decoration-color .7s cubic-bezier(.65,0,.35,1),box-shadow .7s cubic-bezier(.65,0,.35,1)!important}
 /* after the first swap the load intro never replays */
 .js .stage.settled .rise,.js .stage.settled .ring{animation:none}
 .js .stage.settled .stars .s1{animation:tw 1.6s steps(2) infinite}

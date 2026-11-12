@@ -4,7 +4,7 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* theme toggle */
-  var swapTimer = 0;
+  var swapTimer = 0, themeTimer = 0;
   var themeBtn = document.getElementById('themeToggle');
   function syncTheme() {
     if (!themeBtn) return;
@@ -25,6 +25,13 @@
         st.classList.add('swapping', 'settled');
         clearTimeout(swapTimer);
         swapTimer = setTimeout(function () { st.classList.remove('swapping'); }, 750);
+      }
+      if (!reduce.matches) {
+        /* page colors follow the sky: same 0.7 s and easing as the scene cross-fade; the class stays
+           a little longer so inherited colors (which trail their parent) finish before it goes */
+        root.classList.add('theme-anim');
+        clearTimeout(themeTimer);
+        themeTimer = setTimeout(function () { root.classList.remove('theme-anim'); }, 1500);
       }
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
