@@ -257,3 +257,7 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 - Before/after ranges on a shared 0..max axis, one row per period: label and printed value on top, bar below, light ticks every 5 units. One hue in two shades, checked with the dataviz palette validator: light #FF7A1F (before) / #A63D05 (after) on #FFFAF3; dark #9E3C07 / #F0600A on #17120F. Values are always printed, so identity never depends on color; the axis is `aria-hidden`.
 
+## Theme switch timing (owner request 2026-11-12)
+
+- When the theme toggle is pressed (and reduced motion is off), the whole page's colors (background, text, borders, fills, shadows) transition with the same 0.7 s `cubic-bezier(.65,0,.35,1)` as the moon/sun sky cross-fade, so page and sky change together. The toggle sets `html.theme-anim` for 1.5 s; inherited colors trail their parent slightly, so the class outlives the 0.7 s to avoid a snap. The hero stage keeps its own motion and is excluded.
+
