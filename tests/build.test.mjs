@@ -435,3 +435,37 @@ test('contact tea line marks the tea word like a selection, in every page', asyn
   const css = await read('assets/site.css');
   assert.match(css, /\.tea-word\{background:var\(--ember\);color:var\(--on-ember\)/);
 });
+
+test('company page: both languages, SEO, language switch and in-house products', async () => {
+  for (const [f, lang, self, other] of [['teagar-company/index.html', 'pt-BR', '/teagar-company/', '/en/teagar-company/'], ['en/teagar-company/index.html', 'en', '/en/teagar-company/', '/teagar-company/']]) {
+    const html = await read(f);
+    assert.match(html, new RegExp(`<html lang="${lang}"`));
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://teagar.com.br${self}">`));
+    assert.match(html, /<link rel="alternate" hreflang="pt-BR" href="https:\/\/teagar.com.br\/teagar-company\/">/);
+    assert.match(html, /<link rel="alternate" hreflang="en" href="https:\/\/teagar.com.br\/en\/teagar-company\/">/);
+    assert.match(html, new RegExp(`id="langSwitch" href="${other}"`));
+    const ld = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    const types = ld['@graph'].map((n) => [].concat(n['@type']).join('+'));
+    assert.ok(types.includes('AboutPage') && types.includes('BreadcrumbList') && types.includes('Organization+ProfessionalService'));
+    for (const slug of ['gartrol', 'teagarden', 'egogero']) assert.match(html, new RegExp(`id="work-${slug}"`));
+    assert.match(html, /href="https:\/\/github.com\/teagarcompany"/);
+    assert.doesNotMatch(html, /class="co-link"/, 'the company page does not link to itself');
+  }
+  const sitemap = await read('sitemap.xml');
+  assert.match(sitemap, /<loc>https:\/\/teagar.com.br\/teagar-company\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/teagar.com.br\/en\/teagar-company\/<\/loc>/);
+  assert.match(await read('llms.txt'), /\/teagar-company\//);
+});
+
+test('every visible "Teagar Company" on the other pages links to the company page of its language', async () => {
+  for (const [f, href] of [['index.html', '/teagar-company/'], ['en/index.html', '/en/teagar-company/'], ['feira-de-santana/index.html', '/teagar-company/'], ['404.html', '/teagar-company/']]) {
+    const html = await read(f);
+    const body = html.slice(html.indexOf('<body')).replace(/<script[\s\S]*?<\/script>/g, '');
+    const total = (body.match(/Teagar Company/g) || []).length;
+    const linked = [...body.matchAll(/<a class="co-link" href="([^"]+)">Teagar Company<\/a>/g)];
+    assert.ok(total > 0, `${f} mentions the company`);
+    assert.equal(linked.length, total, `${f}: every mention is linked`);
+    assert.ok(linked.every((m) => m[1] === href), `${f} links to ${href}`);
+    assert.doesNotMatch(body, /<a [^>]*>(?:(?!<\/a>)[\s\S])*<a /, `${f} has no nested links`);
+  }
+});

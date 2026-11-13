@@ -266,7 +266,7 @@ ${navItems.map(([id, label]) => `<a class="nl" href="#${id}">${esc(label)}</a>`)
 <section class="hero" id="hero" aria-labelledby="top">
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="hero-kicker"><span class="dot" aria-hidden="true"></span>${esc(hero.eyebrow)}</p>
+<p class="hero-kicker"><span class="dot" aria-hidden="true"></span><span>${esc(hero.eyebrow)}</span></p>
 <h1 id="top"><span class="ln" style="--i:0"><span>${esc(hero.titleA)}</span></span> <span class="ln" style="--i:1"><span><em>${esc(hero.titleB)}</em></span></span></h1>
 <p class="lead">${esc(hero.lead)}</p>
 <div class="hero-cta">
@@ -595,6 +595,231 @@ ${services.items.map((it) => `<li class="reveal"><h3>${esc(it.title)}</h3><p>${e
 <div class="wrap foot-row">
 <div><p class="tag">${esc(footer.tagline)}</p><p class="copy">© ${year} ${esc(footer.rights)} ${esc(footer.builtWith)}</p></div>
 <nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="/#${id}">${esc(label)}</a>`).join('')}<a href="#top">${esc(ui.backToTop)}</a></nav>
+</div>
+<div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
+</footer>
+<script src="/assets/site.js?v=${assets.js}" defer></script>
+</body>
+</html>
+`;
+}
+
+/** Company page path inside each locale ("/teagar-company/" and "/en/teagar-company/"). */
+export const COMPANY_SLUG = 'teagar-company/';
+export const companyUrl = (locale) => LOCALES[locale].path + COMPANY_SLUG;
+
+/** Turns every visible "Teagar Company" in the <body> into a link to the company page.
+ *  Skips text inside links, buttons, scripts, styles, SVG and aria-hidden or visually hidden elements, so no link is nested. */
+export function linkCompany(html, href) {
+  const start = html.indexOf('<body');
+  if (start < 0) return html;
+  const SKIP = new Set(['a', 'button', 'script', 'style', 'svg', 'title', 'textarea', 'select', 'option', 'label']);
+  const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
+  const stack = [];
+  let skipDepth = 0;
+  const body = html.slice(start).replace(/<(\/?)([a-zA-Z][a-zA-Z0-9-]*)([^>]*)>|([^<]+)/g, (m, close, tag, attrs, text) => {
+    if (text !== undefined) {
+      if (skipDepth > 0 || !text.includes('Teagar Company')) return m;
+      return text.replace(/Teagar Company/g, `<a class="co-link" href="${href}">Teagar Company</a>`);
+    }
+    const t = tag.toLowerCase();
+    if (VOID.has(t) || /\/\s*$/.test(attrs)) return m;
+    if (close) {
+      const i = stack.findLastIndex((e) => e.tag === t);
+      if (i >= 0) { for (const e of stack.splice(i)) if (e.skip) skipDepth--; }
+      return m;
+    }
+    const skip = SKIP.has(t) || /aria-hidden="true"/.test(attrs) || /class="[^"]*\bvh\b/.test(attrs);
+    stack.push({ tag: t, skip });
+    if (skip) skipDepth++;
+    return m;
+  });
+  return html.slice(0, start) + body;
+}
+
+/** Company page (pt-BR and en): what Teagar Company is, services, in-house products, how it works, technology and contact. */
+export function renderCompanyPage({ c, locale, other, assets, logoPaths }) {
+  const L = LOCALES[locale];
+  const O = LOCALES[other.locale];
+  const { ui, nav, services, work, contact, footer, company: co } = c;
+  const url = SITE + companyUrl(locale);
+  const year = new Date().getFullYear();
+  const ogImg = `${SITE}/og-image.jpg`;
+  const navItems = [['services', nav.services], ['work', nav.work], ['process', nav.process], ['about', nav.about], ['contact', nav.contact]];
+  const products = co.products.slugs.map((s) => work.items.find((i) => i.slug === s)).filter(Boolean);
+  const factHref = (h) => (h.startsWith('#') ? L.path + h : h);
+  const jsonld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'AboutPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: co.meta.title,
+        description: co.meta.description,
+        inLanguage: locale,
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#org` },
+        mainEntity: { '@id': `${SITE}/#org` },
+        primaryImageOfPage: ogImg,
+        breadcrumb: { '@id': `${url}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: co.breadcrumb, item: L.url },
+          { '@type': 'ListItem', position: 2, name: 'Teagar Company', item: url },
+        ],
+      },
+      {
+        '@type': ['Organization', 'ProfessionalService'],
+        '@id': `${SITE}/#org`,
+        name: 'Teagar Company',
+        url: SITE + '/',
+        description: co.meta.description,
+        email: contact.email,
+        logo: `${SITE}/assets/brand/apple-touch-icon.png`,
+        founder: { '@id': `${SITE}/#person` },
+        sameAs: [GH_ORG],
+        areaServed: AREA_SERVED,
+        address: { '@type': 'PostalAddress', addressLocality: 'Feira de Santana', addressRegion: 'BA', addressCountry: 'BR' },
+        owns: products.map((p) => ({ '@type': 'SoftwareApplication', name: p.name, description: p.summary, applicationCategory: 'BusinessApplication' })),
+      },
+    ],
+  };
+  const sun = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+
+  return `<!doctype html>
+<html lang="${esc(c.meta.lang)}" class="no-js" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>${themeScript}</script>
+<title>${esc(co.meta.title)}</title>
+<meta name="description" content="${esc(co.meta.description)}">
+<link rel="canonical" href="${url}">
+<link rel="alternate" hreflang="pt-BR" href="${SITE + companyUrl('pt-BR')}">
+<link rel="alternate" hreflang="en" href="${SITE + companyUrl('en')}">
+<link rel="alternate" hreflang="x-default" href="${SITE + companyUrl('pt-BR')}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Teagar Company">
+<meta property="og:title" content="${esc(co.meta.ogTitle)}">
+<meta property="og:description" content="${esc(co.meta.ogDescription)}">
+<meta property="og:url" content="${url}">
+<meta property="og:locale" content="${esc(c.meta.ogLocale)}">
+<meta property="og:locale:alternate" content="${esc(other.meta.ogLocale)}">
+<meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(co.meta.ogTitle)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(co.meta.ogTitle)}">
+<meta name="twitter:description" content="${esc(co.meta.ogDescription)}">
+<meta name="twitter:image" content="${ogImg}">
+<meta name="theme-color" content="#F5EFE6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=${assets.css}">
+<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
+</head>
+<body class="page-company">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="tc-logo" viewBox="0 0 505 505">${logoPaths}</symbol></svg>
+<a class="skip" href="#main">${esc(ui.skip)}</a>
+<header class="topbar" id="topbar">
+<div class="wrap bar">
+<a class="brand" href="${L.path}">${logo()}${brandName()}</a>
+<nav class="nav" id="siteNav" aria-label="${esc(ui.menu)}">
+${navItems.map(([id, label]) => `<a class="nl" href="${L.path}#${id}">${esc(label)}</a>`).join('\n')}
+<a class="btn btn-primary btn-menu" href="#contact">${esc(nav.cta)}</a>
+</nav>
+<div class="tools">
+<a class="pill-ctl lang lang-flag" id="langSwitch" href="${O.path + COMPANY_SLUG}" hreflang="${esc(other.locale)}" lang="${esc(other.locale)}" title="${esc(ui.langSwitch)}" aria-label="${esc(ui.langLabel)}: ${esc(ui.langSwitch)}"><img class="flag" src="/assets/img/icons/${other.locale === 'en' ? 'flag-us' : 'flag-br'}.svg" width="32" height="22" alt="" decoding="async"></a>
+<button type="button" class="pill-ctl theme-btn" id="themeToggle" aria-label="${esc(ui.themeLabel)}" aria-pressed="false" data-light="${esc(ui.themeLight)}" data-dark="${esc(ui.themeDark)}" title="${esc(ui.themeLabel)}">${sun}${moon}</button>
+<a class="btn btn-primary btn-cta" href="#contact">${esc(nav.cta)}</a>
+<button type="button" class="pill-ctl menu-btn" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="${esc(ui.menu)}" title="${esc(ui.menu)}"><svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg><svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<section class="loc-hero co-hero" aria-labelledby="top">
+<div class="wrap">
+<nav class="crumbs" aria-label="${locale === 'en' ? 'Breadcrumb' : 'Trilha'}"><a href="${L.path}">${esc(co.breadcrumb)}</a><span aria-hidden="true"> / </span><span aria-current="page">Teagar Company</span></nav>
+<div class="co-grid">
+<div class="co-copy">
+<p class="hero-kicker"><span class="dot" aria-hidden="true"></span>${esc(co.hero.eyebrow)}</p>
+<h1 id="top">${esc(co.hero.title)}</h1>
+<p class="lead">${esc(co.hero.lead)}</p>
+<div class="hero-cta">
+<a class="btn btn-primary" href="#contact">${esc(co.hero.ctaPrimary)}${ICON_ARROW}</a>
+<a class="btn btn-outline" href="#products">${esc(co.hero.ctaSecondary)}</a>
+</div>
+</div>
+<aside class="co-card reveal" aria-label="Teagar Company">
+<svg class="co-mark" viewBox="0 0 505 505" aria-hidden="true" focusable="false"><use href="#tc-logo"/></svg>
+<dl class="co-facts">
+${co.facts.map((f) => `<div><dt>${esc(f.label)}</dt><dd>${f.href ? `<a href="${esc(factHref(f.href))}"${/^https?:/.test(f.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(f.value)}</a>` : esc(f.value)}</dd></div>`).join('\n')}
+</dl>
+</aside>
+</div>
+</div>
+</section>
+
+<section class="section alt" id="services" aria-labelledby="services-h">
+<div class="wrap">
+${secHead(co.services, 'services-h')}
+<ul class="loc-svcs co-svcs">
+${services.items.map((it) => `<li class="reveal"><span class="co-code" aria-hidden="true">${esc(it.code)}</span><h3>${esc(it.title)}</h3><p>${esc(it.body)}</p></li>`).join('\n')}
+</ul>
+<div class="hero-cta reveal"><a class="btn btn-outline" href="${L.path}#services">${esc(co.services.more)}${ICON_ARROW}</a></div>
+</div>
+</section>
+
+<section class="section" id="products" aria-labelledby="products-h">
+<div class="wrap">
+${secHead(co.products, 'products-h')}
+<ul class="work-rest co-products">
+${products.map((i) => workItem(ui, i, 'small')).join('\n')}
+</ul>
+</div>
+</section>
+
+<section class="section alt" id="principles" aria-labelledby="principles-h">
+<div class="wrap">
+${secHead(co.principles, 'principles-h')}
+<ol class="co-principles">
+${co.principles.items.map((p, i) => `<li class="reveal"><span class="co-n" aria-hidden="true">0${i + 1}</span><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></li>`).join('\n')}
+</ol>
+<div class="hero-cta reveal"><a class="btn btn-outline" href="${L.path}#process">${esc(co.principles.more)}${ICON_ARROW}</a></div>
+</div>
+</section>
+
+<section class="section" id="tech" aria-labelledby="tech-h">
+<div class="wrap">
+${secHead(co.tech, 'tech-h')}
+<ul class="chips co-tech reveal">${co.tech.items.map((t) => `<li class="chip">${esc(t)}</li>`).join('')}</ul>
+</div>
+</section>
+
+<section class="section contact" id="contact" aria-labelledby="contact-h">
+<div class="wrap loc-contact">
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p></div>
+<h2 id="contact-h" class="reveal">${esc(co.contact.title)}</h2>
+<p class="body reveal">${esc(co.contact.body)}</p>
+<p class="mail-line reveal"><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
+<div class="hero-cta reveal"><a class="btn btn-primary" href="mailto:${esc(contact.email)}">${esc(co.contact.cta)}${ICON_ARROW}</a><a class="btn btn-outline" href="${L.path}#contact">${esc(co.contact.form)}</a></div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="wrap foot-row">
+<div><p class="tag">${esc(footer.tagline)}</p><p class="copy">© ${year} ${esc(footer.rights)} ${esc(footer.builtWith)}</p></div>
+<nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="${L.path}#${id}">${esc(label)}</a>`).join('')}<a href="#top">${esc(ui.backToTop)}</a></nav>
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>

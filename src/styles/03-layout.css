@@ -406,3 +406,31 @@ html[data-theme="dark"] .range-chart{--rc-before:#9E3C07;--rc-after:#F0600A}
 .loc-contact .body{margin-top:20px}
 @media (max-width:960px){.loc-cases{grid-template-columns:1fr}.loc-svcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.loc-svcs{grid-template-columns:1fr}}
+/* links to the company page from every "Teagar Company" mention */
+.co-link{color:inherit;text-decoration:underline;text-decoration-color:var(--ember);text-decoration-thickness:2px;text-underline-offset:.18em;transition:color .2s}
+.co-link:hover{color:var(--ember-text)}
+.hero-kicker .co-link,.copy .co-link{text-decoration-thickness:1px}
+/* company page */
+.co-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gutter);align-items:start}
+.co-copy{grid-column:1/8}
+.co-hero h1{max-width:13em;font-size:clamp(2.5rem,5.6vw,5.25rem)}
+.co-card{grid-column:9/-1;position:relative;padding:clamp(24px,3vw,36px);border-radius:var(--r-card);background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.co-mark{display:block;width:72px;height:72px;color:var(--ember);fill:currentColor;margin-bottom:24px}
+.co-facts{display:grid;gap:18px}
+.co-facts dt{font-family:var(--mono);font-size:.75rem;font-weight:500;letter-spacing:.02em;color:var(--muted)}
+.co-facts dd{margin-top:2px;font-weight:600;overflow-wrap:anywhere}
+.co-facts a{color:inherit;text-decoration-color:var(--ember);text-underline-offset:.18em}
+.co-facts a:hover{color:var(--ember-text)}
+.co-code{display:inline-block;margin-bottom:14px;font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.06em;color:var(--ember-text)}
+.co-svcs + .hero-cta,.co-principles + .hero-cta{margin-top:clamp(32px,4vw,56px)}
+.co-products{margin-top:0}
+.co-principles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(24px,3vw,40px) var(--gutter);list-style:none;padding:0}
+.co-principles li{padding-top:20px;border-top:2px solid var(--ember)}
+.co-n{display:block;margin-bottom:12px;font-family:var(--mono);font-size:.8125rem;font-weight:600;color:var(--muted)}
+.co-principles h3{font-family:var(--display);font-size:clamp(1.5rem,2.2vw,1.875rem);font-weight:800;line-height:1.05}
+.co-principles p{margin-top:10px;color:var(--muted)}
+.co-tech{gap:10px}
+.co-tech .chip{padding:8px 18px;font-size:.9375rem}
+@media (max-width:1100px){.co-principles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:960px){.co-copy,.co-card{grid-column:1/-1}.co-card{max-width:560px}}
+@media (max-width:600px){.co-principles{grid-template-columns:1fr}}
