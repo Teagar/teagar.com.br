@@ -186,6 +186,18 @@ test('language switch shows the target-language pixel flag with its accessible n
   }
 });
 
+test('language switch keeps the reading position: same section ids on both languages and a restore script', async () => {
+  const ids = (html) => [...html.matchAll(/<section[^>]* id="([^"]+)"/g)].map((m) => m[1]);
+  for (const [pt, en] of [['index.html', 'en/index.html'], ['teagar-company/index.html', 'en/teagar-company/index.html']]) {
+    const a = ids(await read(pt));
+    assert.ok(a.length > 2, `${pt} has sections`);
+    assert.deepEqual(a, ids(await read(en)), `${pt} and ${en} share section ids`);
+  }
+  const js = await read('assets/site.js');
+  assert.match(js, /langPos/);
+  assert.match(js, /sessionStorage/);
+});
+
 test('open-source contributions: merged PR links and icons are built in both languages', async () => {
   for (const [lang, file] of [['pt-BR', 'index.html'], ['en', 'en/index.html']]) {
     const c = JSON.parse(await readFile(join(root, `src/content/${lang}.json`), 'utf8')).work.contrib;
