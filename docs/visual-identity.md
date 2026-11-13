@@ -289,7 +289,7 @@ Seven more easter eggs join the moon/sun logo. All of them are listed on a secre
 | Tea time | visitor's clock between 16:00 and 17:00 | the contact line becomes "Já é hora do chá…" (a `<template>` per page) and the cup steams faster |
 | Full cup | 5 clicks on the footer cup within 4 s | a pixel drip per click; on the fifth, tea domes over the rim, runs down both sides, pools on the saucer, and a toast says "Teagar = tea + gar" |
 | Konami | ↑↑↓↓←→←→BA | `html.gameboy` for 10 s: an SVG filter (`#gb-filter`) maps the page to the 4 Game Boy greens; the filter goes on `.topbar`, `main` and `.footer`, never on `body`, so the fixed bar keeps working |
-| Console | opening DevTools | the TC logo in ASCII (`#FF6700`), a one-line pitch, the email and a hint to `/cheats/` |
+| Console | opening DevTools | the TC logo (logo.svg rasterised to 28×28 and drawn with half blocks, `#FF6700`, line-height 1), a one-line pitch, the email and a hint to `/cheats/` |
 | Shooting star | 20 s without input while the night hero is on screen | a pixel streak crosses the sky; clicking it while it flies pauses it and shows the wish toast |
 | Typing teagar | typing t-e-a-g-a-r outside form fields | the header name rolls to Thiago (the same state as hover) and 16 pixel teacups rain for about 2 s |
 | Eclipse | 5 theme switches, each within 1.5 s of the last | once the last sky swap ends, the scene dims, a black moon silhouette crosses the sun, and a pale corona glows at totality (3.4 s) |

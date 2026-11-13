@@ -18,17 +18,24 @@
   if (toastEl && window.console && console.log) {
     var lines = [];
     try { lines = JSON.parse(toastEl.getAttribute('data-console') || '[]'); } catch (e) {}
+    /* the real TC mark: logo.svg rasterised to 28x28 and drawn with half blocks (two pixel rows per line) */
     var art = [
-      '   ████████████  ████████',
-      ' ██████████████  ██████████',
-      '████            ███     ███',
-      '███             ███',
-      '███             ███',
-      '████            ███',
-      ' ██████████████ ███',
-      '   ████████████ ███'
+      '        ▄▄█████████████████▄',
+      '     ▄██████████████████████',
+      '   ▄█████████████▀▀▀▀▀▀▀▀▀▀▀',
+      '  ██████▀▀ ██████',
+      ' ██████    ██████',
+      '██████     ██████',
+      '█████      ██████',
+      '█████      ██████      █████',
+      '██████     ██████     ██████',
+      ' ██████    ██████    ██████',
+      '  ██████▄▄ ██████ ▄▄██████',
+      '   ▀████████████████████▀',
+      '     ▀████████████████▀',
+      '        ▀▀████████▀▀'
     ].join('\n');
-    console.log('%c' + art, 'color:#FF6700;font-family:monospace;line-height:1.1');
+    console.log('%c' + art, 'color:#FF6700;font-family:monospace;line-height:1');
     if (lines.length) console.log('%c' + lines[0] + '\n%c' + lines.slice(1).join('\n'), 'font:700 14px sans-serif', 'font:12px monospace;color:#FF6700');
   }
 
