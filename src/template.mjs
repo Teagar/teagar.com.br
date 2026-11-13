@@ -281,7 +281,7 @@ ${navItems.map(([id, label]) => `<a class="nl" href="#${id}">${esc(label)}</a>`)
 ${starsInline()}
 <div class="moon-wrap" aria-hidden="true"><div class="rise"><div class="bob">
 <div class="halo"><span class="ring r1"><img src="/assets/img/moon-ring-1.svg" alt="" width="96" height="96"></span><span class="ring r2"><img src="/assets/img/moon-ring-2.svg" alt="" width="96" height="96"></span><span class="ring r3"><img src="/assets/img/moon-ring-3.svg" alt="" width="96" height="96"></span></div>
-<img class="pmoon" src="/assets/img/moon.svg" alt="" width="64" height="64" decoding="async">
+<img class="pmoon" src="/assets/img/moon.svg" alt="" width="64" height="64" decoding="async"><svg class="moon-logo" viewBox="0 0 505 505" aria-hidden="true" focusable="false"><use href="#tc-logo"/></svg>
 </div></div></div>
 </div>
 <div class="scene day">
