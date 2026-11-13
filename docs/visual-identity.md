@@ -275,3 +275,7 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 - The sun/moon stage no longer ends in a rounded card edge: a CSS mask (two eased linear gradients, horizontal 18% and vertical 15% top / 28% bottom, intersected) dissolves the sky, the body and the bottom of the photo into the page background in both themes. The face and the sun/moon stay fully opaque; the theme swap animation is unchanged.
 
+## Moon easter egg (owner request 2026-11-13)
+
+- Three quick clicks or taps on the moon (each within 0.6 s of the last) toggle `.egg` on the stage: the pixel moon shrinks and spins out and the Teagar Company logo (`#tc-logo`, `--ember`) pops in at the same spot; three more bring the moon back. Not announced or hinted anywhere (it is an easter egg), decorative (`aria-hidden`), not persisted. The stage disables text selection so a triple click does not select the paragraph, and the moon uses `touch-action: manipulation` so taps do not zoom. Reduced motion makes the swap instant.
+

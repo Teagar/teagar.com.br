@@ -478,3 +478,16 @@ test('hero stage fades into the page instead of ending in a hard card edge', asy
   assert.match(rule, /-webkit-mask-composite:source-in/);
   assert.doesNotMatch(rule, /border-radius/);
 });
+
+test('easter egg: three clicks on the moon swap it for the Teagar Company logo', async () => {
+  for (const f of ['index.html', 'en/index.html']) {
+    const html = await read(f);
+    assert.match(html, /<img class="pmoon" src="\/assets\/img\/moon.svg"[^>]*><svg class="moon-logo" viewBox="0 0 505 505" aria-hidden="true" focusable="false"><use href="#tc-logo"\/><\/svg>/);
+  }
+  const js = await read('assets/site.js');
+  assert.match(js, /querySelector\('#stage \.moon-wrap'\)/);
+  assert.match(js, /taps === 3/);
+  assert.match(js, /classList\.toggle\('egg'\)/);
+  const css = await read('assets/site.css');
+  assert.match(css, /\.stage\.egg \.moon-logo\{opacity:1;transform:none\}/);
+});
