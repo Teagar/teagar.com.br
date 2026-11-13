@@ -475,7 +475,68 @@
       "Curioso? É assim que eu gosto de trabalhar.",
       "contato@teagar.com.br",
       "Psiu: tem mais segredos em /cheats/"
-    ]
+    ],
+    "deploy": [
+      "$ npm run deploy",
+      "✔ testes 33/33",
+      "✔ CI verde",
+      "✔ no ar. Agora é só me mandar a mensagem."
+    ],
+    "deployBtn": "Deploy ▲",
+    "lateLine": "Ainda acordado? Eu também, às vezes. Me chama.",
+    "photo": "Ei, isso faz cócegas!",
+    "turbo": "Calma, o site é estático, não precisa de pressa.",
+    "junino": "Arraiá da Teagar! Viva São João!",
+    "birthday": "Hoje é aniversário do Thiago!",
+    "found": "Conquista",
+    "consoleHint": "Digite cha() aqui para registrar esta conquista.",
+    "consoleOk": "Conquista registrada. Veja /cheats/",
+    "terminal": {
+      "title": "visitante@teagar: ~",
+      "prompt": "visitante@teagar:~$",
+      "label": "Terminal secreto",
+      "close": "Fechar terminal",
+      "welcome": [
+        "Terminal da Teagar. Digite help para ver os comandos."
+      ],
+      "notFound": "comando não encontrado: {cmd}. Tente help",
+      "help": [
+        "comandos: whoami, projetos, contato, cha, ls, tema, cheats, clear, exit",
+        "e um escondido: sudo contratar"
+      ],
+      "whoami": [
+        "Thiago Cerqueira (Teagar), desenvolvedor em Feira de Santana, BA.",
+        "Software sob medida, automação e integrações pela Teagar Company."
+      ],
+      "contato": [
+        "e-mail: contato@teagar.com.br",
+        "ou: sudo contratar"
+      ],
+      "cha": [
+        "    ( (",
+        "     ) )",
+        "  ........",
+        "  |      |]",
+        "  \\      /",
+        "   `----'",
+        "Chá servido. Teagar = tea + gar."
+      ],
+      "ls": [
+        "servicos/  projetos/  processo/  sobre/  contato/  cheats/"
+      ],
+      "tema": "Tema trocado.",
+      "cheats": "Abrindo a sala secreta...",
+      "sudo": "Abrindo seu e-mail. Boa escolha.",
+      "sudoNo": "sudo: só existe um comando aqui, e ele é contratar.",
+      "commands": {
+        "projects": "projetos",
+        "contact": "contato",
+        "tea": "cha",
+        "chá": "cha",
+        "theme": "tema",
+        "dir": "ls"
+      }
+    }
   },
   "cheats": {
     "meta": {
@@ -545,7 +606,97 @@
         "how": "Trocar o tema 5 vezes seguidas",
         "what": "A lua passa na frente do sol.",
         "where": "Topo da página inicial"
+      },
+      {
+        "id": "deploy",
+        "name": "Deploy no formulário",
+        "how": "Escrever /deploy na mensagem",
+        "what": "O botão vira Deploy e aparece um log de build.",
+        "where": "Formulário de contato"
+      },
+      {
+        "id": "source",
+        "name": "Recado no código-fonte",
+        "how": "Ver o código-fonte (Ctrl+U)",
+        "what": "Um comentário escondido no topo do HTML, com o link para registrar esta conquista.",
+        "where": "Código-fonte de qualquer página"
+      },
+      {
+        "id": "terminal",
+        "name": "Terminal escondido",
+        "how": "Apertar ~ (ou `)",
+        "what": "Abre um terminal com comandos como whoami, projetos e sudo contratar.",
+        "where": "Qualquer página, com teclado"
+      },
+      {
+        "id": "drag",
+        "name": "Pôr do sol manual",
+        "how": "Arrastar a lua ou o sol para baixo",
+        "what": "O astro se põe e o tema troca.",
+        "where": "Topo da página inicial, com mouse"
+      },
+      {
+        "id": "constellation",
+        "name": "Constelação TC",
+        "how": "Passar o mouse devagar pelo céu noturno",
+        "what": "As estrelas se ligam e formam as iniciais T e C.",
+        "where": "Céu noturno da página inicial"
+      },
+      {
+        "id": "rain",
+        "name": "Nuvem de chuva",
+        "how": "3 cliques numa nuvem",
+        "what": "A nuvem chove pixels por alguns segundos.",
+        "where": "Céu de dia da página inicial"
+      },
+      {
+        "id": "latenight",
+        "name": "Café de madrugada",
+        "how": "Visitar entre 0h e 5h",
+        "what": "A xícara vira café e a frase do contato muda.",
+        "where": "Contato"
+      },
+      {
+        "id": "spell",
+        "name": "Tea · gar",
+        "how": "Passar o mouse 5 vezes no nome do topo",
+        "what": "O nome se soletra com uma xícara no meio.",
+        "where": "Topo de qualquer página, com mouse"
+      },
+      {
+        "id": "junino",
+        "name": "Arraiá",
+        "how": "Visitar em junho",
+        "what": "Bandeirinhas de São João enfeitam o céu.",
+        "where": "Topo da página inicial"
+      },
+      {
+        "id": "birthday",
+        "name": "Aniversário",
+        "how": "Visitar no aniversário do Thiago",
+        "what": "A lua e o sol ganham chapéu de festa.",
+        "where": "Topo da página inicial"
+      },
+      {
+        "id": "photo",
+        "name": "Cócegas",
+        "how": "10 cliques na foto",
+        "what": "A foto pula e reclama.",
+        "where": "Foto do topo da página inicial"
+      },
+      {
+        "id": "turbo",
+        "name": "Modo turbo",
+        "how": "Ir ao fim da página e voltar ao topo 3 vezes, rápido",
+        "what": "A lua sua e pede calma.",
+        "where": "Página inicial"
       }
-    ]
+    ],
+    "progress": "{n} de {total} encontrados",
+    "locked": "???",
+    "lockedWhat": "Ainda não encontrado.",
+    "reveal": "Revelar tudo",
+    "found": "Encontrado",
+    "reset": "Zerar conquistas"
   }
 }

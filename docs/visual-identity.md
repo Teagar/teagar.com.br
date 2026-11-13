@@ -295,3 +295,31 @@ Seven more easter eggs join the moon/sun logo. All of them are listed on a secre
 | Eclipse | 5 theme switches, each within 1.5 s of the last | once the last sky swap ends, the scene dims, a black moon silhouette crosses the sun, and a pale corona glows at totality (3.4 s) |
 
 Toasts use one `#eggToast` (`role="status"`) in `--text` on `--bg`. Under reduced motion there is no drip, rain or star; the spill appears at its final size, and the eclipse holds totality instead of moving.
+
+## Second batch of easter eggs and achievements
+
+Eleven more eggs, all listed on `/cheats/`:
+
+| Egg | Trigger | Effect |
+|---|---|---|
+| Deploy | `/deploy` at the end of the contact message | the text is removed, the submit button reads "Deploy ▲" and a fake build log types out under it for 5 s |
+| Source note | view source | an HTML comment after the doctype on every page, with `/cheats/?found=source`, which logs the achievement |
+| Terminal | `~` or `` ` `` (dead `~` on ABNT2 too), outside fields | a modal terminal (`role="dialog"`, Esc closes, focus returns) with help, whoami, projetos/projects, contato/contact, cha/tea, ls, tema/theme, cheats, clear, exit, and `sudo contratar` / `sudo hire`, which opens the email |
+| Manual sunset | drag the moon or the sun down by more than 22% of the stage (mouse/pen only) | the body follows the pointer and the theme switches; hit-tested by geometry, because the portrait box covers the disc; a drag never counts as a click |
+| TC constellation | about 700 px of slow pointer movement over the night stage | the moon fades back and 12 stars join into T and C |
+| Rain cloud | 3 clicks on a cloud (day) | 36 pixel drops fall from that cloud; cloud clicks no longer count towards the sun logo |
+| Late-night coffee | 00:00–04:59 | the cup becomes `tea-coffee.svg` (same generator, dark roast, no tea bag), the steam slows, and the line reads "Ainda acordado?…" |
+| Tea · gar | 5 hovers on the header name within 4 s | the name spells "Tea [cup] gar" for 3 s |
+| June festival | any day in June | São João bunting (palette flags) across the sky |
+| Birthday | `BIRTHDAY` ("MM-DD") in `src/template.mjs` | party hats on the moon and the sun; empty for now, so the egg and its card stay off |
+| Tickles | 10 clicks on the photo within 3 s | the portrait jumps and complains |
+| Turbo | bottom of the page and back to the top 3 times within 15 s | the moon or the sun sweats |
+
+**Achievements.** Every egg logs itself in `localStorage` (`teagar-eggs`). The first time, the toast adds "Conquista: name (n/total)". Hour-based and date-based eggs only speak the first time. The console egg is logged with `cha()`.
+
+On `/cheats/`, with JS on:
+- a bar shows "n de N encontrados";
+- unfound cards show a locked face with "???" and only the "Onde" hint;
+- "Revelar tudo" opens every card, and "Zerar conquistas" clears the progress.
+
+Without JS, every card shows in full. Strings for all eggs come from one inline JSON block (`#eggData`, with `<` escaped).

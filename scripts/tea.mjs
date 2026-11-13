@@ -14,7 +14,7 @@ const RIM = { cx: 24, cy: 11.5, rx: 14, ry: 4.5 };
 const TEA = { cx: 24, cy: 11.5, rx: 11.5, ry: 3 };
 const GLINT = [[29, 10], [30, 10], [31, 10], [28, 11]];
 
-function body() {
+function body(coffee = false) {
   const g = blank(W, H);
   const put = (x, y, c) => { if (x >= 0 && y >= 0 && x < W && y < H) g[y][x] = c; };
   // saucer: flat ellipse, shadow top, lit rim on the upper right, deep underside
@@ -71,15 +71,18 @@ function body() {
     if (teaE(x, y)) {
       // tea surface: back wall shadow on top rows, amber below, dither between
       const ty = (y + 0.5 - (TEA.cy - TEA.ry)) / (TEA.ry * 2);
-      put(x, y, ty < 0.3 ? PAL.shadow : ty < 0.55 ? (dith(x, y, 0.5) ? PAL.shadow : PAL.mid) : PAL.mid);
+      if (coffee) put(x, y, ty < 0.3 ? TEA_EXTRA.brown : ty < 0.55 && dith(x, y, 0.5) ? TEA_EXTRA.brown : PAL.outline); // dark roast, no amber
+      else put(x, y, ty < 0.3 ? PAL.shadow : ty < 0.55 ? (dith(x, y, 0.5) ? PAL.shadow : PAL.mid) : PAL.mid);
     } else {
       put(x, y, dx - dy * 0.7 > 0.5 ? PAL.hi : dx - dy * 0.7 > -0.2 ? PAL.light : dx < -0.55 ? PAL.base : PAL.baseLight);
     }
   }
-  // tea bag: string over the rim + paper tag with a T
+  // tea bag: string over the rim + paper tag with a T (coffee has none)
+  if (!coffee) {
   for (const [x, y] of [[33, 10], [34, 9], [35, 9], [36, 9], [37, 10], [38, 11], [39, 12], [40, 13]]) put(x, y, TEA_EXTRA.brown);
   for (let y = 14; y <= 18; y++) for (let x = 38; x <= 42; x++) put(x, y, (x === 38 || x === 42 || y === 14 || y === 18) ? TEA_EXTRA.brown : TEA_EXTRA.cream);
   for (const [x, y] of [[39, 15], [40, 15], [41, 15], [40, 16], [40, 17]]) put(x, y, PAL.base);
+  }
   // outline: 1px, 4-neighbourhood, drawn outside the shape
   const filled = g.map((r) => r.map((c) => c !== null));
   const keep = new Set(['M']);
@@ -97,6 +100,8 @@ function body() {
 }
 
 export function teaCupSvg() { return svgWrap(W, H, runs(body())); }
+/** late-night egg: the same cup holding coffee */
+export function coffeeCupSvg() { return svgWrap(W, H, runs(body(true))); }
 
 export function teaGlintSvg() {
   const g = blank(W, H);
@@ -125,7 +130,7 @@ export function teaSteamSvg(frame) {
 }
 
 export const TEA_FILES = () => ({
-  'tea-cup.svg': teaCupSvg(), 'tea-glint.svg': teaGlintSvg(),
+  'tea-cup.svg': teaCupSvg(), 'tea-coffee.svg': coffeeCupSvg(), 'tea-glint.svg': teaGlintSvg(),
   'tea-steam-1.svg': teaSteamSvg(0), 'tea-steam-2.svg': teaSteamSvg(1), 'tea-steam-3.svg': teaSteamSvg(2),
 });
 

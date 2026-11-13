@@ -10,10 +10,17 @@ function brandName() {
   const slots = [...BRAND_FROM].map((c, i) => c === BRAND_TO[i]
     ? `<span class="bl">${c}</span>`
     : `<span class="bs" style="--i:${i}"><span class="ba">${c}</span><span class="bb">${BRAND_TO[i]}</span></span>`).join('');
-  return `<span class="bn"><span class="vh">Teagar Cerqueira (Thiago Cerqueira)</span><span class="bw" aria-hidden="true"><span class="bf">${slots}</span><span class="bc"> C</span>erqueira</span></span>`;
+  return `<span class="bn"><span class="vh">Teagar Cerqueira (Thiago Cerqueira)</span><span class="bw" aria-hidden="true"><span class="bf">${slots}</span><span class="bc"> C</span>erqueira</span><span class="bspell" aria-hidden="true">Tea<img src="/assets/img/tea-cup.svg" alt="" width="48" height="40">gar</span></span>`;
 }
 
 export const SITE = 'https://teagar.com.br';
+/** easter egg for whoever reads the source (Ctrl+U); the link logs the achievement on /cheats/ */
+const SOURCE_NOTE = `<!--
+  Oi! Feito à mão, sem framework. Se você leu até aqui, a gente vai se dar bem.
+  Hi! Hand-made, no framework. If you read this far, we'll get along.
+  Conquista / Achievement: ${'https://teagar.com.br'}/cheats/?found=source
+  contato@teagar.com.br
+-->`;
 export const LOCALES = {
   'pt-BR': { path: '/', url: `${SITE}/`, short: 'pt-BR' },
   en: { path: '/en/', url: `${SITE}/en/`, short: 'en' },
@@ -33,8 +40,22 @@ function teaLine(contact, text = contact.teaLine) {
 
 /** Easter eggs: the tea-time line (swapped in between 16:00 and 17:00), the toast that announces some eggs,
  *  and the 4-shade Game Boy filter used by the Konami code. Strings come from `eggs` in each locale. */
-const teaTimeTpl = (c) => `<template class="tea-time-tpl">${teaLine(c.contact, c.eggs.teaTime)}</template>`;
-const eggToast = (c) => `<div class="egg-toast" id="eggToast" role="status" aria-live="polite" data-cup="${esc(c.eggs.cup)}" data-wish="${esc(c.eggs.wish)}" data-konami="${esc(c.eggs.konami)}" data-eclipse="${esc(c.eggs.eclipse)}" data-console="${esc(JSON.stringify(c.eggs.console))}"></div>
+const teaTimeTpl = (c) => `<template class="tea-time-tpl">${teaLine(c.contact, c.eggs.teaTime)}</template><template class="late-tpl">${esc(c.eggs.lateLine)}</template>`;
+/** Thiago's birthday as "MM-DD" turns on the party-hat egg; empty keeps it (and its /cheats/ entry) off. */
+export const BIRTHDAY = '';
+/** every egg the page can unlock; the birthday one only exists once BIRTHDAY is set */
+const eggItems = (c) => c.cheats.items.filter((it) => it.id !== 'birthday' || BIRTHDAY);
+/** strings and data for 04-eggs.js, as inline JSON (no extra request); "<" is escaped so it can't close the script */
+const eggData = (c, locale) => JSON.stringify({
+  ...c.eggs,
+  names: Object.fromEntries(eggItems(c).map((it) => [it.id, it.name])),
+  birthdayDate: BIRTHDAY,
+  cheats: LOCALES[locale].path + CHEATS_SLUG,
+  mail: c.contact.email,
+  projects: c.work.items.map((it) => `${it.name.padEnd(30)} ${c.ui[it.status] || ''}`.trimEnd()),
+}).replace(/</g, '\\u003c');
+const eggToast = (c, locale) => `<div class="egg-toast" id="eggToast" role="status" aria-live="polite"></div>
+<script type="application/json" id="eggData">${eggData(c, locale)}</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="gb-filter" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0 0.299 0.587 0.114 0 0 0.299 0.587 0.114 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0.059 0.188 0.545 0.608"/><feFuncG type="discrete" tableValues="0.220 0.384 0.675 0.737"/><feFuncB type="discrete" tableValues="0.059 0.188 0.059 0.059"/></feComponentTransfer></filter></svg>`;
 
 /** Before/after range chart (HTML/CSS): one row per period, bar from `from` to `to` on a shared 0..max axis,
@@ -213,6 +234,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
   const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 
   return `<!doctype html>
+${SOURCE_NOTE}
 <html lang="${esc(meta.lang)}" class="no-js" data-theme="light">
 <head>
 <meta charset="utf-8">
@@ -285,6 +307,7 @@ ${navItems.map(([id, label]) => `<a class="nl" href="#${id}">${esc(label)}</a>`)
 <div class="scene night">
 <div class="sky" aria-hidden="true"><img src="/assets/img/moon-sky.svg" alt="" width="120" height="150" decoding="async"></div>
 ${starsInline()}
+<svg class="constellation" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><polyline points="6,6 16,5 26,6"/><polyline points="16,5 15.5,16 16.5,27"/><polyline points="54,9 46,5 38,9 35,17 38,25 46,29 54,25"/>${[[6,6],[16,5],[26,6],[15.5,16],[16.5,27],[54,9],[46,5],[38,9],[35,17],[38,25],[46,29],[54,25]].map(([x, y]) => `<rect x="${x - 1}" y="${y - 1}" width="2" height="2"/>`).join('')}</svg>
 <div class="moon-wrap" aria-hidden="true"><div class="rise"><div class="bob">
 <div class="halo"><span class="ring r1"><img src="/assets/img/moon-ring-1.svg" alt="" width="96" height="96"></span><span class="ring r2"><img src="/assets/img/moon-ring-2.svg" alt="" width="96" height="96"></span><span class="ring r3"><img src="/assets/img/moon-ring-3.svg" alt="" width="96" height="96"></span></div>
 <img class="pmoon" src="/assets/img/moon.svg" alt="" width="64" height="64" decoding="async"><span class="egg-logo egg-moon" aria-hidden="true"></span>
@@ -430,7 +453,7 @@ ${secHead(stack, 'stack-h')}
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
 ${langHint(other, O)}
-${eggToast(c)}
+${eggToast(c, locale)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
@@ -439,6 +462,7 @@ ${eggToast(c)}
 
 export function render404({ assets }) {
   return `<!doctype html>
+${SOURCE_NOTE}
 <html lang="pt-BR" data-theme="dark" class="js">
 <head>
 <meta charset="utf-8">
@@ -507,6 +531,7 @@ export function renderCityPage({ c, city, assets, logoPaths }) {
   const caseItem = (it) => `<li class="res loc-case reveal"><img class="res-ico" src="/assets/img/icons/${esc(it.icon)}.svg" width="72" height="72" alt="" decoding="async"><h3>${esc(it.title)}</h3><p>${esc(it.body)}</p>${it.quote ? `<figure class="quote"><figcaption class="q-ctx">${esc(it.quote.context)}</figcaption><blockquote><p>${esc(it.quote.text)}</p></blockquote><p class="q-cite">${esc(it.quote.cite)}</p></figure>` : ''}</li>`;
 
   return `<!doctype html>
+${SOURCE_NOTE}
 <html lang="pt-BR" class="no-js" data-theme="light">
 <head>
 <meta charset="utf-8">
@@ -606,7 +631,7 @@ ${services.items.map((it) => `<li class="reveal"><h3>${esc(it.title)}</h3><p>${e
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
-${eggToast(c)}
+${eggToast(c, 'pt-BR')}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
@@ -701,6 +726,7 @@ export function renderCompanyPage({ c, locale, other, assets, logoPaths }) {
   const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 
   return `<!doctype html>
+${SOURCE_NOTE}
 <html lang="${esc(c.meta.lang)}" class="no-js" data-theme="light">
 <head>
 <meta charset="utf-8">
@@ -832,7 +858,7 @@ ${secHead(co.tech, 'tech-h')}
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
-${eggToast(c)}
+${eggToast(c, locale)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
@@ -850,6 +876,7 @@ export function renderCheatsPage({ c, locale, other, assets, logoPaths }) {
   const sun = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
   const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
   return `<!doctype html>
+${SOURCE_NOTE}
 <html lang="${esc(c.meta.lang)}" class="no-js" data-theme="light">
 <head>
 <meta charset="utf-8">
@@ -895,8 +922,11 @@ ${navItems.map(([id, label]) => `<a class="nl" href="${L.path}#${id}">${esc(labe
 </section>
 <section class="section alt" aria-label="${esc(ch.title)}">
 <div class="wrap">
+<div class="cheats-bar" id="cheatsBar" hidden><p class="cheats-progress" id="cheatsProgress" data-tpl="${esc(ch.progress)}"></p><button type="button" class="btn btn-outline" id="cheatsReveal">${esc(ch.reveal)}</button><button type="button" class="link-btn" id="cheatsReset">${esc(ch.reset)}</button></div>
 <ol class="cheats">
-${ch.items.map((it, i) => `<li class="cheat" id="cheat-${esc(it.id)}">
+${eggItems(c).map((it, i) => `<li class="cheat" id="cheat-${esc(it.id)}" data-egg="${esc(it.id)}">
+<div class="cheat-lock"><span class="cheat-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h2>${esc(ch.locked)}</h2><p class="cheat-what">${esc(ch.lockedWhat)}</p><dl class="cheat-meta"><div><dt>${esc(ch.whereLabel)}</dt><dd>${esc(it.where)}</dd></div></dl></div>
+<span class="cheat-got">${esc(ch.found)}</span>
 <span class="cheat-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
 <h2>${esc(it.name)}</h2>
 <p class="cheat-what">${esc(it.what)}</p>
@@ -914,7 +944,7 @@ ${ch.items.map((it, i) => `<li class="cheat" id="cheat-${esc(it.id)}">
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
-${eggToast(c)}
+${eggToast(c, locale)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
