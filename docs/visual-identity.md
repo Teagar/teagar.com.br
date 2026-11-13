@@ -279,3 +279,19 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 - Three quick clicks or taps on the moon or the sun (each within 0.6 s of the last; sun added 2026-11-13) toggle `.egg` on the stage: the pixel moon or sun fades out and the Teagar Company logo pops in at the same spot, used as a **mask over the body's own pixel texture** (`mask: url(/assets/brand/logo.svg)`), so the whole logo is made of moon or sun. The texture is enlarged so it fills the logo (moon 165%; sun 160% shifted to 70% so its pale centre falls in the C's counter, with `#FF7A1F` filling the tips past the disc), and the logo sits slightly lower (86%, 12% from the top) to stay clear of the stage's top fade; three more bring it back. The state is shared, so switching theme keeps the logo in the other sky. Not announced or hinted anywhere (it is an easter egg), decorative (`aria-hidden`), not persisted. The stage disables text selection so a triple click does not select the paragraph, and both bodies use `touch-action: manipulation` so taps do not zoom. Reduced motion makes the swap instant.
 
+
+## Easter eggs and the secret /cheats/ page
+
+Seven more easter eggs join the moon/sun logo. All of them are listed on a secret page, `/cheats/` (pt-BR) and `/en/cheats/` (en). That page is `noindex, nofollow`, has no canonical, is left out of the sitemap and llms.txt, and no page links to it. The only hint is the console note. None of the eggs changes anything until it is triggered, and each one ends by itself.
+
+| Egg | Trigger | Effect |
+|---|---|---|
+| Tea time | visitor's clock between 16:00 and 17:00 | the contact line becomes "Já é hora do chá…" (a `<template>` per page) and the cup steams faster |
+| Full cup | 5 clicks on the footer cup within 4 s | a pixel drip per click; on the fifth, tea domes over the rim, runs down both sides, pools on the saucer, and a toast says "Teagar = tea + gar" |
+| Konami | ↑↑↓↓←→←→BA | `html.gameboy` for 10 s: an SVG filter (`#gb-filter`) maps the page to the 4 Game Boy greens; the filter goes on `.topbar`, `main` and `.footer`, never on `body`, so the fixed bar keeps working |
+| Console | opening DevTools | the TC logo in ASCII (`#FF6700`), a one-line pitch, the email and a hint to `/cheats/` |
+| Shooting star | 20 s without input while the night hero is on screen | a pixel streak crosses the sky; clicking it while it flies pauses it and shows the wish toast |
+| Typing teagar | typing t-e-a-g-a-r outside form fields | the header name rolls to Thiago (the same state as hover) and 16 pixel teacups rain for about 2 s |
+| Eclipse | 5 theme switches, each within 1.5 s of the last | once the last sky swap ends, the scene dims, a black moon silhouette crosses the sun, and a pale corona glows at totality (3.4 s) |
+
+Toasts use one `#eggToast` (`role="status"`) in `--text` on `--bg`. Under reduced motion there is no drip, rain or star; the spill appears at its final size, and the eclipse holds totality instead of moving.

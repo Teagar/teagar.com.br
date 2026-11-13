@@ -464,5 +464,88 @@
       "cta": "Write an email",
       "form": "Use the contact form"
     }
+  },
+  "eggs": {
+    "teaTime": "It's tea time. Shall we talk about your project?",
+    "cup": "Teagar = tea + gar",
+    "wish": "Wish noted. Now just send me the email.",
+    "konami": "Game Boy mode on for 10 seconds",
+    "eclipse": "Eclipse!",
+    "console": [
+      "Curious? That's how I like to work.",
+      "contato@teagar.com.br",
+      "Psst: there are more secrets at /en/cheats/"
+    ]
+  },
+  "cheats": {
+    "meta": {
+      "title": "Cheats · Teagar",
+      "description": "The site's secret room: every easter egg and how to trigger it."
+    },
+    "breadcrumb": "Home",
+    "kicker": "Secret area",
+    "title": "Cheats",
+    "intro": "You found the secret room. Here are all of the site's secrets. Don't tell anyone.",
+    "howLabel": "How to trigger",
+    "whereLabel": "Where",
+    "back": "Back to the site",
+    "items": [
+      {
+        "id": "moon",
+        "name": "Branded moon and sun",
+        "how": "Click the moon or the sun 3 times",
+        "what": "It turns into the Teagar Company logo, made of its own texture. 3 more clicks undo it.",
+        "where": "Top of the home page"
+      },
+      {
+        "id": "teatime",
+        "name": "Tea time",
+        "how": "Visit between 4 and 5 pm",
+        "what": "The contact line becomes a tea invitation and the cup steams harder.",
+        "where": "Contact"
+      },
+      {
+        "id": "cup",
+        "name": "Full cup",
+        "how": "Click the footer cup 5 times",
+        "what": "Each click drips tea into the cup. On the fifth, it overflows.",
+        "where": "Footer"
+      },
+      {
+        "id": "konami",
+        "name": "Konami code",
+        "how": "↑ ↑ ↓ ↓ ← → ← → B A",
+        "what": "The site turns into a Game Boy for 10 seconds.",
+        "where": "Any page, with a keyboard"
+      },
+      {
+        "id": "console",
+        "name": "Console note",
+        "how": "Open DevTools (F12)",
+        "what": "The logo in ASCII and a note for people who like to look inside.",
+        "where": "Browser console"
+      },
+      {
+        "id": "star",
+        "name": "Shooting star",
+        "how": "Stay still for 20 s at the top, in dark theme",
+        "what": "A shooting star crosses the sky. Click it in time to make a wish.",
+        "where": "Night sky on the home page"
+      },
+      {
+        "id": "teagar",
+        "name": "Type teagar",
+        "how": "Type t e a g a r",
+        "what": "The header name turns into Thiago and it rains teacups.",
+        "where": "Any page, with a keyboard"
+      },
+      {
+        "id": "eclipse",
+        "name": "Eclipse",
+        "how": "Switch the theme 5 times in a row",
+        "what": "The moon passes in front of the sun.",
+        "where": "Top of the home page"
+      }
+    ]
   }
 }

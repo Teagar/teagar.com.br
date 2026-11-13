@@ -1,0 +1,84 @@
+/* ===== Easter eggs (all listed on the secret /cheats/ page). Nothing here shows until an egg is triggered. ===== */
+
+/* toast that announces an egg */
+.egg-toast{position:fixed;z-index:60;left:50%;bottom:clamp(16px,4vw,32px);max-width:min(92vw,30rem);padding:12px 18px;border-radius:var(--r-pill);background:var(--text);color:var(--bg);font-family:var(--mono);font-size:.875rem;font-weight:500;line-height:1.35;text-align:center;box-shadow:var(--shadow);opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .25s ease,transform .35s cubic-bezier(.34,1.56,.64,1)}
+.egg-toast:empty{padding:0}
+.egg-toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* tea time (16:00–17:00): the line becomes an invitation and the cup steams harder */
+.tea-row.tea-time .tea-steam{transform:scale(1.25);transform-origin:50% 100%}
+.tea-row.tea-time .tea-steam .st1,.tea-row.tea-time .tea-steam .st2,.tea-row.tea-time .tea-steam .st3{animation-duration:.5s}
+
+/* footer cup: each click drips tea in; the fifth overflows */
+.tea-mini{pointer-events:auto;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tea-mini .drip{position:absolute;left:50%;top:calc(-14px*var(--tp));width:calc(2px*var(--tp));height:calc(3px*var(--tp));margin-left:calc(-1px*var(--tp));background:var(--ember);animation:egg-drip .45s steps(5) forwards}
+@keyframes egg-drip{from{transform:none;opacity:1}90%{opacity:1}to{transform:translateY(calc(26px*var(--tp)));opacity:0}}
+.tea-mini.sip .tea-cup{animation:egg-sip .3s steps(2)}
+@keyframes egg-sip{50%{transform:translateY(calc(1px*var(--tp)))}}
+.tea-mini .spill{position:absolute;top:calc(11px*var(--tp));width:calc(2px*var(--tp));height:0;background:#3D1702;box-shadow:calc(1px*var(--tp)) 0 0 #6E2803;animation:egg-spill 1.2s steps(8) forwards}
+.tea-mini .spill.l{left:calc(10px*var(--tp))}
+.tea-mini .spill.r{right:calc(10px*var(--tp))}
+@keyframes egg-spill{to{height:calc(24px*var(--tp))}}
+.tea-mini.full .tea-cup{animation:egg-wobble .5s steps(4) 2}
+.tea-mini.full .tea-cup::before,.tea-mini.full .tea-cup::after{content:"";position:absolute;background:#6E2803;box-shadow:0 calc(1px*var(--tp)) 0 #3D1702;animation:egg-pour .6s steps(3) both}
+/* tea domes over the rim and pools on the saucer */
+.tea-mini.full .tea-cup::before{left:calc(11px*var(--tp));top:calc(7px*var(--tp));width:calc(26px*var(--tp));height:calc(4px*var(--tp));border-radius:calc(4px*var(--tp)) calc(4px*var(--tp)) 0 0}
+.tea-mini.full .tea-cup::after{left:calc(6px*var(--tp));top:calc(31px*var(--tp));width:calc(36px*var(--tp));height:calc(2px*var(--tp));border-radius:calc(1px*var(--tp));animation-delay:.6s}
+@keyframes egg-pour{from{opacity:0;transform:scaleX(.3)}to{opacity:1;transform:none}}
+@keyframes egg-wobble{25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+
+/* Konami code: a 4-shade Game Boy palette for 10 seconds (filter on each block, never on body, so the fixed bar keeps working) */
+html.gameboy :is(.topbar,main,.footer){filter:url(#gb-filter)}
+html.gameboy,html.gameboy body{background:#9BBC0F}
+
+/* type "teagar": the header name rolls to Thiago (same as hover) while teacups rain */
+.brand.roll .bs{width:var(--w1,auto)}
+.brand.roll .ba{transform:translateY(-140%);opacity:0}
+.brand.roll .bb{transform:none;opacity:1}
+.cup-rain{position:fixed;z-index:59;top:-60px;width:48px;height:40px;image-rendering:pixelated;pointer-events:none;animation:egg-fall var(--d,2s) linear forwards}
+@keyframes egg-fall{to{transform:translateY(calc(100vh + 80px)) rotate(var(--r,0deg))}}
+
+/* shooting star (dark theme, idle on the hero): a pixel streak that can be clicked while it flies */
+.shooting-star{position:absolute;z-index:1;top:8%;left:62%;width:calc(var(--px-size)*14px);height:calc(var(--px-size)*1px);padding:calc(var(--px-size)*4px) 0;box-sizing:content-box;background:linear-gradient(90deg,transparent,#FFA05A 55%,#FFF1E0) content-box;transform:rotate(-28deg);cursor:pointer;animation:egg-star 1.8s cubic-bezier(.3,0,.7,1) forwards}
+.shooting-star::after{content:"";position:absolute;right:calc(var(--px-size)*-1px);top:calc(var(--px-size)*3px);width:calc(var(--px-size)*3px);height:calc(var(--px-size)*3px);background:#FFF1E0}
+@keyframes egg-star{from{translate:0 0;opacity:0}10%{opacity:1}80%{opacity:1}to{translate:calc(var(--px-size)*-46px) calc(var(--px-size)*26px);opacity:0}}
+.shooting-star.wished{animation-play-state:paused;filter:drop-shadow(0 0 calc(var(--px-size)*2px) #FFA05A)}
+
+/* eclipse: five theme switches in a row; the moon's silhouette crosses the sun while the sky dims */
+.eclipse{position:absolute;z-index:1;inset:0;pointer-events:none;opacity:0;transition:opacity .4s ease}
+.eclipse img,.eclipse .ec-moon{position:absolute;left:50%;top:calc(var(--px-size)*8px);width:calc(64px*var(--px-size));height:calc(64px*var(--px-size));margin-left:calc(-32px*var(--px-size));image-rendering:pixelated}
+.eclipse .ec-moon{background:url(/assets/img/moon.svg) center/100% no-repeat;filter:brightness(0);transform:translateX(calc(var(--px-size)*-80px))}
+.eclipse::before{content:"";position:absolute;left:50%;top:calc(var(--px-size)*-4px);width:calc(88px*var(--px-size));height:calc(88px*var(--px-size));margin-left:calc(-44px*var(--px-size));border-radius:50%;background:radial-gradient(circle,#FFF1E0 34%,rgb(255 160 90/.55) 40%,rgb(255 103 0/.18) 52%,transparent 70%);opacity:0}
+.stage.eclipsing .eclipse::before{animation:egg-corona 3.4s ease forwards}
+.stage.eclipsing .eclipse{opacity:1}
+.stage.eclipsing .eclipse .ec-moon{animation:egg-eclipse 3.4s cubic-bezier(.45,0,.55,1) forwards}
+.stage.eclipsing .scene{filter:brightness(.4);transition:filter .6s ease}
+.stage.eclipsing .moon-wrap,.stage.eclipsing .sun-wrap{opacity:0}
+.stage .scene{transition:filter .6s ease}
+@keyframes egg-eclipse{0%{transform:translateX(calc(var(--px-size)*-80px))}40%,62%{transform:none}100%{transform:translateX(calc(var(--px-size)*80px))}}
+@keyframes egg-corona{0%,30%{opacity:0}42%,60%{opacity:1}74%,100%{opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .egg-toast{transition:opacity .2s ease;transform:translate(-50%,0)}
+  .tea-mini .drip,.tea-mini .spill,.tea-mini.sip .tea-cup,.tea-mini.full .tea-cup{animation:none}
+  .tea-mini .drip{display:none}
+  .tea-mini .spill{height:calc(24px*var(--tp))}
+  .tea-row.tea-time .tea-steam{transform:none}
+  /* eclipse holds totality instead of moving */
+  .stage.eclipsing .eclipse .ec-moon{animation:none;transform:none}
+  .stage.eclipsing .eclipse::before{animation:none;opacity:1}
+}
+
+/* secret cheats page */
+.cheats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);list-style:none;padding:0}
+.cheat{position:relative;display:flex;flex-direction:column;gap:12px;padding:clamp(22px,2.6vw,32px);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card)}
+.cheat-n{font-family:var(--mono);font-size:.8125rem;font-weight:500;color:var(--ember-text);letter-spacing:.04em}
+.cheat h2{font-family:var(--display);font-size:clamp(1.625rem,2.4vw,2.125rem);font-weight:800;line-height:1.02}
+.cheat-what{color:var(--muted);max-width:34em}
+.cheat-meta{display:grid;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.cheat-meta div{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:12px;align-items:baseline}
+.cheat-meta dt{font-family:var(--mono);font-size:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cheat-meta kbd{font-family:var(--mono);font-size:.875rem;font-weight:500;padding:2px 8px;border-radius:var(--r-input);background:var(--ember);color:var(--on-ember);box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cheats + .hero-cta{margin-top:clamp(32px,4vw,56px)}
+.cheats-hero .lead{max-width:34em;margin-top:clamp(18px,2vw,28px);font-size:clamp(1.125rem,1.6vw,1.375rem);color:var(--muted)}
+@media (max-width:760px){.cheats{grid-template-columns:1fr}.cheat-meta div{grid-template-columns:1fr;gap:2px}}

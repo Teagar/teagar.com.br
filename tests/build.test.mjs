@@ -495,3 +495,51 @@ test('easter egg: three clicks on the moon or the sun swap it for the Teagar Com
   assert.match(css, /\.egg-moon\{--egg-tex:url\(\/assets\/img\/moon\.svg\)/);
   assert.match(css, /\.egg-sun\{--egg-tex:url\(\/assets\/img\/sun\.svg\)/);
 });
+
+test('more easter eggs: tea time, cup, Konami, console, shooting star, typing teagar and eclipse', async () => {
+  for (const f of ['index.html', 'en/index.html', 'feira-de-santana/index.html', 'teagar-company/index.html', 'cheats/index.html', 'en/cheats/index.html']) {
+    const html = await read(f);
+    assert.match(html, /<div class="egg-toast" id="eggToast" role="status" aria-live="polite" data-cup="[^"]+" data-wish="[^"]+" data-konami="[^"]+" data-eclipse="[^"]+" data-console="[^"]+"><\/div>/, f);
+    assert.ok(html.includes('<filter id="gb-filter"'), `${f}: Game Boy filter`);
+    assert.ok(html.includes('class="tea tea-mini"'), `${f}: footer cup`);
+  }
+  for (const [f, line] of [['index.html', 'Já é hora do <span class="tea-word">chá</span>'], ['en/index.html', 'It&#39;s <span class="tea-word">tea</span> time'], ['feira-de-santana/index.html', 'hora do <span class="tea-word">chá</span>']]) {
+    const html = await read(f);
+    assert.ok(html.includes('<template class="tea-time-tpl">') && html.includes(line), `${f}: tea-time line`);
+  }
+  for (const f of ['index.html', 'en/index.html']) {
+    assert.match(await read(f), /<div class="eclipse" aria-hidden="true"><img class="ec-sun" src="\/assets\/img\/sun.svg"/);
+  }
+  const js = await read('assets/site.js');
+  assert.match(js, /getHours\(\)\s*===\s*16/, 'tea time is 16:00-17:00');
+  assert.ok(js.includes("'arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'") || js.includes("'arrowup', 'arrowup', 'arrowdown'"), 'Konami sequence');
+  assert.match(js, /'teagar'/);
+  assert.match(js, /fills\s*>=\s*5/);
+  assert.match(js, /flips\s*<\s*5/);
+  assert.match(js, /shoot,\s*2e4|shoot,\s*20000/);
+  assert.match(js, /console\.log/);
+  assert.match(js, /input\|textarea\|select/, 'keyboard eggs ignore form fields');
+  const css = await read('assets/site.css');
+  assert.match(css, /html\.gameboy :is\(\.topbar,main,\.footer\)\{filter:url\(#gb-filter\)\}/, 'filter never on body (keeps the fixed bar)');
+  assert.match(css, /\.brand\.roll \.bb\{transform:none;opacity:1\}/);
+  assert.match(css, /\.stage\.eclipsing \.eclipse\{opacity:1\}/);
+  assert.match(css, /prefers-reduced-motion:reduce\)\{[^@]*\.stage\.eclipsing \.eclipse \.ec-moon\{animation:none;transform:none\}/);
+});
+
+test('secret cheats page: both languages, noindex, every egg listed, not in sitemap or llms.txt', async () => {
+  for (const [f, lang, other] of [['cheats/index.html', 'pt-BR', '/en/cheats/'], ['en/cheats/index.html', 'en', '/cheats/']]) {
+    const html = await read(f);
+    assert.match(html, new RegExp(`<html lang="${lang}"`));
+    assert.ok(html.includes('<meta name="robots" content="noindex, nofollow">'));
+    assert.ok(!html.includes('rel="canonical"'), 'no canonical on a hidden page');
+    assert.equal((html.match(/<li class="cheat" id="cheat-/g) || []).length, 8);
+    for (const id of ['moon', 'teatime', 'cup', 'konami', 'console', 'star', 'teagar', 'eclipse']) assert.ok(html.includes(`id="cheat-${id}"`), `${f}: ${id}`);
+    assert.ok(html.includes(`id="langSwitch" href="${other}"`));
+    assert.equal((html.match(/<h1[\s>]/g) || []).length, 1);
+  }
+  assert.ok(!(await read('sitemap.xml')).includes('cheats'));
+  assert.ok(!(await read('llms.txt')).includes('cheats'));
+  for (const f of ['index.html', 'en/index.html', 'feira-de-santana/index.html', 'teagar-company/index.html']) {
+    assert.ok(!(await read(f)).includes('href="/cheats/') && !(await read(f)).includes('href="/en/cheats/'), `${f} does not link the secret page`);
+  }
+});

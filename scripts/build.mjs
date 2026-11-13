@@ -6,7 +6,7 @@ import { writeMoonAssets } from './moon.mjs';
 import { writeSunAssets } from './sun.mjs';
 import { writeTeaAssets } from './tea.mjs';
 import { writeIconAssets } from './pixel-icons.mjs';
-import { renderPage, render404, renderCityPage, renderCompanyPage, linkCompany, companyUrl, SITE, LOCALES, CITY_PATH } from '../src/template.mjs';
+import { renderPage, render404, renderCityPage, renderCompanyPage, renderCheatsPage, linkCompany, companyUrl, CHEATS_SLUG, SITE, LOCALES, CITY_PATH } from '../src/template.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
@@ -54,6 +54,12 @@ async function main() {
   await mkdir(join(dist, enCo), { recursive: true });
   await writeFile(join(dist, ptCo, 'index.html'), renderCompanyPage({ c: pt, locale: 'pt-BR', other: { locale: 'en', meta: en.meta }, assets, logoPaths }));
   await writeFile(join(dist, enCo, 'index.html'), renderCompanyPage({ c: en, locale: 'en', other: { locale: 'pt-BR', meta: pt.meta }, assets, logoPaths }));
+  // secret easter egg page: noindex and deliberately left out of the sitemap and llms.txt
+  for (const [c, locale, other] of [[pt, 'pt-BR', { locale: 'en', meta: en.meta }], [en, 'en', { locale: 'pt-BR', meta: pt.meta }]]) {
+    const dir = join(dist, LOCALES[locale].path, CHEATS_SLUG);
+    await mkdir(dir, { recursive: true });
+    await writeFile(join(dir, 'index.html'), linkCompany(renderCheatsPage({ c, locale, other, assets, logoPaths }), companyUrl(locale)));
+  }
   const city = JSON.parse(await readFile(join(root, 'src/content/feira-de-santana.json'), 'utf8'));
   await mkdir(join(dist, CITY_PATH), { recursive: true });
   await writeFile(join(dist, CITY_PATH, 'index.html'), linkCompany(renderCityPage({ c: pt, city, assets, logoPaths }), ptCo));
