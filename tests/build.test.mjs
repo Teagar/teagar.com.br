@@ -469,3 +469,12 @@ test('every visible "Teagar Company" on the other pages links to the company pag
     assert.doesNotMatch(body, /<a [^>]*>(?:(?!<\/a>)[\s\S])*<a /, `${f} has no nested links`);
   }
 });
+
+test('hero stage fades into the page instead of ending in a hard card edge', async () => {
+  const css = await read('assets/site.css');
+  const rule = css.match(/\.stage\{--px-size:6;[^}]*\}/)[0];
+  assert.match(rule, /mask-image:var\(--fade-x\),var\(--fade-y\)/);
+  assert.match(rule, /mask-composite:intersect/);
+  assert.match(rule, /-webkit-mask-composite:source-in/);
+  assert.doesNotMatch(rule, /border-radius/);
+});

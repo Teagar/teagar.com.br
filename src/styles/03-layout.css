@@ -50,7 +50,12 @@ html[data-theme="dark"] .theme-btn .moon{display:none}
 .status strong{display:block;font-weight:600}
 .status .loc{display:block;color:var(--muted)}
 .live-dot{flex:none;width:8px;height:8px;margin-top:.55em;border-radius:50%;background:var(--ok-dot)}
-.stage{--px-size:6;position:relative;grid-column:8/-1;aspect-ratio:4/5;border-radius:var(--r-stage);background:#140F0C;overflow:hidden}
+.stage{--px-size:6;position:relative;grid-column:8/-1;aspect-ratio:4/5;background:#140F0C;overflow:hidden;
+  /* the scene dissolves into the page instead of ending in a hard card edge: two eased linear fades, intersected */
+  --fade-x:linear-gradient(90deg,transparent,rgb(0 0 0/.35) 6%,rgb(0 0 0/.8) 12%,#000 18%,#000 82%,rgb(0 0 0/.8) 88%,rgb(0 0 0/.35) 94%,transparent);
+  --fade-y:linear-gradient(180deg,transparent,rgb(0 0 0/.35) 5%,rgb(0 0 0/.8) 10%,#000 15%,#000 72%,rgb(0 0 0/.8) 82%,rgb(0 0 0/.35) 92%,transparent);
+  -webkit-mask-image:var(--fade-x),var(--fade-y);-webkit-mask-composite:source-in;
+  mask-image:var(--fade-x),var(--fade-y);mask-composite:intersect}
 .scene{position:absolute;inset:0}
 .scene.day{display:none}
 html[data-theme="light"] .scene.day{display:block}

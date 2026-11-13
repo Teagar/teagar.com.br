@@ -93,7 +93,7 @@ Scale (clamp): hero name 64→129 px; h2 51→101 px; h3 24→32 px; stat number
 ## Shape and space
 
 - Radii: 999 px for buttons, chips and the language/theme controls; 24 px for
-  cards and images; 32 px for the hero portrait stage.
+  cards and images; the hero portrait stage has no radius (its edges fade into the page, see "Hero stage fade").
 - Generous whitespace: sections 120–176 px vertical on desktop, 80 px mobile.
 - 12-column fluid layout, max content width 1240 px, gutters 24–32 px.
 - Borders are rare; separate with surface color changes and space.
@@ -154,7 +154,7 @@ Calm and physical. Durations 500–900 ms, `cubic-bezier(.2,.7,.2,1)`.
    Teagar Company" (muted, with a 10 px ember dot), then the headline
    `titleA` + `titleB` (weight 300, ember) in huge display, lead paragraph, two pill
    buttons (ember fill + outline), status with a pulsing 8 px green dot,
-   location line. Right 5 columns: the **portrait stage**: rounded 32 px
+   location line. Right 5 columns: the **portrait stage**: edges faded into the page (formerly rounded 32 px)
    container with the theme's sky: night (`#140F0C`, three pixel bands at the bottom)
    in dark, the warm day sky with clouds and the pixel sun (upper left of centre,
    rays partly behind the portrait) in light; the pixel moon (64 × `--px-size` px, about 75% of stage width)
@@ -270,4 +270,8 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 - `/teagar-company/` (pt-BR) and `/en/teagar-company/` (en), rendered by `renderCompanyPage` from `company` in each locale file. Sections: hero with breadcrumb, headline, lead and CTAs beside a "ficha" card (logo mark + facts: founder, base, engagement, contact, GitHub); services (reused, with their mono code); in-house products (Gartrol, Teagarden, Egogero, reusing the work cards); four working principles with an ember top rule; technology chips; contact with the tea line.
 - Sources: the public `teagarcompany` GitHub profile (description, areas, stack, contact) and copy already on the site. The org's other repositories are private and are not described.
 - Every visible "Teagar Company" on the other pages (home pt/en, Feira de Santana, 404) is turned into a link to the company page of the same language by `linkCompany` at build time: `.co-link`, text color with a 2 px ember underline (1 px in the kicker and footer). Text inside links, buttons, SVG and hidden elements is skipped, so links never nest; the company page does not link to itself.
+
+## Hero stage fade (owner request 2026-11-13)
+
+- The sun/moon stage no longer ends in a rounded card edge: a CSS mask (two eased linear gradients, horizontal 18% and vertical 15% top / 28% bottom, intersected) dissolves the sky, the body and the bottom of the photo into the page background in both themes. The face and the sun/moon stay fully opaque; the theme swap animation is unchanged.
 
