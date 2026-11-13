@@ -464,5 +464,88 @@
       "cta": "Escrever um e-mail",
       "form": "Usar o formulário de contato"
     }
+  },
+  "eggs": {
+    "teaTime": "Já é hora do chá. Bora falar do seu projeto?",
+    "cup": "Teagar = tea + gar",
+    "wish": "Desejo anotado. Agora é só me mandar o e-mail.",
+    "konami": "Modo Game Boy ligado por 10 segundos",
+    "eclipse": "Eclipse!",
+    "console": [
+      "Curioso? É assim que eu gosto de trabalhar.",
+      "contato@teagar.com.br",
+      "Psiu: tem mais segredos em /cheats/"
+    ]
+  },
+  "cheats": {
+    "meta": {
+      "title": "Cheats · Teagar",
+      "description": "A sala secreta do site: todos os easter eggs e como ativar cada um."
+    },
+    "breadcrumb": "Início",
+    "kicker": "Área secreta",
+    "title": "Cheats",
+    "intro": "Você achou a sala secreta. Aqui estão todos os segredos do site. Não conte pra ninguém.",
+    "howLabel": "Como ativar",
+    "whereLabel": "Onde",
+    "back": "Voltar ao site",
+    "items": [
+      {
+        "id": "moon",
+        "name": "Lua e sol de marca",
+        "how": "3 cliques na lua ou no sol",
+        "what": "O astro vira a logo da Teagar Company, feita da própria textura. Mais 3 cliques desfazem.",
+        "where": "Topo da página inicial"
+      },
+      {
+        "id": "teatime",
+        "name": "Hora do chá",
+        "how": "Visitar entre 16h e 17h",
+        "what": "A frase do contato vira um convite para o chá e a xícara solta mais vapor.",
+        "where": "Contato"
+      },
+      {
+        "id": "cup",
+        "name": "Xícara cheia",
+        "how": "5 cliques na xícara do rodapé",
+        "what": "Cada clique pinga chá na xícara. No quinto, ela transborda.",
+        "where": "Rodapé"
+      },
+      {
+        "id": "konami",
+        "name": "Código Konami",
+        "how": "↑ ↑ ↓ ↓ ← → ← → B A",
+        "what": "O site vira um Game Boy por 10 segundos.",
+        "where": "Qualquer página, com teclado"
+      },
+      {
+        "id": "console",
+        "name": "Recado no console",
+        "how": "Abrir o DevTools (F12)",
+        "what": "A logo em ASCII e um recado para quem gosta de ver por dentro.",
+        "where": "Console do navegador"
+      },
+      {
+        "id": "star",
+        "name": "Estrela cadente",
+        "how": "Ficar 20 s parado no topo, no tema escuro",
+        "what": "Passa uma estrela cadente. Clique nela a tempo para fazer um pedido.",
+        "where": "Céu noturno da página inicial"
+      },
+      {
+        "id": "teagar",
+        "name": "Digitar teagar",
+        "how": "Digitar t e a g a r",
+        "what": "O nome do topo vira Thiago e chove xícara de chá.",
+        "where": "Qualquer página, com teclado"
+      },
+      {
+        "id": "eclipse",
+        "name": "Eclipse",
+        "how": "Trocar o tema 5 vezes seguidas",
+        "what": "A lua passa na frente do sol.",
+        "where": "Topo da página inicial"
+      }
+    ]
   }
 }

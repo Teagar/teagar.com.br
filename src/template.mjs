@@ -25,11 +25,17 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 /** spoken languages (BCP 47 code, English name) for knowsLanguage */
 const LANGS = [['pt', 'Portuguese'], ['en', 'English'], ['es', 'Spanish'], ['ru', 'Russian'], ['zh', 'Mandarin Chinese']];
 /** Contact tea line with the tea word set like a text selection: the "tea" in Teagar. */
-function teaLine(contact) {
-  const line = esc(contact.teaLine), word = esc(contact.teaWord || '');
+function teaLine(contact, text = contact.teaLine) {
+  const line = esc(text), word = esc(contact.teaWord || '');
   const i = word ? line.indexOf(word) : -1;
   return i < 0 ? line : `${line.slice(0, i)}<span class="tea-word">${word}</span>${line.slice(i + word.length)}`;
 }
+
+/** Easter eggs: the tea-time line (swapped in between 16:00 and 17:00), the toast that announces some eggs,
+ *  and the 4-shade Game Boy filter used by the Konami code. Strings come from `eggs` in each locale. */
+const teaTimeTpl = (c) => `<template class="tea-time-tpl">${teaLine(c.contact, c.eggs.teaTime)}</template>`;
+const eggToast = (c) => `<div class="egg-toast" id="eggToast" role="status" aria-live="polite" data-cup="${esc(c.eggs.cup)}" data-wish="${esc(c.eggs.wish)}" data-konami="${esc(c.eggs.konami)}" data-eclipse="${esc(c.eggs.eclipse)}" data-console="${esc(JSON.stringify(c.eggs.console))}"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="gb-filter" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0 0.299 0.587 0.114 0 0 0.299 0.587 0.114 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0.059 0.188 0.545 0.608"/><feFuncG type="discrete" tableValues="0.220 0.384 0.675 0.737"/><feFuncB type="discrete" tableValues="0.059 0.188 0.059 0.059"/></feComponentTransfer></filter></svg>`;
 
 /** Before/after range chart (HTML/CSS): one row per period, bar from `from` to `to` on a shared 0..max axis,
  *  values always printed beside the bar so identity and value never depend on color. */
@@ -292,6 +298,7 @@ ${cloudsInline()}
 <img class="pmoon psun" src="/assets/img/sun.svg" alt="" width="64" height="64" decoding="async"><span class="egg-logo egg-sun" aria-hidden="true"></span>
 </div></div></div>
 </div>
+<div class="eclipse" aria-hidden="true"><img class="ec-sun" src="/assets/img/sun.svg" alt="" width="64" height="64" decoding="async"><span class="ec-moon"></span></div>
 <div class="cut-pos"><div class="cut">${picture({ base: 'cutout', exts: ['avif', 'webp', 'png'], widths: [480, 960, 1440], sizes: portraitSizes, w: 960, h: 960, alt: meta.portraitAlt, attrs: 'fetchpriority="high" decoding="async"' })}</div></div>
 </div>
 </div>
@@ -389,7 +396,7 @@ ${secHead(stack, 'stack-h')}
 <section class="section contact" id="contact" aria-labelledby="contact-h">
 <div class="wrap contact-grid">
 <div class="contact-copy">
-<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p></div>
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p>${teaTimeTpl(c)}</div>
 <h2 id="contact-h" class="reveal">${esc(contact.title)}</h2>
 <p class="body reveal">${esc(contact.body)}</p>
 <p class="mail-line reveal">${esc(contact.emailLabel)}<br><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
@@ -423,6 +430,7 @@ ${secHead(stack, 'stack-h')}
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
 ${langHint(other, O)}
+${eggToast(c)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
@@ -583,7 +591,7 @@ ${services.items.map((it) => `<li class="reveal"><h3>${esc(it.title)}</h3><p>${e
 
 <section class="section contact" id="contato" aria-labelledby="contato-h">
 <div class="wrap loc-contact">
-<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p></div>
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p>${teaTimeTpl(c)}</div>
 <h2 id="contato-h" class="reveal">${esc(city.contact.title)}</h2>
 <p class="body reveal">${esc(city.contact.body)}</p>
 <p class="mail-line reveal"><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
@@ -598,6 +606,7 @@ ${services.items.map((it) => `<li class="reveal"><h3>${esc(it.title)}</h3><p>${e
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
+${eggToast(c)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
@@ -808,7 +817,7 @@ ${secHead(co.tech, 'tech-h')}
 
 <section class="section contact" id="contact" aria-labelledby="contact-h">
 <div class="wrap loc-contact">
-<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p></div>
+<div class="tea-row"><div class="tea" aria-hidden="true">${teaStack(true)}</div><p class="tea-line reveal">${teaLine(contact)}</p>${teaTimeTpl(c)}</div>
 <h2 id="contact-h" class="reveal">${esc(co.contact.title)}</h2>
 <p class="body reveal">${esc(co.contact.body)}</p>
 <p class="mail-line reveal"><a class="mail" href="mailto:${esc(contact.email)}">${esc(contact.email)}</a></p>
@@ -823,6 +832,89 @@ ${secHead(co.tech, 'tech-h')}
 </div>
 <div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
 </footer>
+${eggToast(c)}
+<script src="/assets/site.js?v=${assets.js}" defer></script>
+</body>
+</html>
+`;
+}
+
+/** Secret cheats page (pt-BR "/cheats/", en "/en/cheats/"): lists every easter egg. Not indexed, not in the sitemap, not linked. */
+export const CHEATS_SLUG = 'cheats/';
+export function renderCheatsPage({ c, locale, other, assets, logoPaths }) {
+  const L = LOCALES[locale];
+  const O = LOCALES[other.locale];
+  const { ui, nav, footer, cheats: ch } = c;
+  const year = new Date().getFullYear();
+  const navItems = [['services', nav.services], ['work', nav.work], ['process', nav.process], ['about', nav.about], ['contact', nav.contact]];
+  const sun = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const moon = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  return `<!doctype html>
+<html lang="${esc(c.meta.lang)}" class="no-js" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>${themeScript}</script>
+<title>${esc(ch.meta.title)}</title>
+<meta name="description" content="${esc(ch.meta.description)}">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5EFE6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0B09" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=${assets.css}">
+</head>
+<body class="page-cheats">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="tc-logo" viewBox="0 0 505 505">${logoPaths}</symbol></svg>
+<a class="skip" href="#main">${esc(ui.skip)}</a>
+<header class="topbar" id="topbar">
+<div class="wrap bar">
+<a class="brand" href="${L.path}">${logo()}${brandName()}</a>
+<nav class="nav" id="siteNav" aria-label="${esc(ui.menu)}">
+${navItems.map(([id, label]) => `<a class="nl" href="${L.path}#${id}">${esc(label)}</a>`).join('\n')}
+<a class="btn btn-primary btn-menu" href="${L.path}#contact">${esc(nav.cta)}</a>
+</nav>
+<div class="tools">
+<a class="pill-ctl lang lang-flag" id="langSwitch" href="${O.path + CHEATS_SLUG}" hreflang="${esc(other.locale)}" lang="${esc(other.locale)}" title="${esc(ui.langSwitch)}" aria-label="${esc(ui.langLabel)}: ${esc(ui.langSwitch)}"><img class="flag" src="/assets/img/icons/${other.locale === 'en' ? 'flag-us' : 'flag-br'}.svg" width="32" height="22" alt="" decoding="async"></a>
+<button type="button" class="pill-ctl theme-btn" id="themeToggle" aria-label="${esc(ui.themeLabel)}" aria-pressed="false" data-light="${esc(ui.themeLight)}" data-dark="${esc(ui.themeDark)}" title="${esc(ui.themeLabel)}">${sun}${moon}</button>
+<a class="btn btn-primary btn-cta" href="${L.path}#contact">${esc(nav.cta)}</a>
+<button type="button" class="pill-ctl menu-btn" id="menuToggle" aria-expanded="false" aria-controls="siteNav" aria-label="${esc(ui.menu)}" title="${esc(ui.menu)}"><svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg><svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+</div>
+</header>
+<main id="main" tabindex="-1">
+<section class="loc-hero cheats-hero" aria-labelledby="top">
+<div class="wrap">
+<nav class="crumbs" aria-label="${locale === 'en' ? 'Breadcrumb' : 'Trilha'}"><a href="${L.path}">${esc(ch.breadcrumb)}</a><span aria-hidden="true"> / </span><span aria-current="page">${esc(ch.title)}</span></nav>
+<p class="hero-kicker"><span class="dot" aria-hidden="true"></span>${esc(ch.kicker)}</p>
+<h1 id="top">${esc(ch.title)}</h1>
+<p class="lead">${esc(ch.intro)}</p>
+</div>
+</section>
+<section class="section alt" aria-label="${esc(ch.title)}">
+<div class="wrap">
+<ol class="cheats">
+${ch.items.map((it, i) => `<li class="cheat" id="cheat-${esc(it.id)}">
+<span class="cheat-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+<h2>${esc(it.name)}</h2>
+<p class="cheat-what">${esc(it.what)}</p>
+<dl class="cheat-meta"><div><dt>${esc(ch.howLabel)}</dt><dd><kbd>${esc(it.how)}</kbd></dd></div><div><dt>${esc(ch.whereLabel)}</dt><dd>${esc(it.where)}</dd></div></dl>
+</li>`).join('\n')}
+</ol>
+<div class="hero-cta"><a class="btn btn-outline" href="${L.path}">${esc(ch.back)}${ICON_ARROW}</a></div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="wrap foot-row">
+<div><p class="tag">${esc(footer.tagline)}</p><p class="copy">© ${year} ${esc(footer.rights)} ${esc(footer.builtWith)}</p></div>
+<nav class="foot-links" aria-label="${esc(ui.menu)}">${navItems.map(([id, label]) => `<a href="${L.path}#${id}">${esc(label)}</a>`).join('')}<a href="#top">${esc(ui.backToTop)}</a></nav>
+</div>
+<div class="wm"><p class="wordmark" aria-hidden="true">Teagar</p><div class="tea tea-mini" aria-hidden="true">${teaStack(false)}</div></div>
+</footer>
+${eggToast(c)}
 <script src="/assets/site.js?v=${assets.js}" defer></script>
 </body>
 </html>
