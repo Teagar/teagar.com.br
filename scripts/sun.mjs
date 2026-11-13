@@ -106,7 +106,7 @@ function cloudsBody() {
   const specs = [['c1', 'big', false, 78, 6], ['c2', 'small', true, 100, 26], ['c2', 'small', false, 2, 76], ['c1', 'small', true, 104, 66]];
   const groups = { c1: [], c2: [] };
   for (const [name, kind, flip, x, y] of specs) {
-    groups[name].push(`<g transform="translate(${x} ${y})">${runs(cloud(kind, flip))}</g>`);
+    groups[name].push(`<g class="cloud" transform="translate(${x} ${y})">${runs(cloud(kind, flip))}</g>`);
   }
   return ['c1', 'c2'].map((n) => `<g class="${n}">${groups[n].join('')}</g>`).join('');
 }

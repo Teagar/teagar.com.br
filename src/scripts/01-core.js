@@ -113,7 +113,9 @@
   /* easter egg: three quick clicks or taps on the moon or the sun turn it into the Teagar Company logo (three more turn it back) */
   var taps = 0, tapTimer = 0;
   Array.prototype.forEach.call(document.querySelectorAll('#stage .moon-wrap, #stage .sun-wrap'), function (body) {
-    body.addEventListener('click', function () {
+    body.addEventListener('click', function (e) {
+      /* clicks on a cloud belong to the rain egg, not to the sun */
+      if (document.elementsFromPoint && document.elementsFromPoint(e.clientX, e.clientY).some(function (el) { return el.closest && el.closest('.cloud'); })) return;
       taps += 1;
       clearTimeout(tapTimer);
       tapTimer = setTimeout(function () { taps = 0; }, 600);

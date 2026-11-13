@@ -475,7 +475,68 @@
       "Curious? That's how I like to work.",
       "contato@teagar.com.br",
       "Psst: there are more secrets at /en/cheats/"
-    ]
+    ],
+    "deploy": [
+      "$ npm run deploy",
+      "✔ tests 33/33",
+      "✔ CI green",
+      "✔ live. Now just send me the message."
+    ],
+    "deployBtn": "Deploy ▲",
+    "lateLine": "Still awake? Me too, sometimes. Get in touch.",
+    "photo": "Hey, that tickles!",
+    "turbo": "Easy, the site is static, no need to rush.",
+    "junino": "Teagar's June festival! Viva São João!",
+    "birthday": "It's Thiago's birthday today!",
+    "found": "Achievement",
+    "consoleHint": "Type cha() here to log this achievement.",
+    "consoleOk": "Achievement logged. See /en/cheats/",
+    "terminal": {
+      "title": "visitor@teagar: ~",
+      "prompt": "visitor@teagar:~$",
+      "label": "Secret terminal",
+      "close": "Close terminal",
+      "welcome": [
+        "Teagar terminal. Type help to see the commands."
+      ],
+      "notFound": "command not found: {cmd}. Try help",
+      "help": [
+        "commands: whoami, projects, contact, tea, ls, theme, cheats, clear, exit",
+        "and a hidden one: sudo hire"
+      ],
+      "whoami": [
+        "Thiago Cerqueira (Teagar), developer in Feira de Santana, Brazil.",
+        "Custom software, automation and integrations through Teagar Company."
+      ],
+      "contato": [
+        "email: contato@teagar.com.br",
+        "or: sudo hire"
+      ],
+      "cha": [
+        "    ( (",
+        "     ) )",
+        "  ........",
+        "  |      |]",
+        "  \\      /",
+        "   `----'",
+        "Tea served. Teagar = tea + gar."
+      ],
+      "ls": [
+        "services/  projects/  process/  about/  contact/  cheats/"
+      ],
+      "tema": "Theme switched.",
+      "cheats": "Opening the secret room...",
+      "sudo": "Opening your email. Good choice.",
+      "sudoNo": "sudo: there is only one command here, and it's hire.",
+      "commands": {
+        "projects": "projetos",
+        "contact": "contato",
+        "tea": "cha",
+        "chá": "cha",
+        "theme": "tema",
+        "dir": "ls"
+      }
+    }
   },
   "cheats": {
     "meta": {
@@ -545,7 +606,97 @@
         "how": "Switch the theme 5 times in a row",
         "what": "The moon passes in front of the sun.",
         "where": "Top of the home page"
+      },
+      {
+        "id": "deploy",
+        "name": "Deploy from the form",
+        "how": "Write /deploy in the message",
+        "what": "The button turns into Deploy and a build log shows up.",
+        "where": "Contact form"
+      },
+      {
+        "id": "source",
+        "name": "Note in the source",
+        "how": "View the source (Ctrl+U)",
+        "what": "A hidden comment at the top of the HTML, with the link that logs this achievement.",
+        "where": "Source of any page"
+      },
+      {
+        "id": "terminal",
+        "name": "Hidden terminal",
+        "how": "Press ~ (or `)",
+        "what": "Opens a terminal with commands like whoami, projects and sudo hire.",
+        "where": "Any page, with a keyboard"
+      },
+      {
+        "id": "drag",
+        "name": "Manual sunset",
+        "how": "Drag the moon or the sun down",
+        "what": "It sets and the theme switches.",
+        "where": "Top of the home page, with a mouse"
+      },
+      {
+        "id": "constellation",
+        "name": "TC constellation",
+        "how": "Move the mouse slowly across the night sky",
+        "what": "The stars connect into the initials T and C.",
+        "where": "Night sky on the home page"
+      },
+      {
+        "id": "rain",
+        "name": "Rain cloud",
+        "how": "Click a cloud 3 times",
+        "what": "The cloud rains pixels for a few seconds.",
+        "where": "Day sky on the home page"
+      },
+      {
+        "id": "latenight",
+        "name": "Late-night coffee",
+        "how": "Visit between midnight and 5 am",
+        "what": "The cup turns into coffee and the contact line changes.",
+        "where": "Contact"
+      },
+      {
+        "id": "spell",
+        "name": "Tea · gar",
+        "how": "Hover the header name 5 times",
+        "what": "The name spells itself out with a cup in the middle.",
+        "where": "Top of any page, with a mouse"
+      },
+      {
+        "id": "junino",
+        "name": "June festival",
+        "how": "Visit in June",
+        "what": "São João bunting decorates the sky.",
+        "where": "Top of the home page"
+      },
+      {
+        "id": "birthday",
+        "name": "Birthday",
+        "how": "Visit on Thiago's birthday",
+        "what": "The moon and the sun get party hats.",
+        "where": "Top of the home page"
+      },
+      {
+        "id": "photo",
+        "name": "Tickles",
+        "how": "Click the photo 10 times",
+        "what": "The photo jumps and complains.",
+        "where": "Photo at the top of the home page"
+      },
+      {
+        "id": "turbo",
+        "name": "Turbo mode",
+        "how": "Go to the bottom and back to the top 3 times, fast",
+        "what": "The moon sweats and asks you to slow down.",
+        "where": "Home page"
       }
-    ]
+    ],
+    "progress": "{n} of {total} found",
+    "locked": "???",
+    "lockedWhat": "Not found yet.",
+    "reveal": "Reveal all",
+    "found": "Found",
+    "reset": "Reset achievements"
   }
 }
