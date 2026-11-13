@@ -365,5 +365,104 @@
     "rights": "Teagar Company. All rights reserved.",
     "builtWith": "Static, bilingual site with no trackers. Planned in Gartrol.",
     "localLink": "Feira de Santana (in Portuguese)"
+  },
+  "company": {
+    "meta": {
+      "title": "Teagar Company · Custom software and automation",
+      "description": "Teagar Company, from Feira de Santana, Brazil, builds custom software, API integrations and AI automations for companies across Brazil and abroad, working remotely.",
+      "ogTitle": "Teagar Company · Custom software, APIs and automation",
+      "ogDescription": "A technology company from Feira de Santana, Brazil, that turns manual routines into automated processes."
+    },
+    "breadcrumb": "Home",
+    "hero": {
+      "eyebrow": "Teagar Company",
+      "title": "Custom software, APIs and automations that take manual work out of the way",
+      "lead": "Teagar Company is the technology company Thiago Cerqueira, aka Teagar, founded in Feira de Santana, Brazil. It turns manual routines into automated processes for companies in the region and across Brazil, working 100% remotely.",
+      "ctaPrimary": "Talk about a project",
+      "ctaSecondary": "See work"
+    },
+    "facts": [
+      {
+        "label": "Founder",
+        "value": "Thiago Cerqueira (Teagar)",
+        "href": "#about"
+      },
+      {
+        "label": "Based in",
+        "value": "Feira de Santana, Brazil"
+      },
+      {
+        "label": "Engagement",
+        "value": "100% remote, Brazil and abroad"
+      },
+      {
+        "label": "Contact",
+        "value": "contato@teagar.com.br",
+        "href": "mailto:contato@teagar.com.br"
+      },
+      {
+        "label": "GitHub",
+        "value": "github.com/teagarcompany",
+        "href": "https://github.com/teagarcompany"
+      }
+    ],
+    "services": {
+      "title": "What the company does",
+      "intro": "The services Teagar Company delivers, from diagnosis to a live system.",
+      "more": "See the services in detail"
+    },
+    "products": {
+      "title": "In-house products",
+      "intro": "Besides client projects, the company builds and maintains its own products.",
+      "slugs": [
+        "gartrol",
+        "teagarden",
+        "egogero"
+      ]
+    },
+    "principles": {
+      "title": "How the company works",
+      "items": [
+        {
+          "title": "Agreed in writing",
+          "body": "Scope, timeline, price and acceptance criteria are set before any code."
+        },
+        {
+          "title": "Small deliveries",
+          "body": "The system arrives in parts you test while the project moves forward."
+        },
+        {
+          "title": "Evidence in every delivery",
+          "body": "Each step ends with something you can check, not just a nice screen."
+        },
+        {
+          "title": "Around after launch",
+          "body": "The system goes live monitored and documented, and support continues."
+        }
+      ],
+      "more": "See how a project runs"
+    },
+    "tech": {
+      "title": "Technology",
+      "intro": "The tools used most in the company's projects.",
+      "items": [
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "REST APIs",
+        "Webhooks",
+        "n8n",
+        "Make",
+        "Zapier",
+        "Docker",
+        "MCP and AI agents"
+      ]
+    },
+    "contact": {
+      "title": "Shall we talk about your company?",
+      "body": "Tell me in a few lines what slows your team down day to day. The conversation happens online.",
+      "cta": "Write an email",
+      "form": "Use the contact form"
+    }
   }
 }

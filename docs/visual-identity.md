@@ -265,3 +265,9 @@ sprites: hourglass (in development, 3 frames), blinking broadcast dot (live),
 
 - In the contact tea line, the word "chá" / "tea" (`contact.teaWord`) is set like a text selection (`--ember` background, `--on-ember` text, the same colors as `::selection`) so the "tea" in Teagar is obvious. Selecting it swaps to text/background colors so a real selection still shows.
 
+## Company page (owner request 2026-11-13)
+
+- `/teagar-company/` (pt-BR) and `/en/teagar-company/` (en), rendered by `renderCompanyPage` from `company` in each locale file. Sections: hero with breadcrumb, headline, lead and CTAs beside a "ficha" card (logo mark + facts: founder, base, engagement, contact, GitHub); services (reused, with their mono code); in-house products (Gartrol, Teagarden, Egogero, reusing the work cards); four working principles with an ember top rule; technology chips; contact with the tea line.
+- Sources: the public `teagarcompany` GitHub profile (description, areas, stack, contact) and copy already on the site. The org's other repositories are private and are not described.
+- Every visible "Teagar Company" on the other pages (home pt/en, Feira de Santana, 404) is turned into a link to the company page of the same language by `linkCompany` at build time: `.co-link`, text color with a 2 px ember underline (1 px in the kicker and footer). Text inside links, buttons, SVG and hidden elements is skipped, so links never nest; the company page does not link to itself.
+

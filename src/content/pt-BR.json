@@ -365,5 +365,104 @@
     "rights": "Teagar Company. Todos os direitos reservados.",
     "builtWith": "Site estático, bilíngue e sem rastreadores. Planejado no Gartrol.",
     "localLink": "Feira de Santana"
+  },
+  "company": {
+    "meta": {
+      "title": "Teagar Company · Software sob medida e automação",
+      "description": "A Teagar Company, de Feira de Santana, BA, faz software sob medida, integrações de APIs e automações com IA para empresas de todo o Brasil, com atendimento online.",
+      "ogTitle": "Teagar Company · Software sob medida, APIs e automação",
+      "ogDescription": "Empresa de tecnologia de Feira de Santana que troca rotinas manuais por processos automáticos."
+    },
+    "breadcrumb": "Início",
+    "hero": {
+      "eyebrow": "Teagar Company",
+      "title": "Software sob medida, APIs e automações para tirar o trabalho manual do caminho",
+      "lead": "A Teagar Company é a empresa de tecnologia que Thiago Cerqueira, o Teagar, fundou em Feira de Santana, BA. Ela transforma rotinas manuais em processos automáticos para empresas da região e de outras cidades do Brasil, com atendimento 100% online.",
+      "ctaPrimary": "Conversar sobre um projeto",
+      "ctaSecondary": "Ver projetos"
+    },
+    "facts": [
+      {
+        "label": "Fundador",
+        "value": "Thiago Cerqueira (Teagar)",
+        "href": "#about"
+      },
+      {
+        "label": "Sede",
+        "value": "Feira de Santana, BA"
+      },
+      {
+        "label": "Atendimento",
+        "value": "100% online, no Brasil e no exterior"
+      },
+      {
+        "label": "Contato",
+        "value": "contato@teagar.com.br",
+        "href": "mailto:contato@teagar.com.br"
+      },
+      {
+        "label": "GitHub",
+        "value": "github.com/teagarcompany",
+        "href": "https://github.com/teagarcompany"
+      }
+    ],
+    "services": {
+      "title": "O que a empresa faz",
+      "intro": "Os serviços que a Teagar Company entrega, do diagnóstico ao sistema no ar.",
+      "more": "Ver os serviços em detalhe"
+    },
+    "products": {
+      "title": "Produtos próprios",
+      "intro": "Além dos projetos para clientes, a empresa cria e mantém os próprios produtos.",
+      "slugs": [
+        "gartrol",
+        "teagarden",
+        "egogero"
+      ]
+    },
+    "principles": {
+      "title": "Como a empresa trabalha",
+      "items": [
+        {
+          "title": "Combinado por escrito",
+          "body": "Escopo, prazo, preço e critério de aceite ficam definidos antes de qualquer código."
+        },
+        {
+          "title": "Entregas pequenas",
+          "body": "O sistema chega em partes que você testa enquanto o projeto avança."
+        },
+        {
+          "title": "Evidência em cada entrega",
+          "body": "Cada etapa termina com algo que dá para conferir, não só com uma tela bonita."
+        },
+        {
+          "title": "Por perto depois do lançamento",
+          "body": "O sistema vai para o ar monitorado e documentado, e o suporte continua."
+        }
+      ],
+      "more": "Ver como um projeto anda"
+    },
+    "tech": {
+      "title": "Tecnologias",
+      "intro": "As ferramentas mais usadas nos projetos da empresa.",
+      "items": [
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "APIs REST",
+        "Webhooks",
+        "n8n",
+        "Make",
+        "Zapier",
+        "Docker",
+        "MCP e agentes de IA"
+      ]
+    },
+    "contact": {
+      "title": "Vamos conversar sobre a sua empresa?",
+      "body": "Conte em poucas linhas o que trava o dia a dia da sua equipe. A conversa é online.",
+      "cta": "Escrever um e-mail",
+      "form": "Usar o formulário de contato"
+    }
   }
 }
