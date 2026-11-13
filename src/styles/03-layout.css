@@ -53,7 +53,7 @@ html[data-theme="dark"] .theme-btn .moon{display:none}
 .stage{--px-size:6;position:relative;grid-column:8/-1;aspect-ratio:4/5;background:#140F0C;overflow:hidden;
   /* the scene dissolves into the page instead of ending in a hard card edge: two eased linear fades, intersected */
   --fade-x:linear-gradient(90deg,transparent,rgb(0 0 0/.35) 6%,rgb(0 0 0/.8) 12%,#000 18%,#000 82%,rgb(0 0 0/.8) 88%,rgb(0 0 0/.35) 94%,transparent);
-  --fade-y:linear-gradient(180deg,transparent,rgb(0 0 0/.35) 5%,rgb(0 0 0/.8) 10%,#000 15%,#000 72%,rgb(0 0 0/.8) 82%,rgb(0 0 0/.35) 92%,transparent);
+  --fade-y:linear-gradient(180deg,transparent,rgb(0 0 0/.35) 3%,rgb(0 0 0/.8) 6%,#000 10%,#000 72%,rgb(0 0 0/.8) 82%,rgb(0 0 0/.35) 92%,transparent);
   -webkit-mask-image:var(--fade-x),var(--fade-y);-webkit-mask-composite:source-in;
   mask-image:var(--fade-x),var(--fade-y);mask-composite:intersect}
 .scene{position:absolute;inset:0}
@@ -68,13 +68,17 @@ html[data-theme="light"] .scene.night{display:none}
 .rise,.bob{position:absolute;inset:0}
 .pmoon,.ring img{position:absolute;display:block;image-rendering:pixelated}
 .pmoon{inset:0;width:100%;height:100%}
-/* easter egg: three clicks on the moon swap it for the Teagar Company logo (class "egg" on the stage) */
+/* easter egg: three clicks on the moon or the sun swap it for the Teagar Company logo (class "egg" on the stage) */
 .stage{user-select:none;-webkit-user-select:none}
-.moon-wrap{touch-action:manipulation}
-.moon-logo{position:absolute;inset:14%;width:72%;height:72%;color:var(--ember);fill:currentColor;opacity:0;transform:scale(.4) rotate(-90deg);transition:opacity .3s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
-.scene.night .pmoon{transition:opacity .3s ease,transform .45s cubic-bezier(.55,0,1,.45)}
-.stage.egg .scene.night .pmoon{opacity:0;transform:scale(.4) rotate(90deg)}
-.stage.egg .moon-logo{opacity:1;transform:none}
+.moon-wrap,.sun-wrap{touch-action:manipulation}
+/* the logo works as a mask over the body's own pixel texture, enlarged so the whole logo is filled (the sun disc is smaller than the moon's) */
+.egg-logo{position:absolute;top:12%;left:7%;width:86%;height:86%;background:var(--egg-tex) center/var(--egg-size) no-repeat;image-rendering:pixelated;-webkit-mask:url(/assets/brand/logo.svg) center/contain no-repeat;mask:url(/assets/brand/logo.svg) center/contain no-repeat;opacity:0;transform:scale(1.12);transition:opacity .35s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.egg-moon{--egg-tex:url(/assets/img/moon.svg);--egg-size:165%}
+/* sun: its pale centre is moved into the C's counter (transparent in the logo), so the logo shows the orange rings */
+.egg-sun{--egg-tex:url(/assets/img/sun.svg);--egg-size:160%;background-color:#FF7A1F;background-position:70% 50%}
+.pmoon{transition:opacity .35s ease}
+.stage.egg .pmoon{opacity:0}
+.stage.egg .egg-logo{opacity:1;transform:none}
 .halo{position:absolute;inset:0;opacity:var(--hf,1)}
 .ring{position:absolute;left:calc(-16px*var(--px-size));top:calc(-16px*var(--px-size));width:calc(96px*var(--px-size));height:calc(96px*var(--px-size))}
 .ring img{inset:0;width:100%;height:100%}
