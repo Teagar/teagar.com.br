@@ -110,11 +110,10 @@
     setMenu(false, false);
   }
 
-  /* easter egg: three quick clicks or taps on the moon turn it into the Teagar Company logo (three more turn it back) */
-  var moonHit = document.querySelector('#stage .moon-wrap');
-  if (moonHit) {
-    var taps = 0, tapTimer = 0;
-    moonHit.addEventListener('click', function () {
+  /* easter egg: three quick clicks or taps on the moon or the sun turn it into the Teagar Company logo (three more turn it back) */
+  var taps = 0, tapTimer = 0;
+  Array.prototype.forEach.call(document.querySelectorAll('#stage .moon-wrap, #stage .sun-wrap'), function (body) {
+    body.addEventListener('click', function () {
       taps += 1;
       clearTimeout(tapTimer);
       tapTimer = setTimeout(function () { taps = 0; }, 600);
@@ -123,7 +122,7 @@
         document.getElementById('stage').classList.toggle('egg');
       }
     });
-  }
+  });
 
   /* header state, hero sunset, process sun dot */
   var bar = document.getElementById('topbar');
