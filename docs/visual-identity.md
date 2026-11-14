@@ -323,3 +323,7 @@ On `/cheats/`, with JS on:
 - "Revelar tudo" opens every card, and "Zerar conquistas" clears the progress.
 
 Without JS, every card shows in full. Strings for all eggs come from one inline JSON block (`#eggData`, with `<` escaped).
+
+## Troca de idioma mantém a posição
+
+Ao clicar na bandeira, o script guarda em `sessionStorage` a seção visível (pelo `id`, igual nas duas línguas) e a fração percorrida dentro dela. A página do outro idioma reabre no mesmo ponto, sem animação, e reajusta depois de fontes e imagens enquanto o leitor não rolar. O dado vale por 15 s e é apagado ao ser lido. Sem JS, o link continua indo para o topo da outra página. As seções precisam manter os mesmos `id` em pt e en (há teste para isso).

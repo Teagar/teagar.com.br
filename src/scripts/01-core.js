@@ -70,12 +70,44 @@
     });
   }
 
-  /* language switch remembers the choice */
+  /* language switch remembers the choice and keeps the reading position: both languages share
+     section ids, so the other page reopens at the same section and the same point inside it */
+  var POS_KEY = 'langPos';
+  function sectionsList() { return document.querySelectorAll('main section[id]'); }
+  function absTop(el) { return el.getBoundingClientRect().top + (window.pageYOffset || root.scrollTop); }
   var langLink = document.getElementById('langSwitch');
   if (langLink) {
     langLink.addEventListener('click', function () {
       try { localStorage.setItem('lang', langLink.getAttribute('hreflang') === 'en' ? 'en' : 'pt-BR'); } catch (e) {}
+      var y = window.pageYOffset || root.scrollTop;
+      var max = Math.max(1, root.scrollHeight - window.innerHeight);
+      var pos = { path: new URL(langLink.href, location.href).pathname, f: y / max, t: Date.now() };
+      var secs = sectionsList();
+      for (var i = secs.length - 1; i >= 0; i--) {
+        var top = absTop(secs[i]);
+        if (top <= y + 1) { pos.id = secs[i].id; pos.r = (y - top) / Math.max(1, secs[i].offsetHeight); break; }
+      }
+      try { sessionStorage.setItem(POS_KEY, JSON.stringify(pos)); } catch (e) {}
     });
+  }
+  var savedPos = null;
+  try { savedPos = JSON.parse(sessionStorage.getItem(POS_KEY) || 'null'); sessionStorage.removeItem(POS_KEY); } catch (e) {}
+  if (savedPos && savedPos.path === location.pathname && Date.now() - savedPos.t < 15000 && !location.hash) {
+    var restoredY = -1;
+    var restore = function () {
+      var y = window.pageYOffset || root.scrollTop;
+      if (restoredY >= 0 && Math.abs(y - restoredY) > 2) return; /* the reader already moved: leave them */
+      var el = savedPos.id && document.getElementById(savedPos.id);
+      var target = el
+        ? absTop(el) + savedPos.r * el.offsetHeight
+        : savedPos.f * Math.max(0, root.scrollHeight - window.innerHeight);
+      window.scrollTo({ top: Math.round(target), behavior: 'instant' });
+      restoredY = window.pageYOffset || root.scrollTop;
+    };
+    restore();
+    /* fonts and images can shift the layout once more; follow them unless the reader scrolled */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(restore);
+    window.addEventListener('load', restore, { once: true });
   }
 
   /* mobile menu */
