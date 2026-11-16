@@ -188,7 +188,7 @@
         "status": "live",
         "featured": true,
         "award": "2º lugar · Hackathon+ SESI Saúde 2026",
-        "summary": "Coordenação do cuidado para a atenção primária corporativa do SESI: filas automáticas por risco e por dias sem a 1ª consulta, ficha única e um leitor que transforma PDF, foto, e-mail e conversa de WhatsApp em linhas da planilha, com OCR no próprio navegador e conferência humana de cada campo. Em equipe de cinco, fiz o leitor de documentos e o deploy. Dados fictícios.",
+        "summary": "Coordenação do cuidado para a atenção primária corporativa do SESI, com um canal para cada área (equipe de saúde, coordenação e gestor da empresa): filas automáticas por risco e por dias sem a 1ª consulta, ficha única e um leitor que transforma PDF, foto, e-mail e conversa de WhatsApp em linhas da planilha, com OCR no próprio navegador e conferência humana de cada campo. Em equipe de cinco, fiz o leitor de documentos e o deploy. Dados fictícios.",
         "stack": ["React", "TypeScript", "Tesseract.js", "Node.js"],
         "links": [
           { "label": "Demo", "url": "https://sesilita.teagar.com.br" },
