@@ -117,7 +117,7 @@ const workItem = (ui, it, size) => {
 ${projectIcon(it.icon, size === 'small' ? 48 : 72)}
 <div class="meta-row"><span class="meta">${esc(it.category)} · ${esc(it.year)}</span>${statusBadge(ui, it.status)}</div>
 <h3 class="name">${esc(it.name)}</h3>
-<p class="sum">${esc(it.summary)}</p>
+${it.award ? `<p class="award">${esc(it.award)}</p>\n` : ''}<p class="sum">${esc(it.summary)}</p>
 <ul class="chips" aria-label="Stack">${it.stack.map((s) => `<li class="chip">${esc(s)}</li>`).join('')}</ul>
 ${links}
 </li>`;
@@ -174,6 +174,7 @@ export function renderPage({ c, locale, other, assets, logoPaths }) {
         image: `${SITE}/assets/img/about-800.jpg`,
         jobTitle: about.jobTitle,
         description: hero.lead,
+        ...(work.items.some((i) => i.award) ? { award: work.items.filter((i) => i.award).map((i) => `${i.award} (${i.name})`) } : {}),
         knowsAbout: [...services.items.map((s) => s.title), ...stack.groups.flatMap((g) => g.items).slice(0, 24)],
         knowsLanguage: LANGS.map(([code, name]) => ({ '@type': 'Language', name, alternateName: code })),
         sameAs: [GH, GH_ORG, LI],

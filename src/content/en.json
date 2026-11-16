@@ -180,6 +180,22 @@
         "links": []
       },
       {
+        "slug": "sesilita",
+        "icon": "sesilita",
+        "name": "SESILITA",
+        "category": "Hackathon",
+        "year": "2026",
+        "status": "live",
+        "featured": true,
+        "award": "2nd place · Hackathon+ SESI Saúde 2026",
+        "summary": "Care coordination for SESI's corporate primary care, with one channel per area (care team, coordination and the employer): automatic queues by risk and by days without a first visit, a single patient record, and a reader that turns PDFs, photos, emails and WhatsApp chats into spreadsheet rows, with OCR running in the browser and a person checking every field. In a team of five, I built the document reader and the deploy. All data is fictitious.",
+        "stack": ["React", "TypeScript", "Tesseract.js", "Node.js"],
+        "links": [
+          { "label": "Demo", "url": "https://sesilita.teagar.com.br" },
+          { "label": "GitHub", "url": "https://github.com/Teagar/HEALTHX---Hackathon-SESI-Sa-de-2026" }
+        ]
+      },
+      {
         "slug": "teagarden",
         "icon": "teagarden",
         "name": "Teagarden",
@@ -316,6 +332,7 @@
       "updated": "updated November 2026",
       "datetime": "2026-11",
       "items": [
+        "2nd place at Hackathon+ SESI Saúde 2026 with SESILITA, which is still live.",
         "Gartrol is live, with its first users planning whole projects in it.",
         "Teagarden is in beta: a desktop environment for working with several coding agents at once.",
         "Writing plugins for Noctalia, a Wayland desktop shell.",

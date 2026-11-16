@@ -73,3 +73,7 @@ Do not add figures, methods or client details that the owner has not provided.
 - At one of the multinationals the owner worked with, the average time per customer service case went from 7–15 minutes to 3–6 minutes after his solutions, with better quality of life and service quality. Shown on the support result card as "3–6 min" with a before/after range chart.
 - Publish the ranges as given; do not turn them into a single average or percentage, and do not name the company.
 
+
+## SESILITA (Hackathon+ SESI Saúde 2026)
+
+Declaração do dono: 2º lugar no Hackathon+ SESI Saúde 2026 (15/11/2026), projeto no ar em https://sesilita.teagar.com.br. Equipe de cinco (créditos no README do repositório); pelo histórico de commits, o dono fez o leitor de documentos (base: Teagar/SECILITA_PLANILHAS) e o deploy. Publicar sempre com "Dados fictícios" e sem números de clientes ou de pacientes. O campo `award` de um item de projeto vira a faixa laranja do card e entra no JSON-LD da Person como `award`.
