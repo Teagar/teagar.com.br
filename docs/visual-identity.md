@@ -327,3 +327,7 @@ Without JS, every card shows in full. Strings for all eggs come from one inline 
 ## Troca de idioma mantém a posição
 
 Ao clicar na bandeira, o script guarda em `sessionStorage` a seção visível (pelo `id`, igual nas duas línguas) e a fração percorrida dentro dela. A página do outro idioma reabre no mesmo ponto, sem animação, e reajusta depois de fontes e imagens enquanto o leitor não rolar. O dado vale por 15 s e é apagado ao ser lido. Sem JS, o link continua indo para o topo da outra página. As seções precisam manter os mesmos `id` em pt e en (há teste para isso).
+
+## Prêmio no card de projeto
+
+Itens com `award` mostram, logo abaixo do nome, uma faixa em mono sobre `--ember` com texto `--on-ember` (o mesmo destaque da palavra "chá"), para ler como distinção e não como status. Quando os destaques ficam em número par depois do card grande, o último card médio, sozinho na linha, ocupa a largura toda. Ícone `sesilita`: prancheta com cruz e linhas de planilha, 24×24, paleta da lua.

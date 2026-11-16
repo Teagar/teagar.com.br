@@ -198,6 +198,19 @@ test('language switch keeps the reading position: same section ids on both langu
   assert.match(js, /sessionStorage/);
 });
 
+test('SESILITA: featured hackathon project with award line, demo link, icon and JSON-LD award', async () => {
+  for (const [file, award] of [['index.html', '2º lugar · Hackathon+ SESI Saúde 2026'], ['en/index.html', '2nd place · Hackathon+ SESI Saúde 2026']]) {
+    const html = await read(file);
+    const card = html.match(/<li class="card glow-card mid reveal" id="work-sesilita">[\s\S]*?<\/li>\n<li|<li class="card glow-card mid reveal" id="work-sesilita">[\s\S]*?<\/ul>/)?.[0];
+    assert.ok(card, `${file} has the SESILITA featured card`);
+    assert.ok(card.includes(`<p class="award">${award}</p>`), `${file} award line`);
+    assert.ok(card.includes('https://sesilita.teagar.com.br'), `${file} demo link`);
+    assert.ok(card.includes('/assets/img/icons/sesilita.svg'));
+    assert.ok(html.includes(`"award":["${award} (SESILITA)"]`), `${file} JSON-LD award`);
+    assert.ok(html.indexOf('id="work-gartrol"') < html.indexOf('id="work-sesilita"') && html.indexOf('id="work-sesilita"') < html.indexOf('id="work-teagarden"'));
+  }
+});
+
 test('open-source contributions: merged PR links and icons are built in both languages', async () => {
   for (const [lang, file] of [['pt-BR', 'index.html'], ['en', 'en/index.html']]) {
     const c = JSON.parse(await readFile(join(root, `src/content/${lang}.json`), 'utf8')).work.contrib;
@@ -402,7 +415,7 @@ test('about: own voice title, concrete pull quote and a dated "now" block', asyn
   for (const html of [pt, en]) {
     const now = html.match(/<div class="now reveal">[\s\S]*?<\/div>/)[0];
     assert.match(now, /<time class="now-date" datetime="2026-11">/);
-    assert.equal((now.match(/<li>/g) || []).length, 4);
+    assert.equal((now.match(/<li>/g) || []).length, 5);
     assert.ok(!/Back-end, tempo real, IA aplicada|Back-end, real-time, applied AI/.test(html), 'generic focus line removed');
   }
 });

@@ -131,6 +131,8 @@ html[data-theme="dark"] .section.alt .card .chip{background:var(--surface-2)}
 .card>*{position:relative}
 .glow-card::before{content:"";position:absolute;inset:0;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 70%);opacity:0;transition:opacity .5s;pointer-events:none}
 .glow-card:hover::before{opacity:1}
+/* an odd featured card left alone on the last row spans the full width */
+.work-feat>.mid:last-child:nth-child(even){grid-column:1/-1}
 .card.big{grid-column:1/-1;padding:clamp(28px,4.4vw,64px)}
 .card.big .name{font-size:clamp(3rem,6.4vw,5.5rem);line-height:1}
 .card.big .sum{max-width:44em;font-size:clamp(1.0625rem,1.5vw,1.25rem)}
@@ -139,6 +141,8 @@ html[data-theme="dark"] .section.alt .card .chip{background:var(--surface-2)}
 .meta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .meta{color:var(--muted);font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;font-variant-numeric:tabular-nums}
 .status-chip{display:inline-flex;align-items:center;gap:6px;padding:3px 12px;border-radius:var(--r-pill);font-family:var(--mono);font-size:.8125rem;font-weight:500;letter-spacing:.02em;border:1.5px solid currentColor;line-height:1.5}
+/* award line: highlighted like the tea word, so it reads as a distinction, not a status */
+.award{align-self:flex-start;padding:3px 12px;border-radius:var(--r-pill);background:var(--ember);color:var(--on-ember);font-family:var(--mono);font-size:.8125rem;font-weight:600;letter-spacing:.02em;line-height:1.5}
 .status-chip.dev{color:var(--ember-text)}
 .status-chip.live{color:var(--ok)}
 .status-chip.beta{color:var(--text)}
